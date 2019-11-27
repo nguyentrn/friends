@@ -13,10 +13,10 @@ const formatUni = async function(university, stringArr) {
     // WHERE university IS NULL
     const arr = stringArr.map(a => `'${a}'`);
     const a = await pg.raw(
-      `WITH return AS (SELECT pro.uid,full_name,university,others FROM ( SELECT uid, full_name, university FROM profiles WHERE university IS NOT NULL) pro JOIN ( SELECT uid, unnest(other) AS others FROM profile_raws  ) proR ON pro.uid = proR.uid WHERE others IN (${arr.join(
+      `WITH return AS (SELECT pro.uid,full_name,university,others FROM ( SELECT uid, full_name, university FROM profiles WHERE university IS NOT NULL OR university=') pro JOIN ( SELECT uid, unnest(other) AS others FROM profile_raws  ) proR ON pro.uid = proR.uid WHERE others IN (${arr.join(
         ","
       )})) UPDATE profiles SET university='${university}' FROM return WHERE profiles.uid=return.uid`
-    );
+    ).transacting(trx);
 
     console.log("DONEEEEE---------------------", university);
   } catch (err) {
