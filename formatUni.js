@@ -13,11 +13,10 @@ const formatUni = async function(university, stringArr) {
     // WHERE university IS NULL
     const arr = stringArr.map(a => `'${a}'`);
     const a = await pg.raw(
-      `WITH return AS (SELECT pro.uid,full_name,university,others FROM ( SELECT uid, full_name, university FROM profiles WHERE university IS NOT NULL OR university=') pro JOIN ( SELECT uid, unnest(other) AS others FROM profile_raws  ) proR ON pro.uid = proR.uid WHERE others IN (${arr.join(
+      `WITH return AS (SELECT pro.uid,full_name,university,others FROM ( SELECT uid, full_name, university FROM profiles WHERE university IS NULL) pro JOIN ( SELECT uid, unnest(other) AS others FROM profile_raws  ) proR ON pro.uid = proR.uid WHERE others IN (${arr.join(
         ","
       )})) UPDATE profiles SET university='${university}' FROM return WHERE profiles.uid=return.uid`
-    ).transacting(trx);
-
+    )
     console.log("DONEEEEE---------------------", university);
   } catch (err) {
     console.log(err);
@@ -156,353 +155,353 @@ const formatUni = async function(university, stringArr) {
   //   "Cao Đẳng Kinh Tế Kỹ Thuật Cần Thơ",
   //   "TRƯỜNG CAO ĐẲNG KINH TẾ - KỸ THUẬT CẦN THƠ",
   // ]);
-  await formatUni("Cao đẳng Kinh tế - Kỹ thuật Thủ Đức", [
-    "Cao Đẳng Kinh tế Kỹ thuật Thủ Đức",
-  ]);
-  await formatUni("Cao đẳng Kinh tế - Kỹ thuật TP.HCM", [
-    "Trường Cao Đẳng Kinh Tế - Kỹ Thuật TP. Hồ Chí Minh",
-    "Cao Đẳng Kinh Tế Kỹ Thuật Thành Phố Hồ Chí Minh",
-  ]);
-  await formatUni("Cao đẳng Kinh tế - Kỹ thuật Vinatex TP.HCM", [
-    "Trường Cao Đẳng Kinh Tế - Kỹ Thuật Vinatex Thành Phố Hồ Chí Minh",
-    "Trường Cao đẳng Kinh tế - Kỹ thuật Vinatex TP. Hồ Chí Minh",
-    "Vinatex College",
-  ]);
-  await formatUni("Cao đẳng Kinh tế - Kỹ thuật Vĩnh Phúc", [
-    "Trường Cao Đẳng Kinh Tế -  Kỹ Thuật Vĩnh Phúc",
-  ]);
-  await formatUni("Cao đẳng Kỹ nghệ 2", ["Trường Cao Đẳng Kỹ Nghệ II"]);
+  // await formatUni("Cao đẳng Kinh tế - Kỹ thuật Thủ Đức", [
+  //   "Cao Đẳng Kinh tế Kỹ thuật Thủ Đức",
+  // ]);
+  // await formatUni("Cao đẳng Kinh tế - Kỹ thuật TP.HCM", [
+  //   "Trường Cao Đẳng Kinh Tế - Kỹ Thuật TP. Hồ Chí Minh",
+  //   "Cao Đẳng Kinh Tế Kỹ Thuật Thành Phố Hồ Chí Minh",
+  // ]);
+  // await formatUni("Cao đẳng Kinh tế - Kỹ thuật Vinatex TP.HCM", [
+  //   "Trường Cao Đẳng Kinh Tế - Kỹ Thuật Vinatex Thành Phố Hồ Chí Minh",
+  //   "Trường Cao đẳng Kinh tế - Kỹ thuật Vinatex TP. Hồ Chí Minh",
+  //   "Vinatex College",
+  // ]);
+  // await formatUni("Cao đẳng Kinh tế - Kỹ thuật Vĩnh Phúc", [
+  //   "Trường Cao Đẳng Kinh Tế -  Kỹ Thuật Vĩnh Phúc",
+  // ]);
+  // await formatUni("Cao đẳng Kỹ nghệ 2", ["Trường Cao Đẳng Kỹ Nghệ II"]);
 
-  await formatUni("Cao đẳng Kỹ thuật Cao Thắng", [
-    "Cao Đẳng Kỹ Thuật Cao Thắng",
-    "Cộng đồng Sinh viên Trường Cao Đẳng Kỹ Thuật Cao Thắng",
-    "Trường Cao Đẳng Kỹ Thuật Cao Thắng",
-    "Trường Cao đẳng Kỹ thuật Cao Thắng",
-  ]);
+  // await formatUni("Cao đẳng Kỹ thuật Cao Thắng", [
+  //   "Cao Đẳng Kỹ Thuật Cao Thắng",
+  //   "Cộng đồng Sinh viên Trường Cao Đẳng Kỹ Thuật Cao Thắng",
+  //   "Trường Cao Đẳng Kỹ Thuật Cao Thắng",
+  //   "Trường Cao đẳng Kỹ thuật Cao Thắng",
+  // ]);
 
-  await formatUni("Cao đẳng Kỹ thuật Đồng Nai", ["Kỹ thuật Đồng Nai"]);
+  // await formatUni("Cao đẳng Kỹ thuật Đồng Nai", ["Kỹ thuật Đồng Nai"]);
 
-  await formatUni("Cao đẳng Kỹ thuật Công nghệ Bà Rịa - Vũng Tàu", [
-    "Trường Cao đẳng Kỹ thuật Công nghệ Bà Rịa - Vũng Tàu",
-  ]);
+  // await formatUni("Cao đẳng Kỹ thuật Công nghệ Bà Rịa - Vũng Tàu", [
+  //   "Trường Cao đẳng Kỹ thuật Công nghệ Bà Rịa - Vũng Tàu",
+  // ]);
 
-  await formatUni("Cao đẳng Kỹ thuật Công nghệ Quy Nhơn", [
-    "Khoa Điện Tử - Tin Học Trường Cao Đẳng kỹ thuật công nghệ Quy Nhơn",
-  ]);
+  // await formatUni("Cao đẳng Kỹ thuật Công nghệ Quy Nhơn", [
+  //   "Khoa Điện Tử - Tin Học Trường Cao Đẳng kỹ thuật công nghệ Quy Nhơn",
+  // ]);
 
-  await formatUni("Cao đẳng Lý Tự Trọng TP.HCM", [
-    "Cao đẳng Lý Tự Trọng TP.HCM",
-  ]);
-  await formatUni("Cao đẳng Múa Việt Nam", ["Trường Cao đẳng múa VN"]);
+  // await formatUni("Cao đẳng Lý Tự Trọng TP.HCM", [
+  //   "Cao đẳng Lý Tự Trọng TP.HCM",
+  // ]);
+  // await formatUni("Cao đẳng Múa Việt Nam", ["Trường Cao đẳng múa VN"]);
 
-  await formatUni("Cao đẳng Nghề An Giang", [
-    "Trường Cao Đẳng Nghề An Giang",
-    "Cao Dang Nghe an Giang",
-  ]);
-  await formatUni("Cao đẳng Nghề Bách khoa Hà Nội", [
-    "Trường Cao đẳng nghề Bách Khoa Hà Nội - HACTECH",
-  ]);
-  await formatUni("Cao đẳng Nghề Cần Thơ", ["Trường Cao đẳng nghề Cần Thơ"]);
+  // await formatUni("Cao đẳng Nghề An Giang", [
+  //   "Trường Cao Đẳng Nghề An Giang",
+  //   "Cao Dang Nghe an Giang",
+  // ]);
+  // await formatUni("Cao đẳng Nghề Bách khoa Hà Nội", [
+  //   "Trường Cao đẳng nghề Bách Khoa Hà Nội - HACTECH",
+  // ]);
+  // await formatUni("Cao đẳng Nghề Cần Thơ", ["Trường Cao đẳng nghề Cần Thơ"]);
 
-  await formatUni("Cao đẳng Nghề Du lịch Sài Gòn", [
-    "Trường Cao đẳng nghề Du lịch Sài Gòn",
-    "Cao Đẳng Nghề Du Lịch Sài Gòn",
-  ]);
-  await formatUni("Cao đẳng Nghề Tây Ninh", ["Trường Cao Đẳng Nghề Tây Ninh"]);
+  // await formatUni("Cao đẳng Nghề Du lịch Sài Gòn", [
+  //   "Trường Cao đẳng nghề Du lịch Sài Gòn",
+  //   "Cao Đẳng Nghề Du Lịch Sài Gòn",
+  // ]);
+  // await formatUni("Cao đẳng Nghề Tây Ninh", ["Trường Cao Đẳng Nghề Tây Ninh"]);
 
-  await formatUni("Cao đẳng Nghệ thuật Hà Nội", [
-    "Ha Noi College Of Art(Cao Đẳng Nghệ Thuật Hà Nội)",
-    "Trường Cao Đẳng Nghệ Thuật Hà Nội",
-    "Khoa Thanh Nhạc Trường Cao Đẳng Nghệ Thuật Hà Nội-Số 7 Hai Bà Trưng",
-    "Hanoi College of Art",
-  ]);
+  // await formatUni("Cao đẳng Nghệ thuật Hà Nội", [
+  //   "Ha Noi College Of Art(Cao Đẳng Nghệ Thuật Hà Nội)",
+  //   "Trường Cao Đẳng Nghệ Thuật Hà Nội",
+  //   "Khoa Thanh Nhạc Trường Cao Đẳng Nghệ Thuật Hà Nội-Số 7 Hai Bà Trưng",
+  //   "Hanoi College of Art",
+  // ]);
 
-  await formatUni("Cao đẳng Nghệ thuật Việt Bắc", [
-    "Trường Cao đẳng Văn hóa Nghệ thuật Việt Bắc",
-  ]);
+  // await formatUni("Cao đẳng Nghệ thuật Việt Bắc", [
+  //   "Trường Cao đẳng Văn hóa Nghệ thuật Việt Bắc",
+  // ]);
 
-  await formatUni("Cao đẳng Nông nghiệp Nam Bộ", [
-    "Trường Cao đẳng Nông nghiệp Nam Bộ",
-  ]);
+  // await formatUni("Cao đẳng Nông nghiệp Nam Bộ", [
+  //   "Trường Cao đẳng Nông nghiệp Nam Bộ",
+  // ]);
 
-  await formatUni("Cao đẳng Phát thanh Truyền hình 2", [
-    "TRƯỜNG CAO ĐẲNG PHÁT THANH TRUYỀN HÌNH II",
-    "Trường Cao đẳng Phát Thanh - Truyền Hình II",
-  ]);
-  await formatUni("Cao đẳng Phương Đông Đà Nẵng", [
-    "Cao đẳng Phương Đông Đà Nẵng",
-    "Cao Đẳng Phương Đông Đà Nẵng",
-  ]);
-  await formatUni("Cao đẳng Quốc tế TP.HCM", [
-    "Trường Cao Đẳng Quốc Tế TP.HCM",
-  ]);
-  await formatUni("Cao đẳng Sân khấu Điện ảnh Sài Gòn", [
-    "Cao đẳng Sân khấu Điện Ảnh Sài Gòn",
-    "Cao Dang San Khau Dien Anh",
-    "Cao dẳng sân khấu điện ảnh",
-  ]);
+  // await formatUni("Cao đẳng Phát thanh Truyền hình 2", [
+  //   "TRƯỜNG CAO ĐẲNG PHÁT THANH TRUYỀN HÌNH II",
+  //   "Trường Cao đẳng Phát Thanh - Truyền Hình II",
+  // ]);
+  // await formatUni("Cao đẳng Phương Đông Đà Nẵng", [
+  //   "Cao đẳng Phương Đông Đà Nẵng",
+  //   "Cao Đẳng Phương Đông Đà Nẵng",
+  // ]);
+  // await formatUni("Cao đẳng Quốc tế TP.HCM", [
+  //   "Trường Cao Đẳng Quốc Tế TP.HCM",
+  // ]);
+  // await formatUni("Cao đẳng Sân khấu Điện ảnh Sài Gòn", [
+  //   "Cao đẳng Sân khấu Điện Ảnh Sài Gòn",
+  //   "Cao Dang San Khau Dien Anh",
+  //   "Cao dẳng sân khấu điện ảnh",
+  // ]);
 
-  await formatUni("Cao đẳng Sư phạm Đắk Lắk", [
-    "Trường Cao Đẳng Sư Phạm Đak Lak",
-  ]);
-  await formatUni("Cao đẳng Sư phạm Gia Lai", [
-    "Cao Đẳng Sư Phạm Gia Lai",
-    "Trường Cao Đẳng Sư Phạm Gia Lai",
-    "CAO ĐẲNG SƯ PHẠM GIA LAI",
-  ]);
-  await formatUni("Cao đẳng Sư phạm Tây Ninh", [
-    "Trường Cao Đẳng Sư Phạm Tây Ninh",
-  ]);
-  await formatUni("Cao đẳng Sư phạm TP.HCM", ["Cao Đẳng Sư Phạm TPHCM"]);
+  // await formatUni("Cao đẳng Sư phạm Đắk Lắk", [
+  //   "Trường Cao Đẳng Sư Phạm Đak Lak",
+  // ]);
+  // await formatUni("Cao đẳng Sư phạm Gia Lai", [
+  //   "Cao Đẳng Sư Phạm Gia Lai",
+  //   "Trường Cao Đẳng Sư Phạm Gia Lai",
+  //   "CAO ĐẲNG SƯ PHẠM GIA LAI",
+  // ]);
+  // await formatUni("Cao đẳng Sư phạm Tây Ninh", [
+  //   "Trường Cao Đẳng Sư Phạm Tây Ninh",
+  // ]);
+  // await formatUni("Cao đẳng Sư phạm TP.HCM", ["Cao Đẳng Sư Phạm TPHCM"]);
 
-  await formatUni("Cao đẳng Sư phạm Trung ương Nha Trang", [
-    "TRƯỜNG CAO ĐẲNG SƯ PHẠM TRUNG ƯƠNG - NHA TRANG",
-  ]);
+  // await formatUni("Cao đẳng Sư phạm Trung ương Nha Trang", [
+  //   "TRƯỜNG CAO ĐẲNG SƯ PHẠM TRUNG ƯƠNG - NHA TRANG",
+  // ]);
 
-  await formatUni("Cao đẳng Sư phạm Trung ương TP.HCM", [
-    "Cao đẳng Sư Phạm Trung Ương TP.HCM",
-    "Khoa Giáo dục mầm non - Trường Cao đẳng Sư phạm Trung ương",
-    "Trường Cao đẳng Sư phạm Trung ương",
-    "Tuyển sinh Cao đẳng Sư Phạm Trung Ương",
-  ]);
+  // await formatUni("Cao đẳng Sư phạm Trung ương TP.HCM", [
+  //   "Cao đẳng Sư Phạm Trung Ương TP.HCM",
+  //   "Khoa Giáo dục mầm non - Trường Cao đẳng Sư phạm Trung ương",
+  //   "Trường Cao đẳng Sư phạm Trung ương",
+  //   "Tuyển sinh Cao đẳng Sư Phạm Trung Ương",
+  // ]);
 
-  await formatUni("Cao đẳng Tài chính - Hải quan", [
-    "Trường Cao đẳng Tài chính - Hải quan",
-    "Cao đẳng Tài chính Hải quan TP.HCM",
-  ]);
+  // await formatUni("Cao đẳng Tài chính - Hải quan", [
+  //   "Trường Cao đẳng Tài chính - Hải quan",
+  //   "Cao đẳng Tài chính Hải quan TP.HCM",
+  // ]);
 
-  await formatUni("Cao đẳng Thống kê", ["Cao đẳng thống kê"]);
+  // await formatUni("Cao đẳng Thống kê", ["Cao đẳng thống kê"]);
 
-  await formatUni("Cao đẳng Thực hành FPT Polytechnic", [
-    "Cao đẳng thực hành FPT Polytechnic",
-    "FPT Polytechnic",
-  ]);
-  await formatUni("Cao đẳng Thương mại", ["Trường Cao đẳng Thương mại"]);
-  await formatUni("Cao đẳng Thương mại và Du lịch Hà Nội", [
-    "Cao Đẳng Thương Mại và Du Lịch Hà Nội-HCCT",
-  ]);
+  // await formatUni("Cao đẳng Thực hành FPT Polytechnic", [
+  //   "Cao đẳng thực hành FPT Polytechnic",
+  //   "FPT Polytechnic",
+  // ]);
+  // await formatUni("Cao đẳng Thương mại", ["Trường Cao đẳng Thương mại"]);
+  // await formatUni("Cao đẳng Thương mại và Du lịch Hà Nội", [
+  //   "Cao Đẳng Thương Mại và Du Lịch Hà Nội-HCCT",
+  // ]);
 
-  await formatUni("Cao đẳng Truyền hình Hà Nội", [
-    "Cao Đẳng Truyền Hình",
-    "Cao đẳng truyền hình Hà Nội (CTV)",
-  ]);
+  // await formatUni("Cao đẳng Truyền hình Hà Nội", [
+  //   "Cao Đẳng Truyền Hình",
+  //   "Cao đẳng truyền hình Hà Nội (CTV)",
+  // ]);
 
-  await formatUni("Cao đẳng Văn hóa Nghệ thuật TP.HCM", [
-    "Cao đẳng văn hóa nghệ thuật Tp.hcm",
-    "Trường Cao đẳng Văn hóa Nghệ thuật HCM CVN",
-    "Cao Đẳng Văn Hóa Nghệ Thuật TP.HCM",
-    "Cao đẳng Văn hóa Nghệ thuật Thành phố Hồ Chí Minh",
-    "Đại Học Văn hoá - Nghệ thuật quân đội, Tp.HCM",
-    "Cao Đẳng Văn Hoá Nghệ Thuật TP.HCM Số 5 Nam Quốc Cang Q1",
-  ]);
+  // await formatUni("Cao đẳng Văn hóa Nghệ thuật TP.HCM", [
+  //   "Cao đẳng văn hóa nghệ thuật Tp.hcm",
+  //   "Trường Cao đẳng Văn hóa Nghệ thuật HCM CVN",
+  //   "Cao Đẳng Văn Hóa Nghệ Thuật TP.HCM",
+  //   "Cao đẳng Văn hóa Nghệ thuật Thành phố Hồ Chí Minh",
+  //   "Đại Học Văn hoá - Nghệ thuật quân đội, Tp.HCM",
+  //   "Cao Đẳng Văn Hoá Nghệ Thuật TP.HCM Số 5 Nam Quốc Cang Q1",
+  // ]);
 
-  await formatUni("Cao đẳng Văn hoá Nghệ thuật và Du lịch Sài Gòn", [
-    "Trường Cao đẳng Văn hoá Nghệ thuật và Du lịch Sài Gòn",
-    "CAO ĐẲNG VĂN HÓA NGHỆ THUẬT VÀ DU LỊCH SÀI GÒN",
-  ]);
+  // await formatUni("Cao đẳng Văn hoá Nghệ thuật và Du lịch Sài Gòn", [
+  //   "Trường Cao đẳng Văn hoá Nghệ thuật và Du lịch Sài Gòn",
+  //   "CAO ĐẲNG VĂN HÓA NGHỆ THUẬT VÀ DU LỊCH SÀI GÒN",
+  // ]);
 
-  await formatUni("Cao đẳng Văn hóa Nghệ thuật Cần Thơ", [
-    "Trường Cao đẳng Văn hóa Nghệ thuật Cần Thơ",
-  ]);
+  // await formatUni("Cao đẳng Văn hóa Nghệ thuật Cần Thơ", [
+  //   "Trường Cao đẳng Văn hóa Nghệ thuật Cần Thơ",
+  // ]);
 
-  await formatUni("Cao đẳng Viễn Đông", ["Cao đẳng Viễn Đông"]);
-  await formatUni("Cao đẳng Việt Mỹ", [
-    "Cao đẳng Việt Mỹ - American Polytechnic College",
-  ]);
+  // await formatUni("Cao đẳng Viễn Đông", ["Cao đẳng Viễn Đông"]);
+  // await formatUni("Cao đẳng Việt Mỹ", [
+  //   "Cao đẳng Việt Mỹ - American Polytechnic College",
+  // ]);
 
-  await formatUni("Cao đẳng Vĩnh Phúc", ["Cao Đẳng Vĩnh Phúc"]);
-  await formatUni("Cao đẳng Y Dược Asean", ["Trường Cao Đẳng Y Dược Asean"]);
+  // await formatUni("Cao đẳng Vĩnh Phúc", ["Cao Đẳng Vĩnh Phúc"]);
+  // await formatUni("Cao đẳng Y Dược Asean", ["Trường Cao Đẳng Y Dược Asean"]);
 
-  await formatUni("Cao đẳng Y Dược Hồng Đức", [
-    "Trường Cao Đẳng Y Dược Hồng Đức",
-  ]);
-  await formatUni("Cao đẳng Y Dược Pasteur", [
-    "Trường Cao đẳng Y Dược Pasteur CS TPHCM",
-    "Trường Cao đẳng Y Dược Pasteur",
-    "Trường Cao đẳng Y Dược Pasteur CS Tp.HCM",
-  ]);
-  await formatUni("Cao đẳng Y Dược Sài Gòn", [
-    "Trường Cao Đẳng Y Dược Sài Gòn",
-  ]);
+  // await formatUni("Cao đẳng Y Dược Hồng Đức", [
+  //   "Trường Cao Đẳng Y Dược Hồng Đức",
+  // ]);
+  // await formatUni("Cao đẳng Y Dược Pasteur", [
+  //   "Trường Cao đẳng Y Dược Pasteur CS TPHCM",
+  //   "Trường Cao đẳng Y Dược Pasteur",
+  //   "Trường Cao đẳng Y Dược Pasteur CS Tp.HCM",
+  // ]);
+  // await formatUni("Cao đẳng Y Dược Sài Gòn", [
+  //   "Trường Cao Đẳng Y Dược Sài Gòn",
+  // ]);
 
-  await formatUni("Cao đẳng Y tế Bạch Mai", ["Cao Đẳng Y Tế Bạch Mai"]);
-  await formatUni("Cao đẳng Y tế Bình Định", [
-    "Trường Cao đẳng Y tế Bình Định",
-  ]);
+  // await formatUni("Cao đẳng Y tế Bạch Mai", ["Cao Đẳng Y Tế Bạch Mai"]);
+  // await formatUni("Cao đẳng Y tế Bình Định", [
+  //   "Trường Cao đẳng Y tế Bình Định",
+  // ]);
 
-  await formatUni("Cao đẳng Y tế Bình Dương", [
-    "Trường Cao đẳng Y Tế Bình Dương",
-    "Trường Cao Đẳng Y Tế Bình Dương-CBY 1978 nơi chia sẻ kỷ niệm",
-    "Cao đẳng Y tế Bình Dương",
-  ]);
+  // await formatUni("Cao đẳng Y tế Bình Dương", [
+  //   "Trường Cao đẳng Y Tế Bình Dương",
+  //   "Trường Cao Đẳng Y Tế Bình Dương-CBY 1978 nơi chia sẻ kỷ niệm",
+  //   "Cao đẳng Y tế Bình Dương",
+  // ]);
 
-  await formatUni("Cao đẳng Y tế Cà Mau", ["Trường Cao Đẳng Y Tế Cà Mau"]);
-  await formatUni("Cao đẳng Y tế Cần Thơ", ["Trường Cao Đẳng Y Tế Cần Thơ"]);
+  // await formatUni("Cao đẳng Y tế Cà Mau", ["Trường Cao Đẳng Y Tế Cà Mau"]);
+  // await formatUni("Cao đẳng Y tế Cần Thơ", ["Trường Cao Đẳng Y Tế Cần Thơ"]);
 
-  await formatUni("Cao đẳng Y tế Đồng Nai", ["Trường Cao Đẳng Y Tế Đồng Nai"]);
-  await formatUni("Cao đẳng Y tế Đồng Tháp", [
-    "Trường Cao đẳng Y tế Đồng Tháp",
-  ]);
+  // await formatUni("Cao đẳng Y tế Đồng Nai", ["Trường Cao Đẳng Y Tế Đồng Nai"]);
+  // await formatUni("Cao đẳng Y tế Đồng Tháp", [
+  //   "Trường Cao đẳng Y tế Đồng Tháp",
+  // ]);
 
-  await formatUni("Cao đẳng Y tế Hà Đông", ["Trường Cao Đẳng Y Tế Hà Đông"]);
-  await formatUni("Cao đẳng Y tế Hà Nội", [
-    "Trường Cao Đẳng Y Tế Hà Nội",
-    "Trường Cao đẳng Y Dược Hà Nội",
-  ]);
-  await formatUni("Cao đẳng Y tế Hải Phòng", [
-    "Trường Cao Đẳng Y Tế Hải Phòng",
-  ]);
+  // await formatUni("Cao đẳng Y tế Hà Đông", ["Trường Cao Đẳng Y Tế Hà Đông"]);
+  // await formatUni("Cao đẳng Y tế Hà Nội", [
+  //   "Trường Cao Đẳng Y Tế Hà Nội",
+  //   "Trường Cao đẳng Y Dược Hà Nội",
+  // ]);
+  // await formatUni("Cao đẳng Y tế Hải Phòng", [
+  //   "Trường Cao Đẳng Y Tế Hải Phòng",
+  // ]);
 
-  await formatUni("Cao đẳng Y tế Kiên Giang", ["Cao đẳng Y tế Kiên Giang"]);
+  // await formatUni("Cao đẳng Y tế Kiên Giang", ["Cao đẳng Y tế Kiên Giang"]);
 
-  await formatUni("Cao đẳng Y tế Phú Thọ", ["Trường Cao đẳng Y tế Phú Thọ"]);
-  await formatUni("Cao đẳng Y tế Sơn La", ["Cao Đẳng Y Tế Sơn La"]);
+  // await formatUni("Cao đẳng Y tế Phú Thọ", ["Trường Cao đẳng Y tế Phú Thọ"]);
+  // await formatUni("Cao đẳng Y tế Sơn La", ["Cao Đẳng Y Tế Sơn La"]);
 
-  await formatUni("Cao đẳng Y tế Quảng Ninh", ["Cao Đẳng Y tế Quảng Ninh"]);
-  await formatUni("Cao đẳng Y tế Tiền Giang", [
-    "Cao Đẳng Y Tế Tiền Giang - Tien Giang Medical College",
-  ]);
+  // await formatUni("Cao đẳng Y tế Quảng Ninh", ["Cao Đẳng Y tế Quảng Ninh"]);
+  // await formatUni("Cao đẳng Y tế Tiền Giang", [
+  //   "Cao Đẳng Y Tế Tiền Giang - Tien Giang Medical College",
+  // ]);
 
-  //----------------------------------------------------------------------------------------hoc vien
-  await formatUni("Học viện Âm nhạc Huế", ["Học viện Âm nhạc Huế"]);
-  await formatUni("Học viện Âm nhạc Quốc gia Việt Nam", [
-    "Học Viện Âm Nhạc Quốc Gia Việt Nam - Vietnam National Academy Of Music",
-    "Học Viện Âm Nhạc Quốc Gia",
-    "Vietnam National Academy of Music - Học viện âm nhạc quốc gia Việt Nam",
-    "Học Viện Âm Nhạc Quốc Gia Việt Nam - Vietnam National...",
-    "Học Viện Âm Nhạc Quốc Gia Việt Nam",
-    "VNAM - Học Viện Âm Nhạc Quốc Gia Việt Nam",
-  ]);
-  await formatUni("Học viện Báo chí và Tuyên truyền", [
-    "Học viện Báo chí và Tuyên truyền",
-    "Học viện Báo chí và Tuyên truyền - AJC",
-  ]);
-  await formatUni("Học viện Biên phòng", ["HỌC VIỆN BIÊN PHÒNG"]);
-  await formatUni("Học viện Cán bộ TP.HCM", [
-    "Học Viện Cán Bộ Thành Phố Hồ Chí Minh",
-  ]);
+  // //----------------------------------------------------------------------------------------hoc vien
+  // await formatUni("Học viện Âm nhạc Huế", ["Học viện Âm nhạc Huế"]);
+  // await formatUni("Học viện Âm nhạc Quốc gia Việt Nam", [
+  //   "Học Viện Âm Nhạc Quốc Gia Việt Nam - Vietnam National Academy Of Music",
+  //   "Học Viện Âm Nhạc Quốc Gia",
+  //   "Vietnam National Academy of Music - Học viện âm nhạc quốc gia Việt Nam",
+  //   "Học Viện Âm Nhạc Quốc Gia Việt Nam - Vietnam National...",
+  //   "Học Viện Âm Nhạc Quốc Gia Việt Nam",
+  //   "VNAM - Học Viện Âm Nhạc Quốc Gia Việt Nam",
+  // ]);
+  // await formatUni("Học viện Báo chí và Tuyên truyền", [
+  //   "Học viện Báo chí và Tuyên truyền",
+  //   "Học viện Báo chí và Tuyên truyền - AJC",
+  // ]);
+  // await formatUni("Học viện Biên phòng", ["HỌC VIỆN BIÊN PHÒNG"]);
+  // await formatUni("Học viện Cán bộ TP.HCM", [
+  //   "Học Viện Cán Bộ Thành Phố Hồ Chí Minh",
+  // ]);
 
-  await formatUni("Học viện Công nghệ Bưu chính Viễn thông", [
-    "Học viện Công nghệ Bưu chính Viễn thông cơ sở tại TP.HCM",
-    "Học viện Công nghệ Bưu chính Viễn thông",
-    "Học Viện Công Nghệ Bưu Chính Viễn Thông - PTIT",
-    "Học viện Công nghệ Bưu Chính Viễn Thông - PTIT",
-  ]);
+  // await formatUni("Học viện Công nghệ Bưu chính Viễn thông", [
+  //   "Học viện Công nghệ Bưu chính Viễn thông cơ sở tại TP.HCM",
+  //   "Học viện Công nghệ Bưu chính Viễn thông",
+  //   "Học Viện Công Nghệ Bưu Chính Viễn Thông - PTIT",
+  //   "Học viện Công nghệ Bưu Chính Viễn Thông - PTIT",
+  // ]);
 
-  await formatUni("Học viện Hải quân", [
-    "Học viện Hải quân",
-    "Học viện Hải Quân",
-  ]);
-  await formatUni("Học viện Cảnh sát Nhân dân", ["Học Viện Cảnh Sát Nhân Dân"]);
-  await formatUni("Học viện Hàng không Việt Nam", [
-    "Học viện Hàng không Việt Nam - Vietnam Aviation Academy",
-    "Học Viện Hàng Không",
-    "Học viện Hàng không Việt Nam",
-  ]);
-  await formatUni("Học viện Hành chính Quốc gia", [
-    "Học viện Hành Chính Quốc Gia",
-  ]);
+  // await formatUni("Học viện Hải quân", [
+  //   "Học viện Hải quân",
+  //   "Học viện Hải Quân",
+  // ]);
+  // await formatUni("Học viện Cảnh sát Nhân dân", ["Học Viện Cảnh Sát Nhân Dân"]);
+  // await formatUni("Học viện Hàng không Việt Nam", [
+  //   "Học viện Hàng không Việt Nam - Vietnam Aviation Academy",
+  //   "Học Viện Hàng Không",
+  //   "Học viện Hàng không Việt Nam",
+  // ]);
+  // await formatUni("Học viện Hành chính Quốc gia", [
+  //   "Học viện Hành Chính Quốc Gia",
+  // ]);
 
-  await formatUni("Học viện Hậu cần", [
-    "Học Viện Hậu Cần- Military Academy of Logistics",
-  ]);
+  // await formatUni("Học viện Hậu cần", [
+  //   "Học Viện Hậu Cần- Military Academy of Logistics",
+  // ]);
 
-  await formatUni("Học viện Kỹ thuật Quân sự", [
-    "Học Viện Kỹ Thuật Quân Sự (MTA)",
-  ]);
-  await formatUni("Học viện Kỹ thuật Mật mã", ["Học viện Kỹ thuật mật mã"]);
-  await formatUni("Học viện Múa Quốc gia Việt Nam", [
-    "Học Viện Múa Quốc Gia Việt Nam",
-  ]);
+  // await formatUni("Học viện Kỹ thuật Quân sự", [
+  //   "Học Viện Kỹ Thuật Quân Sự (MTA)",
+  // ]);
+  // await formatUni("Học viện Kỹ thuật Mật mã", ["Học viện Kỹ thuật mật mã"]);
+  // await formatUni("Học viện Múa Quốc gia Việt Nam", [
+  //   "Học Viện Múa Quốc Gia Việt Nam",
+  // ]);
 
-  await formatUni("Học viện Ngân hàng", [
-    "Học viện ngân hàng",
-    "Học viện Ngân hàng",
-  ]);
-  await formatUni("Học viện Ngoại giao", [
-    "Diplomatic Academy of Vietnam",
-    "Học viện Ngoại giao Việt Nam",
-  ]);
-  await formatUni("Học viện Nông nghiệp Việt Nam", [
-    "Học viện Nông nghiệp Việt Nam",
-    "Diễn Đàn Học viện Nông nghiệp Việt Nam",
-    "Vietnam National University of Agriculture",
-  ]);
-  await formatUni("Học viện Phụ nữ Việt Nam", [
-    "Học viện Phụ nữ Việt Nam - Vietnam Women's Academy",
-  ]);
-  await formatUni("Học viện Quản lý Giáo dục", [
-    "Học viện Quản lý giáo dục - NAEM",
-    "học viện quản lý giáo dục",
-  ]);
-  await formatUni("Học viện Quân y", ["Học viện Quân y"]);
+  // await formatUni("Học viện Ngân hàng", [
+  //   "Học viện ngân hàng",
+  //   "Học viện Ngân hàng",
+  // ]);
+  // await formatUni("Học viện Ngoại giao", [
+  //   "Diplomatic Academy of Vietnam",
+  //   "Học viện Ngoại giao Việt Nam",
+  // ]);
+  // await formatUni("Học viện Nông nghiệp Việt Nam", [
+  //   "Học viện Nông nghiệp Việt Nam",
+  //   "Diễn Đàn Học viện Nông nghiệp Việt Nam",
+  //   "Vietnam National University of Agriculture",
+  // ]);
+  // await formatUni("Học viện Phụ nữ Việt Nam", [
+  //   "Học viện Phụ nữ Việt Nam - Vietnam Women's Academy",
+  // ]);
+  // await formatUni("Học viện Quản lý Giáo dục", [
+  //   "Học viện Quản lý giáo dục - NAEM",
+  //   "học viện quản lý giáo dục",
+  // ]);
+  // await formatUni("Học viện Quân y", ["Học viện Quân y"]);
 
-  await formatUni("Học viện Tài chính", [
-    "Học viện Tài Chính (Academy Of Finance)",
-    "Học Viện Tài Chính",
-  ]);
+  // await formatUni("Học viện Tài chính", [
+  //   "Học viện Tài Chính (Academy Of Finance)",
+  //   "Học Viện Tài Chính",
+  // ]);
 
-  await formatUni("Học viện Thanh thiếu niên Việt Nam", [
-    "Học Viện Thanh Thiếu Niên Việt Nam",
-  ]);
-  await formatUni("Học viện Tòa án", ["HỌC VIỆN TÒA ÁN"]);
-  await formatUni("Học viện Y Dược học Cổ truyền Việt Nam", [
-    "Học Viện Y Dược Học Cổ Truyền Việt Nam",
-  ]);
-  await formatUni("Nhạc viện TP.HCM", [
-    "Nhạc Viện TPHCM",
-    "nhac vien tphcm",
-    "Nhạc Viện",
-    "Nhạc viện Thành phố Hồ Chí Minh",
-  ]);
+  // await formatUni("Học viện Thanh thiếu niên Việt Nam", [
+  //   "Học Viện Thanh Thiếu Niên Việt Nam",
+  // ]);
+  // await formatUni("Học viện Tòa án", ["HỌC VIỆN TÒA ÁN"]);
+  // await formatUni("Học viện Y Dược học Cổ truyền Việt Nam", [
+  //   "Học Viện Y Dược Học Cổ Truyền Việt Nam",
+  // ]);
+  // await formatUni("Nhạc viện TP.HCM", [
+  //   "Nhạc Viện TPHCM",
+  //   "nhac vien tphcm",
+  //   "Nhạc Viện",
+  //   "Nhạc viện Thành phố Hồ Chí Minh",
+  // ]);
 
   //-------------------------------------------------------------------------------Bac
 
-  await formatUni("Đại học Nguyễn Huệ", ["Trường Sĩ Quan Lục Quân 2"]);
-  await formatUni("Đại học Hòa Bình", ["Đại Học Hòa Bình"]);
+  // await formatUni("Đại học Nguyễn Huệ", ["Trường Sĩ Quan Lục Quân 2"]);
+  // await formatUni("Đại học Hòa Bình", ["Đại Học Hòa Bình"]);
 
-  await formatUni("Đại học Tây Bắc", ["Đại Học Tây Bắc"]);
+  // await formatUni("Đại học Tây Bắc", ["Đại Học Tây Bắc"]);
 
-  await formatUni("Đại học Sao Đỏ ", ["Trường Đại học Sao Đỏ"]);
+  // await formatUni("Đại học Sao Đỏ ", ["Trường Đại học Sao Đỏ"]);
 
-  await formatUni("Đại học Công nghệ thông tin & Truyền thông Thái Nguyên", [
-    "Trường Đại học Công nghệ thông tin & Truyền thông, Thái Nguyên",
-  ]);
+  // await formatUni("Đại học Công nghệ thông tin & Truyền thông Thái Nguyên", [
+  //   "Trường Đại học Công nghệ thông tin & Truyền thông, Thái Nguyên",
+  // ]);
 
-  await formatUni("Đại học Kinh tế và Quản trị Kinh doanh Thái Nguyên", [
-    "Trường Đại học Kinh tế và Quản trị Kinh doanh Thái Nguyên",
-    "Đại học Kinh tế và quản trị kinh doanh Thái Nguyên",
-  ]);
+  // await formatUni("Đại học Kinh tế và Quản trị Kinh doanh Thái Nguyên", [
+  //   "Trường Đại học Kinh tế và Quản trị Kinh doanh Thái Nguyên",
+  //   "Đại học Kinh tế và quản trị kinh doanh Thái Nguyên",
+  // ]);
 
-  await formatUni("Đại học Kỹ thuật Công nghiệp Thái Nguyên", [
-    "Đại Học Kỹ Thuật Công Nghiệp Thái Nguyên - TNUT",
-  ]);
+  // await formatUni("Đại học Kỹ thuật Công nghiệp Thái Nguyên", [
+  //   "Đại Học Kỹ Thuật Công Nghiệp Thái Nguyên - TNUT",
+  // ]);
 
-  await formatUni("Đại học Y Dược - Đại học Thái Nguyên", [
-    "Đại Học Y Dược Thái Nguyên",
-  ]);
-  await formatUni("Đại học Sư phạm - Đại học Thái Nguyên", [
-    "Đại học Sư phạm Thái Nguyên",
-    "Đại học Sư phạm Thái Nguyên ( Thai Nguyen University of education)",
-  ]);
-  await formatUni("Đại học Nông Lâm - Đại học Thái Nguyên", [
-    "Đại Học Nông Lâm Thái Nguyên",
-  ]);
-  await formatUni("Đại học Khoa học - Đại học Thái Nguyên", [
-    "Trường Đại học Khoa học - Đại học Thái Nguyên",
-  ]);
+  // await formatUni("Đại học Y Dược - Đại học Thái Nguyên", [
+  //   "Đại Học Y Dược Thái Nguyên",
+  // ]);
+  // await formatUni("Đại học Sư phạm - Đại học Thái Nguyên", [
+  //   "Đại học Sư phạm Thái Nguyên",
+  //   "Đại học Sư phạm Thái Nguyên ( Thai Nguyen University of education)",
+  // ]);
+  // await formatUni("Đại học Nông Lâm - Đại học Thái Nguyên", [
+  //   "Đại Học Nông Lâm Thái Nguyên",
+  // ]);
+  // await formatUni("Đại học Khoa học - Đại học Thái Nguyên", [
+  //   "Trường Đại học Khoa học - Đại học Thái Nguyên",
+  // ]);
 
-  await formatUni("Đại học Hùng Vương", [
-    "Đại học Hùng Vương - Phú Thọ",
-    "HVUH - Trường Đại Học Hùng Vương TP.HCM",
-  ]);
-  await formatUni("Đại học Công nghiệp Việt Trì", [
-    "Trường Đại học Công Nghiệp Việt Trì (VUI)",
-  ]);
-  await formatUni("Đại học Công nghệ Giao thông Vận tải", [
-    "Đại học Công nghệ Giao thông vận tải",
-  ]);
-  await formatUni("Đại học Hạ Long", ["Đại Học Hạ Long"]);
+  // await formatUni("Đại học Hùng Vương", [
+  //   "Đại học Hùng Vương - Phú Thọ",
+  //   "HVUH - Trường Đại Học Hùng Vương TP.HCM",
+  // ]);
+  // await formatUni("Đại học Công nghiệp Việt Trì", [
+  //   "Trường Đại học Công Nghiệp Việt Trì (VUI)",
+  // ]);
+  // await formatUni("Đại học Công nghệ Giao thông Vận tải", [
+  //   "Đại học Công nghệ Giao thông vận tải",
+  // ]);
+  // await formatUni("Đại học Hạ Long", ["Đại Học Hạ Long"]);
   await formatUni("Đại học Dân lập Hải Phòng", ["Đại học Dân lập Hải Phòng"]);
   await formatUni("Đại học Hải Phòng", [
     "Đại Học Hải Phòng",
@@ -1067,123 +1066,123 @@ const formatUni = async function(university, stringArr) {
   // //
   // //--------------------------------------------------DAI HOC TUTU
 
-  // await formatUni('Đại học Công nghệ Sài Gòn', [
-  //   'Đại học Công Nghệ Sài Gòn - SaiGon Technology University'
-  // ]);
-  // await formatUni('Đại học Công nghệ TP.HCM', [
-  //   'HUTECH - Đại học Công nghệ Tp.HCM',
-  //   'HUTECH - Trường Đại học Công nghệ TP.HCM',
-  //   'Hutech University',
-  //   'HUTECH - University of Technology',
-  //   'HUTECH - Đại học Công nghệ Tp.HCM',
-  //   'HUTECH University',
-  //   'Trường ĐH Công Nghệ TP.HCM',
-  //   'HUTECH - Đại học Công nghệ Tp.HCM'
-  // ]);
+  await formatUni('Đại học Công nghệ Sài Gòn', [
+    'Đại học Công Nghệ Sài Gòn - SaiGon Technology University'
+  ]);
+  await formatUni('Đại học Công nghệ TP.HCM', [
+    'HUTECH - Đại học Công nghệ Tp.HCM',
+    'HUTECH - Trường Đại học Công nghệ TP.HCM',
+    'Hutech University',
+    'HUTECH - University of Technology',
+    'HUTECH - Đại học Công nghệ Tp.HCM',
+    'HUTECH University',
+    'Trường ĐH Công Nghệ TP.HCM',
+    'HUTECH - Đại học Công nghệ Tp.HCM'
+  ]);
 
-  // await formatUni('Đại học FPT TP.HCM', [
-  //   'FPT University',
-  //   'FPT University HCM',
-  //   'Đại học FPT',
-  //   'Đại Học FPT'
-  // ]);
-  // await formatUni('Đại học Hoa Sen', [
-  //   'Đại Học Hoa Sen',
-  //   'Hoa Sen University',
-  //   'Lotus University',
-  //   'Ngành Marketing - Đại Học Hoa Sen'
-  // ]);
-  // await formatUni('Đại học Kinh tế Tài chính TP.HCM', [
-  //   'UEF - Đại học Kinh tế Tài chính TP.HCM'
-  // ]);
-  // await formatUni('Đại học Mỹ thuật TP.HCM', [
-  //   'Trường Đại học Mỹ thuật Thành phố Hồ Chí Minh',
-  //   'Đại học Mỹ Thuật Tp.HCM',
-  //   'Vietnam University of Fine Arts',
-  //   'Đại học Mỹ thuật Tp. Hồ Chí Minh'
-  // ]);
-  // await formatUni('Đại học Nguyễn Tất Thành', [
-  //   'NTTU - Đại học Nguyễn Tất Thành',
-  //   'NTTU - Đại học Nguyễn Tất Thành',
-  //   'Đại Học Nguyễn Tất Thành Cơ Sở Quận 12',
-  //   'Trường Đại học Nguyễn Tất Thành NTTU',
-  //   'Đại học Nguyễn Tất Thành',
-  //   'NIIE (NTT Institute of International Education)'
-  // ]);
-  // await formatUni('Đại học Quốc tế Hồng Bàng', [
-  //   'HIU - Đại học Quốc tế Hồng Bàng',
-  //   'Hồng Bàng International University',
-  //   'Hong Bang University',
-  //   'Hồng Bàng International University ( Đại Học Quốc Tế Hồng Bàng )',
-  //   'Trường Đại học Quốc tế Hồng Bàng'
-  // ]);
+  await formatUni('Đại học FPT TP.HCM', [
+    'FPT University',
+    'FPT University HCM',
+    'Đại học FPT',
+    'Đại Học FPT'
+  ]);
+  await formatUni('Đại học Hoa Sen', [
+    'Đại Học Hoa Sen',
+    'Hoa Sen University',
+    'Lotus University',
+    'Ngành Marketing - Đại Học Hoa Sen'
+  ]);
+  await formatUni('Đại học Kinh tế Tài chính TP.HCM', [
+    'UEF - Đại học Kinh tế Tài chính TP.HCM'
+  ]);
+  await formatUni('Đại học Mỹ thuật TP.HCM', [
+    'Trường Đại học Mỹ thuật Thành phố Hồ Chí Minh',
+    'Đại học Mỹ Thuật Tp.HCM',
+    'Vietnam University of Fine Arts',
+    'Đại học Mỹ thuật Tp. Hồ Chí Minh'
+  ]);
+  await formatUni('Đại học Nguyễn Tất Thành', [
+    'NTTU - Đại học Nguyễn Tất Thành',
+    'NTTU - Đại học Nguyễn Tất Thành',
+    'Đại Học Nguyễn Tất Thành Cơ Sở Quận 12',
+    'Trường Đại học Nguyễn Tất Thành NTTU',
+    'Đại học Nguyễn Tất Thành',
+    'NIIE (NTT Institute of International Education)'
+  ]);
+  await formatUni('Đại học Quốc tế Hồng Bàng', [
+    'HIU - Đại học Quốc tế Hồng Bàng',
+    'Hồng Bàng International University',
+    'Hong Bang University',
+    'Hồng Bàng International University ( Đại Học Quốc Tế Hồng Bàng )',
+    'Trường Đại học Quốc tế Hồng Bàng'
+  ]);
 
-  // await formatUni('Đại học Tài nguyên và Môi trường TP.HCM', [
-  //   'Đại Học Tài Nguyên và Môi Trường TPHCM',
-  //   'Đại học Tài nguyên và Môi trường TP.HCM',
-  //   'Trường Đại học Tài nguyên và Môi trường Tp. Hồ Chí Minh'
-  // ]);
+  await formatUni('Đại học Tài nguyên và Môi trường TP.HCM', [
+    'Đại Học Tài Nguyên và Môi Trường TPHCM',
+    'Đại học Tài nguyên và Môi trường TP.HCM',
+    'Trường Đại học Tài nguyên và Môi trường Tp. Hồ Chí Minh'
+  ]);
 
-  // await formatUni('Đại học Văn Hiến', [
-  //   'Đại học Văn Hiến',
-  //   'Văn Hiến University',
-  //   'Trường Đại Học Văn Hiến TP.HCM',
-  //   'Trường Đại học Văn Hiến',
-  //   'Van Hien University'
-  // ]);
-  // await formatUni('Đại học Văn Lang', [
-  //   'Trường Đại học Văn Lang',
-  //   'Faculty of Public Relations and Communication, Van Lang University',
-  //   'Trường Đại học Văn Lang',
-  //   'Vanlang University (VLU) - Đại học Dân lập Văn Lang',
-  //   'Văn Lang University'
-  // ]);
-  // await formatUni('Đại học Văn hóa TP.HCM', [
-  //   'Trường Đại học Văn hóa Thành phố Hồ Chí Minh',
-  //   'Đại học Văn Hoá TP.HCM',
-  //   'Đại học Văn Hóa',
-  //   'Đại Học Văn Hóa TP. Hồ Chí Minh'
-  // ]);
+  await formatUni('Đại học Văn Hiến', [
+    'Đại học Văn Hiến',
+    'Văn Hiến University',
+    'Trường Đại Học Văn Hiến TP.HCM',
+    'Trường Đại học Văn Hiến',
+    'Van Hien University'
+  ]);
+  await formatUni('Đại học Văn Lang', [
+    'Trường Đại học Văn Lang',
+    'Faculty of Public Relations and Communication, Van Lang University',
+    'Trường Đại học Văn Lang',
+    'Vanlang University (VLU) - Đại học Dân lập Văn Lang',
+    'Văn Lang University'
+  ]);
+  await formatUni('Đại học Văn hóa TP.HCM', [
+    'Trường Đại học Văn hóa Thành phố Hồ Chí Minh',
+    'Đại học Văn Hoá TP.HCM',
+    'Đại học Văn Hóa',
+    'Đại Học Văn Hóa TP. Hồ Chí Minh'
+  ]);
 
-  // //
-  // //
-  // //
-  // //--------------------------------------------------DAI HOC CONG
-  // await formatUni('Đại học Công nghiệp TP.HCM', [
-  //   'ĐH Công nghiệp TP.HCM - IUH - Đào tạo quốc tế',
-  //   'IUH - Trường Đại học Công nghiệp TP.HCM',
-  //   'Trường Đại Học Công Nghiệp TPHCM',
-  //   'Industrial University of Ho Chi Minh City (IUH)',
-  //   'Trường Đại Học Công Nghiệp TP-HCM',
-  //   'Trường Đại học Công Nghiệp TP.HCM',
-  //   'Đại Học Công Nghiệp TP.HCM',
-  //   'Ho Chi Minh University Of Industry',
-  //   'Dh Cong Nghiep Tphcm',
-  //   'IUH'
-  // ]);
+  //
+  //
+  //
+  //--------------------------------------------------DAI HOC CONG
+  await formatUni('Đại học Công nghiệp TP.HCM', [
+    'ĐH Công nghiệp TP.HCM - IUH - Đào tạo quốc tế',
+    'IUH - Trường Đại học Công nghiệp TP.HCM',
+    'Trường Đại Học Công Nghiệp TPHCM',
+    'Industrial University of Ho Chi Minh City (IUH)',
+    'Trường Đại Học Công Nghiệp TP-HCM',
+    'Trường Đại học Công Nghiệp TP.HCM',
+    'Đại Học Công Nghiệp TP.HCM',
+    'Ho Chi Minh University Of Industry',
+    'Dh Cong Nghiep Tphcm',
+    'IUH'
+  ]);
 
-  // await formatUni('Đại học Công nghiệp Thực phẩm TP.HCM', [
-  //   'HUFI - Đại học Công nghiệp Thực phẩm Tp.HCM',
-  //   'Đại học Công nghiệp Thực phẩm TP.HCM'
-  // ]);
+  await formatUni('Đại học Công nghiệp Thực phẩm TP.HCM', [
+    'HUFI - Đại học Công nghiệp Thực phẩm Tp.HCM',
+    'Đại học Công nghiệp Thực phẩm TP.HCM'
+  ]);
 
-  // await formatUni('Đại học Giao thông vận tải TP.HCM', [
-  //   'Trường Đại học Giao thông vận tải TP.HCM',
-  //   'Đại học Giao thông Vận Tải - University of Transport and Communications',
-  //   'University of Transport and Communications',
-  //   'Hội Quán Sinh Viên Đại Học Giao Thông Vận Tải Phân hiệu tại TP.HCM',
-  //   'Đại học Giao thông vận tải TpHCM',
-  //   'Trường Đại học Giao thông Vận tải - Phân hiệu tại TP.HCM - UTC2'
-  // ]);
-  // await formatUni('Đại học Kiến trúc TP.HCM', [
-  //   'Đại học Kiến trúc Thành phố Hồ Chí Minh',
-  //   'Đại học Kiến trúc Thành phố Hồ Chí Minh',
-  //   'Đại Học Kiến Trúc Thành Phố Hồ Chí Minh',
-  //   'Đại học Kiến trúc TPHCM',
-  //   'Đại học Kiến trúc TP.Hồ Chí Minh',
-  //   'Ho Chi Minh City University of Architecture',
-  //   'Trường Đại học Kiến trúc Thành phố Hồ Chí Minh'
-  // ]);
+  await formatUni('Đại học Giao thông vận tải TP.HCM', [
+    'Trường Đại học Giao thông vận tải TP.HCM',
+    'Đại học Giao thông Vận Tải - University of Transport and Communications',
+    'University of Transport and Communications',
+    'Hội Quán Sinh Viên Đại Học Giao Thông Vận Tải Phân hiệu tại TP.HCM',
+    'Đại học Giao thông vận tải TpHCM',
+    'Trường Đại học Giao thông Vận tải - Phân hiệu tại TP.HCM - UTC2'
+  ]);
+  await formatUni('Đại học Kiến trúc TP.HCM', [
+    'Đại học Kiến trúc Thành phố Hồ Chí Minh',
+    'Đại học Kiến trúc Thành phố Hồ Chí Minh',
+    'Đại Học Kiến Trúc Thành Phố Hồ Chí Minh',
+    'Đại học Kiến trúc TPHCM',
+    'Đại học Kiến trúc TP.Hồ Chí Minh',
+    'Ho Chi Minh City University of Architecture',
+    'Trường Đại học Kiến trúc Thành phố Hồ Chí Minh'
+  ]);
   await formatUni("Đại học Kinh tế TP.HCM", [
     "Đại học kinh tế TP.HCM",
     "Trường ĐH Kinh tế TP. Hồ Chí Minh - UEH",

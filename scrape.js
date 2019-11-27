@@ -162,7 +162,7 @@ const delay = time => {
                   // console.log("Updated ", profile.full_name);
                 }
               } catch (err) {
-                console.log(err.error);
+                console.log(err);
               }
             });
             await delay(random(100, 300));
