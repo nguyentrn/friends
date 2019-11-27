@@ -1,23 +1,35 @@
 const axios = require("axios");
-const mongoose = require("mongoose");
-const Profile = require("./model/profile");
+const knex = require("knex");
 
-const DB =
-  "mongodb://nguyen:Nt01113699@157.245.196.34:27017/cdvnu?authSource=admin&w=1";
+const pg = knex({
+  client: "pg",
+  connection: {
+    host: "157.245.196.34",
+    user: "nguyen",
+    password: "Nt01113699",
+    database: "cdvnu",
+  },
+});
 
-// const DB = DB;
-// "mongodb://nguyen:Nt01113699@157.245.196.34/cdvnu?retryWrites=true&w=majority";
+// const mongoose = require("mongoose");
+// const Profile = require("./model/profile");
 
-mongoose
-  .connect(DB, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false
-  })
-  .then(() => {
-    console.log("DB connect successful !");
-  });
+// const DB =
+//   "mongodb://nguyen:Nt01113699@157.245.196.34:27017/cdvnu?authSource=admin&w=1";
+
+// // const DB = DB;
+// // "mongodb://nguyen:Nt01113699@157.245.196.34/cdvnu?retryWrites=true&w=majority";
+
+// mongoose
+//   .connect(DB, {
+//     useNewUrlParser: true,
+//     useCreateIndex: true,
+//     useUnifiedTopology: true,
+//     useFindAndModify: false
+//   })
+//   .then(() => {
+//     console.log("DB connect successful !");
+//   });
 
 const random = (from, range) => Math.floor(Math.random() * range + from);
 
@@ -31,6 +43,8 @@ const delay = time => {
   let outside = "";
   for (let i = 0; i < 100000; i++) {
     try {
+   
+
       const vnu = [
         "Khoa Y - Đại học Quốc gia TP.HCM",
         "Đại học Bách Khoa - Đại học Quốc gia TP.HCM",
@@ -38,7 +52,7 @@ const delay = time => {
         "Đại học Khoa học Xã hội và Nhân văn - Đại học Quốc gia TP.HCM",
         "Đại học Kinh tế - Luật - Đại học Quốc gia TP.HCM",
         "Đại học Quốc tế - Đại học Quốc gia TP.HCM",
-        "Đại học Công nghệ Thông tin - Đại học Quốc gia TP.HCM"
+        "Đại học Công nghệ Thông tin - Đại học Quốc gia TP.HCM",
       ];
 
       const hcmtu = [
@@ -50,7 +64,7 @@ const delay = time => {
         "Đại học Nguyễn Tất Thành",
         "Đại học Quốc tế Hồng Bàng",
         "Đại học Văn Hiến",
-        "Đại học Văn Lang"
+        "Đại học Văn Lang",
       ];
 
       const hcmcong = [
@@ -73,42 +87,27 @@ const delay = time => {
         "Đại học Giao thông vận tải TP.HCM",
         "Đại học Công nghiệp Thực phẩm TP.HCM",
         "Đại học Công nghiệp TP.HCM",
-        "Học viện Hàng không Việt Nam"
+        "Học viện Hàng không Việt Nam",
       ];
       //
-      // const res = await axios(
-      //   "http://localhost:8000/api/v1/profile/thong-ke-truong"
-      // );
-      // const hotUni = [];
-      // for (let i = 0; i < 15; i++) {
-      //   hotUni.push(res.data.data[i]._id);
-      // }
-      // const hot = { $in: hotUni };
-      // console.log(hot);
-      //6636b10101b3a24e047c1da088603b8d55c95cf0f5448b17432509f6cdaf8485
-      const links = await Profile.find({
-        // isVnuer: true,
-        university: { $in: [...vnu, ...hcmcong, ...hcmtu] },
-        // other: { $regex: /chuyên hùng vương/i },
-        // from: "Gia Lai",
-        birthday: { $gte: new Date(1999, 0, 1) },
-        isScrapedFriends: null,
-        updatedScrape: { $ne: null }
-      })
-        .sort("-followers")
-        .select("uid name university followers");
-      // .limit(100);
-      console.log(links.length);
+      const links = await pg
+        .select("uid", "full_name", "birthday", "university", "followers")
+        .from("profiles")
+        .whereNull("is_scraped_friends")
+        .where("birthday", ">", new Date(1999, 0, 1))
+        .whereIn("university", [...vnu, ...hcmtu, ...hcmcong])
+        .orderBy("followers", "desc")
+        .limit(1);
+      console.log(links);
+
       for (let i = 0; i < 20; i++) {
         await delay(random(100, 300));
         const token =
-          // "EAAAAZAw4FxQIBAOaFnPyAdOGSa7nO2cAeOzINFfXMtaWhNmsfs6FJ1sjufazMECwL0dobvMl2zOL4fAIXjMZCgjnW9pwCLHjqvz5UMgBwm2lG3BUk35hYfwfpTnmJxr3p9ZCouhwawqJW3CZBA6sn6sjukQoLomhorgZByoqZAZBgZDZD";
+          
           "EAAAAZAw4FxQIBAPxzIkyMfgsH54ReRCXmhokvKuRfwhpbEai7gRtWd7lALZB1wmVYgiMzSxZCHfuCPEHZAIwLn9AJEBMXl9ezvc40ZBOBB8QN8HNViVW5lVSS5HjwXUKZBCsCMUggodLZBHHDjTzbPQY553wZAzsZAnHIQWT5st3WYQZDZD";
         const uid = links[i].uid;
         outside = uid;
-        console.log(
-          `Scrape ${uid}, ${links[i].name}, ${links[i].followers} followers, student of ${links[i].university}  `
-        );
+       
         const url = `https://graph.facebook.com/v1.0/${uid}/friends?fields=id,subscribers,work,name,link,gender,hometown,birthday,education,location,religion&access_token=${token}&limit=65`;
 
         let data = await axios.get(url);
@@ -120,6 +119,8 @@ const delay = time => {
             scrapingProfile.forEach(async p => {
               try {
                 let profile = {};
+                let profile_raws = {};
+
                 const dumpBirthday = p.birthday && p.birthday.split("/");
                 const setBirthday = bd => {
                   if (bd) {
@@ -133,61 +134,67 @@ const delay = time => {
                   }
                 };
                 profile.uid = p.id;
-                profile.name = p.name;
-                profile.facebookId = p.link.includes("id=")
+                profile.full_name = p.name;
+                profile.facebook_id = p.link.includes("id=")
                   ? p.link.split("=")[1]
                   : p.link.split("facebook.com/")[1];
-                profile.gender = p.gender === "female" ? "Nữ" : "Nam";
+                profile.is_male = p.gender === "female" ? false : true;
                 profile.followers = p.subscribers.summary.total_count;
                 profile.birthday = setBirthday(dumpBirthday);
                 profile.religion = p.religion;
-                profile.location = p.location && p.location.name;
-                profile.locationFrom = p.hometown && p.hometown.name;
-                profile.other = [];
-                profile.rankLast = true;
+                profile.is_rank_first = false;
+                profile.created_at = new Date();
+
+                profile_raws.location_now = p.location && p.location.name;
+                profile_raws.location_from = p.hometown && p.hometown.name;
+                profile_raws.other = [];
                 p.education &&
                   p.education.forEach(e => {
-                    profile.other.push(e.school.name);
+                    profile_raws.other.push(e.school.name);
                   });
                 p.work &&
                   p.work.forEach(e => {
-                    profile.other.push(e.employer.name);
+                    profile_raws.other.push(e.employer.name);
                   });
-                // console.log(profile);
 
-                const scrapedProfile = await Profile.findOne({
-                  uid: profile.uid
-                });
+                const scrapedProfileA = await pg("profiles")
+                  .where({ uid: profile.uid })
+                  .select("uid");
+                const scrapedProfile = scrapedProfileA[0];
 
                 if (!scrapedProfile) {
                   newP = newP + 1;
-                  const newProfile = await Profile.create({
+                  await pg("profiles").insert({
                     ...profile,
-                    scrapingUser: "caotrido1120@gmail.com"
-
-                    // scrapingUser: "caotrido1120@gmail.com"
                   });
-                  // console.log("Created ", newProfile.name);
+                   await pg("profile_raws").insert({
+                    uid: profile.uid,
+                    ...profile_raws,
+                  });
+                  // console.log("Created ", profile.full_name);
                 } else {
                   oldP = oldP + 1;
-                  const updatedProfile = await Profile.findByIdAndUpdate(
-                    scrapedProfile._id,
-                    {
-                      facebookId: profile.facebookId,
+                  const updatedProfile = await pg("profiles")
+                    .where({ uid: scrapedProfile.uid })
+                    .update({
+                      facebook_id: profile.facebookId,
                       birthday: profile.birthday,
-                      location: profile.location,
-                      locationFrom: profile.locationFrom,
                       religion: profile.religion,
-                      gender: profile.gender,
-                      other: profile.other,
+                      is_male: profile.gender,
                       followers: profile.followers,
-                      updatedScrape: Date.now()
-                    }
-                  );
-                  // console.log("Updated ", updatedProfile.name);
+                      updated_at: new Date(),
+                    });
+                 await pg("profile_raws")
+                    .where({ uid: scrapedProfile.uid })
+                    .update({
+                      location_now: profile_raws.location_now,
+                      location_from: profile_raws.location_from,
+                      other: profile_raws.other,
+                    });
+                  // console.log("Updated ", profile.full_name);
                 }
               } catch (err) {
-                console.log(err.code);
+                console.log(err);
               }
             });
             await delay(random(100, 300));
@@ -205,27 +212,22 @@ const delay = time => {
                 data = await axios.get(`${url}&before=${backup}`);
               }
             };
-            // if (data.data.data.length !== 0) {
             await next();
-            // } else {
-            //   console.log("not found any friends");
-            // }
+          
           } else {
             break;
           }
         } while (data.data.paging.next);
 
         if (data.data.data.length > 1) {
-          await Profile.findOneAndUpdate(
-            { uid },
-            { isScrapedFriends: "ScrapedFriends" }
-          );
+          await pg("profiles")
+            .where({ uid })
+            .update({ is_scraped_friends: "ScrapedFriends" });
           console.log("scraped friends");
         } else {
-          await Profile.findOneAndUpdate(
-            { uid },
-            { isScrapedFriends: "Scraped" }
-          );
+          await pg("profiles")
+            .where({ uid })
+            .update({ is_scraped_friends: "Scraped" });
           console.log("no friends");
         }
         console.log(
