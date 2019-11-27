@@ -65,7 +65,7 @@ const delay = time => {
         .where("birthday", ">", new Date(1999, 0, 1))
         .whereIn("university", [...vnu, ...hcmtu, ...hcmcong])
         .orderBy("followers", "desc");
-      console.log(links.length);
+      console.log("total", links.length);
       for (let i = 0; i < links.length; i++) {
         await delay(random(100, 300));
         const token =
@@ -203,7 +203,7 @@ const delay = time => {
         );
       }
     } catch (err) {
-      // console.log("Restart", err);
+      console.log("Restart", err);
 
       console.log("Restart", outside);
       if (
