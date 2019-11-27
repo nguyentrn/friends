@@ -1,35 +1,5 @@
 const axios = require("axios");
-const knex = require("knex");
-
-const pg = knex({
-  client: "pg",
-  connection: {
-    host: "157.245.196.34",
-    user: "nguyen",
-    password: "Nt01113699",
-    database: "cdvnu",
-  },
-});
-
-// const mongoose = require("mongoose");
-// const Profile = require("./model/profile");
-
-// const DB =
-//   "mongodb://nguyen:Nt01113699@157.245.196.34:27017/cdvnu?authSource=admin&w=1";
-
-// // const DB = DB;
-// // "mongodb://nguyen:Nt01113699@157.245.196.34/cdvnu?retryWrites=true&w=majority";
-
-// mongoose
-//   .connect(DB, {
-//     useNewUrlParser: true,
-//     useCreateIndex: true,
-//     useUnifiedTopology: true,
-//     useFindAndModify: false
-//   })
-//   .then(() => {
-//     console.log("DB connect successful !");
-//   });
+const pg = require("./database");
 
 const random = (from, range) => Math.floor(Math.random() * range + from);
 
@@ -101,7 +71,6 @@ const delay = time => {
         const token =
           "EAAAAZAw4FxQIBAPxzIkyMfgsH54ReRCXmhokvKuRfwhpbEai7gRtWd7lALZB1wmVYgiMzSxZCHfuCPEHZAIwLn9AJEBMXl9ezvc40ZBOBB8QN8HNViVW5lVSS5HjwXUKZBCsCMUggodLZBHHDjTzbPQY553wZAzsZAnHIQWT5st3WYQZDZD";
         const p = links[i];
-
         const uid = p.uid;
         outside = uid;
         const url = `https://graph.facebook.com/v1.0/${uid}/friends?fields=id,subscribers,work,name,link,gender,hometown,birthday,education,location,religion&access_token=${token}&limit=65`;
@@ -234,7 +203,7 @@ const delay = time => {
         );
       }
     } catch (err) {
-      console.log("Restart", err);
+      // console.log("Restart", err);
 
       console.log("Restart", outside);
       if (
@@ -248,7 +217,7 @@ const delay = time => {
       ) {
         console.log(err.response.data.error.message);
         await pg("profiles")
-          .where({ uid })
+          .where({ uid: outside })
           .update({ is_scraped_friends: "out" });
       }
     }
