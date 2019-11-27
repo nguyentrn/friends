@@ -9,7 +9,7 @@ const pg = require("./database");
 const formatHometown = async function(hometown, stringArr) {
   try {
     const a = await pg.raw(
-      "SELECT others FROM ( SELECT uid, hometown FROM profiles) pro JOIN ( SELECT uid, unnest(other) AS others FROM profile_raws  ) proR ON pro.uid = proR.uid LIMIT 100"
+      "SELECT others FROM ( SELECT uid, hometown FROM profiles) pro JOIN ( SELECT uid, unnest(other) AS others FROM profile_raws WHERE university IS NOT NULL) proR ON pro.uid = proR.uid LIMIT 100"
     );
 
     const res = await pg("profile_raws")
