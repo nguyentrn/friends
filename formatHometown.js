@@ -32,7 +32,7 @@ const formatHometown = async function(hometown, stringArr) {
   }
 };
 
-formatHometown("Thái Lan", ["Băng Cốc"]);
+// formatHometown("Thái Lan", ["Băng Cốc"]);
 // formatHometown("Campuchia", ["Phnôm Pênh"]);
 // formatHometown("Lào", [
 //   "Viêng Chăn",
@@ -287,12 +287,12 @@ formatHometown("Thái Lan", ["Băng Cốc"]);
 //   "Vĩnh Bình (1), Tiền Giang, Vietnam",
 // ]);
 // formatHometown("Vĩnh Long", ["Vĩnh Long (thành phố)", "Vũng Liêm"]);
-// formatHometown("Bến Tre", [
-//   "Bến Tre",
-//   "Ben, Bến Tre, Vietnam",
-//   "Ba Tri",
-//   "Chợ Lách",
-// ]);
+formatHometown("Bến Tre", [
+  "Bến Tre",
+  "Ben, Bến Tre, Vietnam",
+  "Ba Tri",
+  "Chợ Lách",
+]);
 // formatHometown("Đồng Tháp", [
 //   "Thanh Bình, Ðồng Tháp, Vietnam",
 //   "Cao Lãnh",
