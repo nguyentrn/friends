@@ -43,8 +43,6 @@ const delay = time => {
   let outside = "";
   for (let i = 0; i < 100000; i++) {
     try {
-   
-
       const vnu = [
         "Khoa Y - Đại học Quốc gia TP.HCM",
         "Đại học Bách Khoa - Đại học Quốc gia TP.HCM",
@@ -98,18 +96,18 @@ const delay = time => {
         .whereIn("university", [...vnu, ...hcmtu, ...hcmcong])
         .orderBy("followers", "desc")
         .limit(1);
-      console.log(links);
 
       for (let i = 0; i < 20; i++) {
         await delay(random(100, 300));
         const token =
-          
           "EAAAAZAw4FxQIBAPxzIkyMfgsH54ReRCXmhokvKuRfwhpbEai7gRtWd7lALZB1wmVYgiMzSxZCHfuCPEHZAIwLn9AJEBMXl9ezvc40ZBOBB8QN8HNViVW5lVSS5HjwXUKZBCsCMUggodLZBHHDjTzbPQY553wZAzsZAnHIQWT5st3WYQZDZD";
-        const uid = links[i].uid;
+        const p = links[i];
+        const uid = p.uid;
         outside = uid;
-       
         const url = `https://graph.facebook.com/v1.0/${uid}/friends?fields=id,subscribers,work,name,link,gender,hometown,birthday,education,location,religion&access_token=${token}&limit=65`;
-
+        console.log(
+          `${p.uid}, ${p.full_name}, ${p.followers}, ${p.university}`
+        );
         let data = await axios.get(url);
         let oldP = 0;
         let newP = 0;
@@ -167,7 +165,7 @@ const delay = time => {
                   await pg("profiles").insert({
                     ...profile,
                   });
-                   await pg("profile_raws").insert({
+                  await pg("profile_raws").insert({
                     uid: profile.uid,
                     ...profile_raws,
                   });
@@ -184,7 +182,7 @@ const delay = time => {
                       followers: profile.followers,
                       updated_at: new Date(),
                     });
-                 await pg("profile_raws")
+                  await pg("profile_raws")
                     .where({ uid: scrapedProfile.uid })
                     .update({
                       location_now: profile_raws.location_now,
@@ -204,16 +202,15 @@ const delay = time => {
                 data = await axios.get(
                   `${url}&after=${data.data.paging.cursors.after}`
                 );
-                console.log(
-                  `next: ${data.data.paging.cursors.after.slice(-5)}`
-                );
+                // console.log(
+                //   `next: ${data.data.paging.cursors.after.slice(-5)}`
+                // );
               } catch (err) {
                 console.log(`backkkkkkkkkkkkkkkkkkkkk: ${backup.slice(-5)}`);
                 data = await axios.get(`${url}&before=${backup}`);
               }
             };
             await next();
-          
           } else {
             break;
           }
@@ -250,10 +247,9 @@ const delay = time => {
           ))
       ) {
         console.log(err.response.data.error.message);
-        await Profile.findOneAndUpdate(
-          { uid: outside },
-          { isScrapedFriends: "out" }
-        );
+        await pg("profiles")
+          .where({ uid })
+          .update({ is_scraped_friends: "out" });
       }
     }
   }
