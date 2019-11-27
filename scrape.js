@@ -94,14 +94,14 @@ const delay = time => {
         .whereNull("is_scraped_friends")
         .where("birthday", ">", new Date(1999, 0, 1))
         .whereIn("university", [...vnu, ...hcmtu, ...hcmcong])
-        .orderBy("followers", "desc")
-        .limit(1);
-
-      for (let i = 0; i < 20; i++) {
+        .orderBy("followers", "desc");
+      console.log(links.length);
+      for (let i = 0; i < links.length; i++) {
         await delay(random(100, 300));
         const token =
           "EAAAAZAw4FxQIBAPxzIkyMfgsH54ReRCXmhokvKuRfwhpbEai7gRtWd7lALZB1wmVYgiMzSxZCHfuCPEHZAIwLn9AJEBMXl9ezvc40ZBOBB8QN8HNViVW5lVSS5HjwXUKZBCsCMUggodLZBHHDjTzbPQY553wZAzsZAnHIQWT5st3WYQZDZD";
         const p = links[i];
+
         const uid = p.uid;
         outside = uid;
         const url = `https://graph.facebook.com/v1.0/${uid}/friends?fields=id,subscribers,work,name,link,gender,hometown,birthday,education,location,religion&access_token=${token}&limit=65`;
