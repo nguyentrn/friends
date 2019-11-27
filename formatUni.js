@@ -13,9 +13,8 @@ const formatUni = async function(university, stringArr) {
     // WHERE university IS NULL
     const arr = stringArr.map(a => `'${a}'`);
     const a = await pg.raw(
-      `WITH return AS (SELECT pro.uid,full_name,university,others FROM ( SELECT uid, full_name, university FROM profiles WHERE university='Trung cấp Bách khoa Sài Gòn') pro JOIN ( SELECT uid, unnest(other) AS others FROM profile_raws  ) proR ON pro.uid = proR.uid WHERE others IN (${arr.join(
+      `WITH return AS (SELECT pro.uid,full_name,university,others FROM ( SELECT uid, full_name, university FROM profiles WHERE university IS NOT NULL) pro JOIN ( SELECT uid, unnest(other) AS others FROM profile_raws  ) proR ON pro.uid = proR.uid WHERE others IN (${arr.join(
         ","
-        // )}) LIMIT 1) SELECT * FROM return`
       )})) UPDATE profiles SET university='${university}' FROM return WHERE profiles.uid=return.uid`
     );
 
@@ -191,7 +190,9 @@ const formatUni = async function(university, stringArr) {
     "Khoa Điện Tử - Tin Học Trường Cao Đẳng kỹ thuật công nghệ Quy Nhơn",
   ]);
 
-  await formatUni("Cao đẳng Lý Tự Trọng TP.HCM", ["Cao đẳng Lý Tự Trọng TP.HCM"]);
+  await formatUni("Cao đẳng Lý Tự Trọng TP.HCM", [
+    "Cao đẳng Lý Tự Trọng TP.HCM",
+  ]);
   await formatUni("Cao đẳng Múa Việt Nam", ["Trường Cao đẳng múa VN"]);
 
   await formatUni("Cao đẳng Nghề An Giang", [
@@ -232,20 +233,26 @@ const formatUni = async function(university, stringArr) {
     "Cao đẳng Phương Đông Đà Nẵng",
     "Cao Đẳng Phương Đông Đà Nẵng",
   ]);
-  await formatUni("Cao đẳng Quốc tế TP.HCM", ["Trường Cao Đẳng Quốc Tế TP.HCM"]);
+  await formatUni("Cao đẳng Quốc tế TP.HCM", [
+    "Trường Cao Đẳng Quốc Tế TP.HCM",
+  ]);
   await formatUni("Cao đẳng Sân khấu Điện ảnh Sài Gòn", [
     "Cao đẳng Sân khấu Điện Ảnh Sài Gòn",
     "Cao Dang San Khau Dien Anh",
     "Cao dẳng sân khấu điện ảnh",
   ]);
 
-  await formatUni("Cao đẳng Sư phạm Đắk Lắk", ["Trường Cao Đẳng Sư Phạm Đak Lak"]);
+  await formatUni("Cao đẳng Sư phạm Đắk Lắk", [
+    "Trường Cao Đẳng Sư Phạm Đak Lak",
+  ]);
   await formatUni("Cao đẳng Sư phạm Gia Lai", [
     "Cao Đẳng Sư Phạm Gia Lai",
     "Trường Cao Đẳng Sư Phạm Gia Lai",
     "CAO ĐẲNG SƯ PHẠM GIA LAI",
   ]);
-  await formatUni("Cao đẳng Sư phạm Tây Ninh", ["Trường Cao Đẳng Sư Phạm Tây Ninh"]);
+  await formatUni("Cao đẳng Sư phạm Tây Ninh", [
+    "Trường Cao Đẳng Sư Phạm Tây Ninh",
+  ]);
   await formatUni("Cao đẳng Sư phạm TP.HCM", ["Cao Đẳng Sư Phạm TPHCM"]);
 
   await formatUni("Cao đẳng Sư phạm Trung ương Nha Trang", [
@@ -306,16 +313,22 @@ const formatUni = async function(university, stringArr) {
   await formatUni("Cao đẳng Vĩnh Phúc", ["Cao Đẳng Vĩnh Phúc"]);
   await formatUni("Cao đẳng Y Dược Asean", ["Trường Cao Đẳng Y Dược Asean"]);
 
-  await formatUni("Cao đẳng Y Dược Hồng Đức", ["Trường Cao Đẳng Y Dược Hồng Đức"]);
+  await formatUni("Cao đẳng Y Dược Hồng Đức", [
+    "Trường Cao Đẳng Y Dược Hồng Đức",
+  ]);
   await formatUni("Cao đẳng Y Dược Pasteur", [
     "Trường Cao đẳng Y Dược Pasteur CS TPHCM",
     "Trường Cao đẳng Y Dược Pasteur",
     "Trường Cao đẳng Y Dược Pasteur CS Tp.HCM",
   ]);
-  await formatUni("Cao đẳng Y Dược Sài Gòn", ["Trường Cao Đẳng Y Dược Sài Gòn"]);
+  await formatUni("Cao đẳng Y Dược Sài Gòn", [
+    "Trường Cao Đẳng Y Dược Sài Gòn",
+  ]);
 
   await formatUni("Cao đẳng Y tế Bạch Mai", ["Cao Đẳng Y Tế Bạch Mai"]);
-  await formatUni("Cao đẳng Y tế Bình Định", ["Trường Cao đẳng Y tế Bình Định"]);
+  await formatUni("Cao đẳng Y tế Bình Định", [
+    "Trường Cao đẳng Y tế Bình Định",
+  ]);
 
   await formatUni("Cao đẳng Y tế Bình Dương", [
     "Trường Cao đẳng Y Tế Bình Dương",
@@ -327,14 +340,18 @@ const formatUni = async function(university, stringArr) {
   await formatUni("Cao đẳng Y tế Cần Thơ", ["Trường Cao Đẳng Y Tế Cần Thơ"]);
 
   await formatUni("Cao đẳng Y tế Đồng Nai", ["Trường Cao Đẳng Y Tế Đồng Nai"]);
-  await formatUni("Cao đẳng Y tế Đồng Tháp", ["Trường Cao đẳng Y tế Đồng Tháp"]);
+  await formatUni("Cao đẳng Y tế Đồng Tháp", [
+    "Trường Cao đẳng Y tế Đồng Tháp",
+  ]);
 
   await formatUni("Cao đẳng Y tế Hà Đông", ["Trường Cao Đẳng Y Tế Hà Đông"]);
   await formatUni("Cao đẳng Y tế Hà Nội", [
     "Trường Cao Đẳng Y Tế Hà Nội",
     "Trường Cao đẳng Y Dược Hà Nội",
   ]);
-  await formatUni("Cao đẳng Y tế Hải Phòng", ["Trường Cao Đẳng Y Tế Hải Phòng"]);
+  await formatUni("Cao đẳng Y tế Hải Phòng", [
+    "Trường Cao Đẳng Y Tế Hải Phòng",
+  ]);
 
   await formatUni("Cao đẳng Y tế Kiên Giang", ["Cao đẳng Y tế Kiên Giang"]);
 

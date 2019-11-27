@@ -10,6 +10,7 @@ const delay = time => {
 };
 
 (async () => {
+  console.log("Start scraping");
   let outside = "";
   for (let i = 0; i < 100000; i++) {
     try {

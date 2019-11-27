@@ -8,19 +8,23 @@ const pg = require("./database");
 
 const formatHometown = async function(hometown, stringArr) {
   try {
+    const arr = stringArr.map(a => `'${a}'`);
+
     const a = await pg.raw(
-      "SELECT others FROM ( SELECT uid, hometown FROM profiles) pro JOIN ( SELECT uid, unnest(other) AS others FROM profile_raws WHERE university IS NOT NULL) proR ON pro.uid = proR.uid LIMIT 100"
+      `WITH return AS (SELECT profiles.uid,full_name,location_from,location_now,other FROM profiles RIGHT JOIN profile_raws ON profiles.uid=profile_raws.uid  WHERE (location_from IN (${arr.join(
+        ","
+      )}) OR location_now IN (${arr.join(
+        ","
+      )})) AND (hometown IS NULL)) UPDATE profiles SET hometown='${hometown}' FROM return WHERE profiles.uid=return.uid`
     );
 
-    const res = await pg("profile_raws")
-      .select("*")
-
-      // .whereIn("other", stringArr)
-      .orWhereIn("location_now", stringArr)
-      .orWhereIn("location_from", stringArr)
-      .limit(10);
+    // const res = await pg("profile_raws")
+    //   .select("*")
+    //   .orWhereIn("location_now", stringArr)
+    //   .orWhereIn("location_from", stringArr)
+    //   .limit(10);
     // .update({ from: hometown });
-    console.log(a.rows);
+    console.log(hometown);
   } catch (err) {
     console.log(err);
 
