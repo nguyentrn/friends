@@ -21,7 +21,7 @@ const delay = time => {
         "Đại học Khoa học Xã hội và Nhân văn - Đại học Quốc gia TP.HCM",
         "Đại học Kinh tế - Luật - Đại học Quốc gia TP.HCM",
         "Đại học Quốc tế - Đại học Quốc gia TP.HCM",
-        "Đại học Công nghệ Thông tin - Đại học Quốc gia TP.HCM",
+        "Đại học Công nghệ Thông tin - Đại học Quốc gia TP.HCM"
       ];
 
       const hcmtu = [
@@ -33,7 +33,7 @@ const delay = time => {
         "Đại học Nguyễn Tất Thành",
         "Đại học Quốc tế Hồng Bàng",
         "Đại học Văn Hiến",
-        "Đại học Văn Lang",
+        "Đại học Văn Lang"
       ];
 
       const hcmcong = [
@@ -56,15 +56,16 @@ const delay = time => {
         "Đại học Giao thông vận tải TP.HCM",
         "Đại học Công nghiệp Thực phẩm TP.HCM",
         "Đại học Công nghiệp TP.HCM",
-        "Học viện Hàng không Việt Nam",
+        "Học viện Hàng không Việt Nam"
       ];
       //
       const links = await pg
         .select("uid", "full_name", "birthday", "university", "followers")
         .from("profiles")
+        .whereNotNull("university")
         .whereNull("is_scraped_friends")
-        .where("birthday", ">", new Date(1999, 0, 1))
-        .whereIn("university", [...vnu, ...hcmtu, ...hcmcong])
+        .where("birthday", ">", new Date(1998, 0, 1))
+        // .whereIn("university", [...vnu, ...hcmtu, ...hcmcong])
         .orderBy("followers", "desc");
       console.log("total", links.length);
       for (let i = 0; i < links.length; i++) {
@@ -133,11 +134,11 @@ const delay = time => {
                 if (!scrapedProfile) {
                   newP = newP + 1;
                   await pg("profiles").insert({
-                    ...profile,
+                    ...profile
                   });
                   await pg("profile_raws").insert({
                     uid: profile.uid,
-                    ...profile_raws,
+                    ...profile_raws
                   });
                   // console.log("Created ", profile.full_name);
                 } else {
@@ -150,14 +151,14 @@ const delay = time => {
                       religion: profile.religion,
                       is_male: profile.gender,
                       followers: profile.followers,
-                      updated_at: new Date(),
+                      updated_at: new Date()
                     });
                   await pg("profile_raws")
                     .where({ uid: scrapedProfile.uid })
                     .update({
                       location_now: profile_raws.location_now,
                       location_from: profile_raws.location_from,
-                      other: profile_raws.other,
+                      other: profile_raws.other
                     });
                   // console.log("Updated ", profile.full_name);
                 }
