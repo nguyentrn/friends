@@ -196,13 +196,15 @@ const delay = time => {
           await pg("profiles")
             .where({ uid })
             .update({ is_scraped_friends: "Scraped" });
-          console.log("no friends");
+          // console.log("no friends");
         }
-        console.log(
-          `---NewProfile: ${newP}---Friends: ${oldP}---${(oldP /
-            (newP + oldP)) *
-            100}%`
-        );
+        if (oldP > 0) {
+          console.log(
+            `---NewProfile: ${newP}---Friends: ${oldP}---${(oldP /
+              (newP + oldP)) *
+              100}%`
+          );
+        }
       }
     } catch (err) {
       console.log("Restart", err);

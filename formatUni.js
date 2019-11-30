@@ -20,8 +20,6 @@ const formatUni = async function(university, stringArr) {
           .from("unnestA")
           .whereIn("other", stringArr);
       });
-    console.log(array);
-
     console.log(university, array);
   } catch (err) {
     console.log(err);

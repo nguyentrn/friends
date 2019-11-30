@@ -23,8 +23,7 @@ const formatHometown = async function(hometown, stringArr) {
           .orWhereIn("location_now", stringArr);
         // .limit(1);
       });
-    console.log(a);
-    console.log("DONEEEEE---------------------", hometown);
+    console.log(hometown, a);
   } catch (err) {
     console.log(err);
     console.log(err.code, hometown);
