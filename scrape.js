@@ -197,8 +197,9 @@ const delay = time => {
         }
         if (oldP > 0) {
           console.log(
-            `-----${newP}/${oldP + newP}---${Math.floor(oldP / (newP + oldP)) *
-              100}%`
+            `-----${newP}/${oldP + newP}---${Math.floor(
+              (oldP / (newP + oldP)) * 100
+            )}%`
           );
         }
       }
