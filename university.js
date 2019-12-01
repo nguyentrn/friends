@@ -9,7 +9,6 @@ const pg = require("./database");
 const formatUni = async function(university, stringArr) {
   try {
     const array = await pg("profiles")
-      // .select("full_name")
       .update({ university })
       .whereIn("uid", function() {
         this.with(

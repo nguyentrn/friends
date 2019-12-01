@@ -14,6 +14,7 @@
     "cheerio": "^1.0.0-rc.3",
     "knex": "^0.20.2",
     "mongoose": "^5.7.1",
+    "node-fetch": "^2.6.0",
     "pg": "^7.14.0"
   },
   "devDependencies": {},

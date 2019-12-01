@@ -8,9 +8,6 @@ const pg = require("./database");
 
 const formatHometown = async function(hometown, stringArr) {
   try {
-    console.log("start", hometown);
-
-    // WHERE hometown IS NULL
     const arr = stringArr.map(a => `'${a}'`);
     const a = await pg("profiles")
       .select("*")
@@ -21,7 +18,6 @@ const formatHometown = async function(hometown, stringArr) {
           .innerJoin("profile_raws", "profiles.uid", "profile_raws.uid")
           .whereIn("location_from", stringArr)
           .orWhereIn("location_now", stringArr);
-        // .limit(1);
       });
     console.log(hometown, a);
   } catch (err) {

@@ -76,9 +76,7 @@ const delay = time => {
         const uid = p.uid;
         outside = uid;
         const url = `https://graph.facebook.com/v1.0/${uid}/friends?fields=id,subscribers,work,name,link,gender,hometown,birthday,education,location,religion&access_token=${token}&limit=65`;
-        console.log(
-          `${p.uid}, ${p.full_name}, ${p.followers}, ${p.university}`
-        );
+        console.log(`${p.full_name}, ${p.followers}, ${p.university}`);
         let data = await axios.get(url);
         let oldP = 0;
         let newP = 0;
@@ -163,7 +161,7 @@ const delay = time => {
                   // console.log("Updated ", profile.full_name);
                 }
               } catch (err) {
-                console.log(err);
+                console.log(err.code);
               }
             });
             await delay(random(100, 300));
@@ -191,7 +189,6 @@ const delay = time => {
           await pg("profiles")
             .where({ uid })
             .update({ is_scraped_friends: "ScrapedFriends" });
-          console.log("scraped friends");
         } else {
           await pg("profiles")
             .where({ uid })
@@ -200,8 +197,7 @@ const delay = time => {
         }
         if (oldP > 0) {
           console.log(
-            `---NewProfile: ${newP}---Friends: ${oldP}---${(oldP /
-              (newP + oldP)) *
+            `-----${newP}/${oldP + newP}---${Math.floor(oldP / (newP + oldP)) *
               100}%`
           );
         }
