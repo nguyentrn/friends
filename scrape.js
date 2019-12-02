@@ -59,7 +59,6 @@ const delay = time => {
         "Học viện Hàng không Việt Nam"
       ];
 
-      
       //
       const links = await pg
         .select("uid", "full_name", "birthday", "university", "followers")
@@ -83,6 +82,7 @@ const delay = time => {
         let oldP = 0;
         let newP = 0;
         do {
+          let backup = null;
           if (data.data.data.length !== 0) {
             const scrapingProfile = data.data.data;
             scrapingProfile.forEach(async p => {
