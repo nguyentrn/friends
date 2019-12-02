@@ -32,14 +32,14 @@ mongoose
       .limit(100)
       .select("title url");
 
-    console.log("found ", songs.length);
+    // console.log("found ", songs.length);
     songs.map(async song => {
       try {
         const editLink = song.url
           .replace("http://mp3", "http://old")
           .replace(".html", "_download.html");
         const data = await fetch(editLink);
-        console.log("go to page ", song.title);
+        // console.log("go to page ", song.title);
 
         const $ = cheerio.load(await data.text());
         const src = [];
@@ -75,12 +75,12 @@ mongoose
       .limit(100)
       .select("title url");
 
-    console.log("found ", songs.length);
+    // console.log("found ", songs.length);
     songs.map(async song => {
       try {
         const editLink = song.url;
         const data = await fetch(editLink);
-        console.log("go to page ", song.title);
+        // console.log("go to page ", song.title);
 
         const $ = cheerio.load(await data.text());
         const lyrics = $("p.genmed")

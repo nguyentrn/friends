@@ -58,6 +58,8 @@ const delay = time => {
         "Đại học Công nghiệp TP.HCM",
         "Học viện Hàng không Việt Nam"
       ];
+
+      
       //
       const links = await pg
         .select("uid", "full_name", "birthday", "university", "followers")
@@ -198,7 +200,7 @@ const delay = time => {
         if (oldP > 0) {
           console.log(
             `-----${newP}/${oldP + newP}---${Math.floor(
-              (oldP / (newP + oldP)) * 100
+              (newP / (newP + oldP)) * 100
             )}%`
           );
         }
