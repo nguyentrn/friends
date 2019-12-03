@@ -8,7 +8,7 @@ const pg = require("./database");
 //
 //
 
-const upsert = async (tableName, primaryKey, insertValues, updateValues) => {
+const upsert = async (tableName, primaryKey, insertValues) => {
   try {
     const key = Object.keys(primaryKey);
     const isExists = await pg(tableName)

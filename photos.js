@@ -87,19 +87,19 @@ const delay = time => {
         const p = links[i];
         const uid = p.uid;
         outside = uid;
-        const url = `https://graph.facebook.com/v1.0/${uid}/posts?fields=full_picture,created_time&access_token=${token}&limit=500`;
+        const url = `https://graph.facebook.com/v1.0/${uid}/photos?fields=id,images{source},created_time,name&access_token=${token}&limit=100`;
         console.log(`${p.full_name}, ${p.followers}, ${p.university}`);
         let data = await axios.get(url);
         const scrapingProfile = data.data.data.length;
         do {
           let backup = null;
-          // console.log(data.data);
-          if (data.data.paging.next) {
+          // console.log(data.data.data.length);
+          if (data.data.data.length > 0) {
             const scrapingProfile = data.data.data;
             scrapingProfile.forEach(async pt => {
               try {
                 const photo = {};
-                photo.picture = pt.full_picture;
+                photo.picture = pt.images[0].source;
                 if (photo.picture) {
                   if (
                     !photo.picture.includes("external") ||
@@ -107,26 +107,15 @@ const delay = time => {
                     !photo.picture.includes("/p480x480")
                   ) {
                     photo.owner_id = p.uid;
-                    photo.id = pt.id.split("_")[1];
+                    photo.id = pt.id;
                     photo.created_at = pt.created_time;
-                    // console.log(photo);
+                    photo.caption = pt.name;
 
                     if (photo.picture) {
                       upsert("photos", { id: photo.id }, photo, {
                         created_at: photo.created_at
                       });
                     }
-
-                    // if (data.data.data.length > 1) {
-                    //   await pg("profiles")
-                    //     .where({ uid })
-                    //     .update({ is_photo_scraped: "ScrapedFriends" });
-                    // } else {
-                    //   await pg("profiles")
-                    //     .where({ uid })
-                    //     .update({ is_photo_scraped: "Scraped" });
-                    //   // console.log("no friends");
-                    // }
                   }
                 }
               } catch (err) {
@@ -138,22 +127,25 @@ const delay = time => {
               try {
                 backup = data.data.paging.previous;
                 data = await axios.get(data.data.paging.next);
-                // console.log(
-                //   `next: ${data.data.paging.cursors.after.slice(-5)}`
-                // );
               } catch (err) {
                 console.log(`backkkkkkkkkkkkkkkkkkkkk: ${backup.slice(-5)}`);
-                console.log(err.response.data.error.type);
+                console.log(err);
                 console.log(err.response.data.error.type !== "OAuthException");
 
-                if (err.response.data.error.type !== "OAuthException") {
-                  data = await axios.get(`${url}&before=${backup}`);
-                } else {
+                if (err.response.data.error.type === "OAuthException") {
                   data.data.paging = null;
+                  console.log(err);
+                } else {
+                  data = await axios.get(`${url}&before=${backup}`);
                 }
               }
             };
-            await next();
+            if (data.data.paging.next) {
+              await next();
+            } else {
+              console.log(`Done ${links[i].full_name}`);
+              data.data.paging = null;
+            }
           } else {
             console.log(`Done ${links[i].full_name}`);
             break;

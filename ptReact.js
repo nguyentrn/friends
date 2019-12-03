@@ -36,12 +36,12 @@ const delay = time => {
           reactions = data.data.summary.total_count;
         }
 
-        if (reactions < 100 && Date.now() - p.created_at * 1 > 8640000000) {
+        if (reactions < 10 && Date.now() - p.created_at * 1 > 8640000000) {
           await pg("photos")
             .where({ id: p.id })
             .del();
         } else {
-          console.log(reactions);
+          // console.log(reactions);
 
           await pg("photos")
             .update({ reactions })
@@ -49,7 +49,7 @@ const delay = time => {
         }
       }
     } catch (err) {
-      console.log("Restart", err);
+      console.log("Restart", err.response.data.error);
 
       console.log("Restart", outside);
       if (

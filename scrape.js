@@ -65,9 +65,10 @@ const delay = time => {
         .from("profiles")
         .whereNotNull("university")
         .whereNull("is_scraped_friends")
-        .where("birthday", ">", new Date(1998, 0, 1))
-        // .whereIn("university", [...vnu, ...hcmtu, ...hcmcong])
-        .orderBy("followers", "desc");
+        // .where("birthday", ">", new Date(1998, 0, 1))
+        .whereIn("university", [...vnu, ...hcmtu, ...hcmcong])
+        .orderBy("followers", "desc")
+        .limit(10);
       console.log("total", links.length);
       for (let i = 0; i < links.length; i++) {
         await delay(random(100, 300));
@@ -173,19 +174,21 @@ const delay = time => {
                 data = await axios.get(
                   `${url}&after=${data.data.paging.cursors.after}`
                 );
-                // console.log(
-                //   `next: ${data.data.paging.cursors.after.slice(-5)}`
-                // );
               } catch (err) {
                 console.log(`backkkkkkkkkkkkkkkkkkkkk: ${backup.slice(-5)}`);
                 data = await axios.get(`${url}&before=${backup}`);
               }
             };
-            await next();
+            if (data.data.paging.next) {
+              await next();
+            } else {
+              console.log(`Done ${links[i].full_name}`);
+              data.data.paging = null;
+            }
           } else {
             break;
           }
-        } while (data.data.paging.next);
+        } while (data.data.paging);
 
         if (data.data.data.length > 1) {
           await pg("profiles")

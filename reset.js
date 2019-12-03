@@ -37,6 +37,19 @@ const pg = require("./database");
 //   }
 // };
 
+const formatUni = async function() {
+  try {
+    console.log("start", "university");
+    const a = await pg("profiles")
+      .update("is_photo_scraped", null)
+      .whereNotNull("is_photo_scraped");
+    console.log(a);
+  } catch (err) {
+    console.log(err);
+    console.log(err.code);
+  }
+};
+
 // const formatUni = async function() {
 //   try {
 //     console.log("start", "university");
@@ -49,36 +62,38 @@ const pg = require("./database");
 //     console.log(err.code);
 //   }
 // };
-
 // formatUni();
 
-const formatUni = async function() {
-  try {
-    do {
-      console.log("start", "university");
-      const profile = await pg("profiles")
-        .select(["id", "uid", "followers", "reactions", "point"])
-        .innerJoin("photos", "profiles.uid", "photos.owner_id")
-        .whereNull("point")
-        .whereNotNull("reactions")
-        .limit(1000);
+// const formatUni = async function() {
+//   try {
+//     let length = 0;
+//     do {
+//       console.log("start", "university");
+//       const profile = await pg("profiles")
+//         .select(["id", "uid", "followers", "reactions", "point"])
+//         .innerJoin("photos", "profiles.uid", "photos.owner_id")
+//         .whereNull("point")
+//         .whereNotNull("reactions")
+//         .limit(500);
+//       length = profile.length;
+//       console.log(profile.length);
+//       profile.forEach(async p => {
+//         const point =
+//           (p.reactions * Math.sqrt(p.reactions)) / (p.followers + 5000);
 
-      console.log(profile.length);
-      profile.forEach(async p => {
-        const point = p.reactions / (p.followers + 5000);
-        // console.log(point);
-        // console.log(p);
-        const a = await pg("photos")
-          // .select("*")
-          .where("id", p.id)
-          .update("point", Math.floor(point * 10000));
-        console.log(a);
-      });
-    } while (profile.length > 0);
-  } catch (err) {
-    console.log(err.response);
-    console.log(err.code);
-  }
-};
+//         // console.log(point);
+//         // console.log(p);
+//         const a = await pg("photos")
+//           // .select("*")
+//           .where("id", p.id)
+//           .update("point", Math.floor(point * 100));
+//         // console.log(a);
+//       });
+//     } while (length > 0);
+//   } catch (err) {
+//     console.log(err.response);
+//     console.log(err);
+//   }
+// };
 
 formatUni();
