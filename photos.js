@@ -79,7 +79,7 @@ const delay = time => {
         .orderBy("followers", "desc");
       // .limit(1)
       // .offset(1);
-      console.log("total", links.length);
+      // console.log("total", links.length);
       for (let i = 0; i < links.length; i++) {
         await delay(random(100, 300));
         const token =
@@ -88,7 +88,7 @@ const delay = time => {
         const uid = p.uid;
         outside = uid;
         const url = `https://graph.facebook.com/v1.0/${uid}/photos?fields=id,images{source},created_time,name&access_token=${token}&limit=100`;
-        console.log(`${p.full_name}, ${p.followers}, ${p.university}`);
+        // console.log(`${p.full_name}, ${p.followers}, ${p.university}`);
         let data = await axios.get(url);
         const scrapingProfile = data.data.data.length;
         do {
@@ -143,11 +143,11 @@ const delay = time => {
             if (data.data.paging.next) {
               await next();
             } else {
-              console.log(`Done ${links[i].full_name}`);
+              // console.log(`Done ${links[i].full_name}`);
               data.data.paging = null;
             }
           } else {
-            console.log(`Done ${links[i].full_name}`);
+            // console.log(`Done ${links[i].full_name}`);
             break;
           }
         } while (data.data.paging);
@@ -162,7 +162,7 @@ const delay = time => {
               photo_scraped_date
             });
         } else {
-          console.log("No data");
+          // console.log("No data");
           await pg("profiles")
             .where({ uid })
             .update({
