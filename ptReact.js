@@ -49,7 +49,7 @@ const delay = time => {
         }
       }
     } catch (err) {
-      console.log("Restart", err.response.data.error);
+      console.log("Restart", err.response.data.error.fbtrace_id);
 
       console.log("Restart", outside);
       if (
