@@ -13,7 +13,7 @@ const delay = time => {
 (async () => {
   console.log("Start scraping");
   let outside = "";
-  for (let i = 0; i < 1000; i++) {
+  for (let i = 0; i < 4000000; i++) {
     try {
       const links = await pg
         .select("owner_id", "id", "picture", "created_at")
@@ -21,7 +21,7 @@ const delay = time => {
         .whereNull("reactions")
         .limit(100);
 
-      console.log("total", links.length);
+      // console.log("total", links.length);
       for (let i = 0; i < links.length; i++) {
         await delay(random(100, 300));
         const token =
@@ -49,9 +49,6 @@ const delay = time => {
         }
       }
     } catch (err) {
-      // console.log("Restart", err.response.data.error.fbtrace_id);
-
-      // console.log("Restart", outside);
       if (
         err.response &&
         (err.response.data.error.message.includes("Unsupported get request") ||
@@ -59,10 +56,14 @@ const delay = time => {
             "Người dùng này không có trang cá nhân nào."
           ))
       ) {
+        // console.log("Restart", err.response.data.error);
+        // console.log("Restart", outside);
         // console.log(0);
         await pg("photos")
           .where({ id: outside })
           .del();
+      } else {
+        console.log("cant handle", outside);
       }
     }
   }

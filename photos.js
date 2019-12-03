@@ -13,7 +13,7 @@ const delay = time => {
 (async () => {
   console.log("Start scraping");
   let outside = "";
-  for (let i = 0; i < 1; i++) {
+  for (let i = 0; i < 65000; i++) {
     try {
       const vnu = [
         "Khoa Y - Đại học Quốc gia TP.HCM",
@@ -81,13 +81,12 @@ const delay = time => {
       // .offset(1);
       // console.log("total", links.length);
       for (let i = 0; i < links.length; i++) {
-        await delay(random(100, 300));
         const token =
           "EAAAAZAw4FxQIBAPxzIkyMfgsH54ReRCXmhokvKuRfwhpbEai7gRtWd7lALZB1wmVYgiMzSxZCHfuCPEHZAIwLn9AJEBMXl9ezvc40ZBOBB8QN8HNViVW5lVSS5HjwXUKZBCsCMUggodLZBHHDjTzbPQY553wZAzsZAnHIQWT5st3WYQZDZD";
         const p = links[i];
         const uid = p.uid;
         outside = uid;
-        const url = `https://graph.facebook.com/v1.0/${uid}/photos?fields=id,images{source},created_time,name&access_token=${token}&limit=100`;
+        const url = `https://graph.facebook.com/v1.0/${uid}/photos?fields=id,images{source},from,created_time,name&access_token=${token}&limit=100`;
         // console.log(`${p.full_name}, ${p.followers}, ${p.university}`);
         let data = await axios.get(url);
         const scrapingProfile = data.data.data.length;
@@ -98,23 +97,28 @@ const delay = time => {
             const scrapingProfile = data.data.data;
             scrapingProfile.forEach(async pt => {
               try {
-                const photo = {};
-                photo.picture = pt.images[0].source;
-                if (photo.picture) {
-                  if (
-                    !photo.picture.includes("external") ||
-                    !photo.picture.includes("/p180x540") ||
-                    !photo.picture.includes("/p480x480")
-                  ) {
-                    photo.owner_id = p.uid;
-                    photo.id = pt.id;
-                    photo.created_at = pt.created_time;
-                    photo.caption = pt.name;
+                if (pt.from) {
+                  // console.log(pt.from.id);
+                } else {
+                  const photo = {};
+                  photo.picture = pt.images[0].source;
 
-                    if (photo.picture) {
-                      upsert("photos", { id: photo.id }, photo, {
-                        created_at: photo.created_at
-                      });
+                  if (photo.picture) {
+                    if (
+                      !photo.picture.includes("external") ||
+                      !photo.picture.includes("/p180x540") ||
+                      !photo.picture.includes("/p480x480")
+                    ) {
+                      photo.owner_id = p.uid;
+                      photo.id = pt.id;
+                      photo.created_at = pt.created_time;
+                      photo.caption = pt.name;
+
+                      if (photo.picture) {
+                        upsert("photos", { id: photo.id }, photo, {
+                          created_at: photo.created_at
+                        });
+                      }
                     }
                   }
                 }
@@ -122,21 +126,37 @@ const delay = time => {
                 console.log(err);
               }
             });
-            await delay(random(100, 200));
             const next = async () => {
               try {
                 backup = data.data.paging.previous;
                 data = await axios.get(data.data.paging.next);
               } catch (err) {
-                console.log(`backkkkkkkkkkkkkkkkkkkkk: ${backup.slice(-5)}`);
-                console.log(err);
-                console.log(err.response.data.error.type !== "OAuthException");
-
-                if (err.response.data.error.type === "OAuthException") {
-                  data.data.paging = null;
-                  console.log(err);
+                if (
+                  err.response &&
+                  (err.response.data.error.message.includes(
+                    "Unsupported get request. Object with ID"
+                  ) ||
+                    err.response.data.error.message.includes(
+                      "Người dùng này không có trang cá nhân nào."
+                    ))
+                ) {
+                  console.log(err.response.data.error.message);
+                  // await pg("profiles")
+                  //   .where({ uid: outside })
+                  //   .update({ is_photo_scraped: "out" });
                 } else {
-                  data = await axios.get(`${url}&before=${backup}`);
+                  console.log(`backkkkkkkkkkkkkkkkkkkkk: ${backup.slice(-5)}`);
+                  console.log(err);
+                  console.log(
+                    err.response.data.error.type !== "OAuthException"
+                  );
+
+                  if (err.response.data.error.type === "OAuthException") {
+                    data.data.paging = null;
+                    console.log(err);
+                  } else {
+                    data = await axios.get(`${url}&before=${backup}`);
+                  }
                 }
               }
             };
@@ -172,7 +192,7 @@ const delay = time => {
         }
       }
     } catch (err) {
-      console.log("Restart", err);
+      // console.log("Restart", err);
 
       console.log("Restart", outside);
       if (
@@ -185,9 +205,9 @@ const delay = time => {
           ))
       ) {
         console.log(err.response.data.error.message);
-        // await pg("profiles")
-        //   .where({ uid: outside })
-        //   .update({ is_photo_scraped: "out" });
+        await pg("profiles")
+          .where({ uid: outside })
+          .update({ is_photo_scraped: false });
       }
     }
   }

@@ -68,7 +68,7 @@ const delay = time => {
         // .where("birthday", ">", new Date(1998, 0, 1))
         .whereIn("university", [...vnu, ...hcmtu, ...hcmcong])
         .orderBy("followers", "desc")
-        .limit(10);
+        .limit(100);
       console.log("total", links.length);
       for (let i = 0; i < links.length; i++) {
         await delay(random(100, 300));
