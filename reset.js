@@ -41,9 +41,8 @@ const pg = require("./database");
 //   try {
 //     console.log("start", "university");
 //     const a = await pg("photos")
-//       .select("*")
-//       .where("owner_id", "100006523755513")
-//       .del();
+//       .update("point", null)
+//       .whereNotNull("point");
 //     console.log(a);
 //   } catch (err) {
 //     console.log(err);
@@ -55,21 +54,29 @@ const pg = require("./database");
 
 const formatUni = async function() {
   try {
-    console.log("start", "university");
-    const profile = await pg("profiles")
-      .distinct(["uid", "followers"])
-      .innerJoin("photos", "profiles.uid", "photos.owner_id")
-      .whereNotNull("photos.reactions");
-    console.log(profile);
-    profile.forEach(async p => {
-      const a = await pg("photos")
-        .select("*")
-        .update({ point: pg.raw(`??/${p.followers}`, ["reactions"]) })
-        .where({ owner_id: p.uid });
-      console.log(a);
-    });
+    do {
+      console.log("start", "university");
+      const profile = await pg("profiles")
+        .select(["id", "uid", "followers", "reactions", "point"])
+        .innerJoin("photos", "profiles.uid", "photos.owner_id")
+        .whereNull("point")
+        .whereNotNull("reactions")
+        .limit(1000);
+
+      console.log(profile.length);
+      profile.forEach(async p => {
+        const point = p.reactions / (p.followers + 5000);
+        // console.log(point);
+        // console.log(p);
+        const a = await pg("photos")
+          // .select("*")
+          .where("id", p.id)
+          .update("point", Math.floor(point * 10000));
+        console.log(a);
+      });
+    } while (profile.length > 0);
   } catch (err) {
-    console.log(err);
+    console.log(err.response);
     console.log(err.code);
   }
 };

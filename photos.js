@@ -70,12 +70,12 @@ const delay = time => {
           "is_photo_scraped"
         )
         .from("profiles")
-        .whereNotNull("university")
+        // .whereNotNull("university")
         .whereNull("is_photo_scraped")
         // .whereIn("university", [...vnu])
         .andWhere("is_male", false)
         .andWhere("is_rank_first", true)
-        .andWhere("birthday", ">", new Date(1998, 0, 1))
+        // .andWhere("birthday", ">", new Date(1998, 0, 1))
         .orderBy("followers", "desc");
       // .limit(1)
       // .offset(1);
@@ -93,34 +93,41 @@ const delay = time => {
         const scrapingProfile = data.data.data.length;
         do {
           let backup = null;
+          // console.log(data.data);
           if (data.data.paging.next) {
             const scrapingProfile = data.data.data;
             scrapingProfile.forEach(async pt => {
               try {
                 const photo = {};
                 photo.picture = pt.full_picture;
-                if (photo.picture && !photo.picture.includes("external")) {
-                  photo.owner_id = p.uid;
-                  photo.id = pt.id.split("_")[1];
-                  photo.created_at = pt.created_time;
-                  // console.log(photo);
+                if (photo.picture) {
+                  if (
+                    !photo.picture.includes("external") ||
+                    !photo.picture.includes("/p180x540") ||
+                    !photo.picture.includes("/p480x480")
+                  ) {
+                    photo.owner_id = p.uid;
+                    photo.id = pt.id.split("_")[1];
+                    photo.created_at = pt.created_time;
+                    // console.log(photo);
 
-                  if (photo.picture) {
-                    upsert("photos", { id: photo.id }, photo, {
-                      created_at: photo.created_at
-                    });
+                    if (photo.picture) {
+                      upsert("photos", { id: photo.id }, photo, {
+                        created_at: photo.created_at
+                      });
+                    }
+
+                    // if (data.data.data.length > 1) {
+                    //   await pg("profiles")
+                    //     .where({ uid })
+                    //     .update({ is_photo_scraped: "ScrapedFriends" });
+                    // } else {
+                    //   await pg("profiles")
+                    //     .where({ uid })
+                    //     .update({ is_photo_scraped: "Scraped" });
+                    //   // console.log("no friends");
+                    // }
                   }
-
-                  // if (data.data.data.length > 1) {
-                  //   await pg("profiles")
-                  //     .where({ uid })
-                  //     .update({ is_photo_scraped: "ScrapedFriends" });
-                  // } else {
-                  //   await pg("profiles")
-                  //     .where({ uid })
-                  //     .update({ is_photo_scraped: "Scraped" });
-                  //   // console.log("no friends");
-                  // }
                 }
               } catch (err) {
                 console.log(err);
@@ -136,7 +143,14 @@ const delay = time => {
                 // );
               } catch (err) {
                 console.log(`backkkkkkkkkkkkkkkkkkkkk: ${backup.slice(-5)}`);
-                data = await axios.get(`${url}&before=${backup}`);
+                console.log(err.response.data.error.type);
+                console.log(err.response.data.error.type !== "OAuthException");
+
+                if (err.response.data.error.type !== "OAuthException") {
+                  data = await axios.get(`${url}&before=${backup}`);
+                } else {
+                  data.data.paging = null;
+                }
               }
             };
             await next();

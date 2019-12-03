@@ -18,7 +18,8 @@ const delay = time => {
       const links = await pg
         .select("owner_id", "id", "picture", "created_at")
         .from("photos")
-        .whereNull("reactions");
+        .whereNull("reactions")
+        .limit(100);
 
       console.log("total", links.length);
       for (let i = 0; i < links.length; i++) {
@@ -28,8 +29,12 @@ const delay = time => {
         const p = links[i];
         outside = p.id;
         const url = `https://graph.facebook.com/v2.6/${p.owner_id}_${p.id}/reactions?summary=total_count&access_token=${token}&limit=500`;
+        // console.log(url);
         let data = await axios.get(url);
-        const reactions = data.data.summary.total_count;
+        let reactions = 0;
+        if (data.data.summary) {
+          reactions = data.data.summary.total_count;
+        }
 
         if (reactions < 100 && Date.now() - p.created_at * 1 > 8640000000) {
           await pg("photos")
@@ -44,7 +49,7 @@ const delay = time => {
         }
       }
     } catch (err) {
-      console.log("Restart", err.response.data.error.message);
+      console.log("Restart", err);
 
       console.log("Restart", outside);
       if (
