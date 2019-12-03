@@ -86,7 +86,7 @@ const delay = time => {
         const p = links[i];
         const uid = p.uid;
         outside = uid;
-        const url = `https://graph.facebook.com/v1.0/${uid}/photos?fields=id,images{source},from,created_time,name&access_token=${token}&limit=100`;
+        const url = `https://graph.facebook.com/v1.0/${uid}/photos?fields=id,images,from,created_time,name&access_token=${token}&limit=100`;
         // console.log(`${p.full_name}, ${p.followers}, ${p.university}`);
         let data = await axios.get(url);
         const scrapingProfile = data.data.data.length;
@@ -102,6 +102,8 @@ const delay = time => {
                 } else {
                   const photo = {};
                   photo.picture = pt.images[0].source;
+                  photo.width = pt.images[0].width;
+                  photo.height = pt.images[0].height;
 
                   if (photo.picture) {
                     if (
@@ -174,7 +176,7 @@ const delay = time => {
         const photo_scraped_date = new Date();
         const is_photo_scraped = true;
         if (scrapingProfile !== 0) {
-          console.log("Add data");
+          // console.log("Add data");
           await pg("profiles")
             .where({ uid })
             .update({
