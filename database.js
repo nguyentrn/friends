@@ -6,8 +6,8 @@ const pg = knex({
     host: "157.245.196.34",
     user: "nguyen",
     password: "Nt01113699",
-    database: "cdvnu",
-  },
+    database: "cdvnu"
+  }
 });
 module.exports = pg;
 // const mongoose = require("mongoose");

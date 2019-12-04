@@ -194,7 +194,7 @@ const delay = time => {
         }
       }
     } catch (err) {
-      // console.log("Restart", err);
+      console.log("Restart", err);
 
       console.log("Restart", outside);
       if (

@@ -79,12 +79,12 @@ const delay = time => {
             "Người dùng này không có trang cá nhân nào."
           ))
       ) {
-        // console.log("Restart", err.response.data.error);
+        console.log("Restart", err.response.data.error);
         // console.log("Restart", outside);
         // console.log(0);
-        // await pg("photos")
-        //   .where({ id: outside })
-        //   .del();
+        await pg("photos")
+          .where({ id: outside })
+          .del();
       } else {
         console.log("cant handle");
       }

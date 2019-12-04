@@ -66,44 +66,51 @@ const pg = require("./database");
 
 const formatUni = async function() {
   try {
-    let length = 0;
-    for (let i = 0; i < 1000; i++) {
-      console.log("start", "university");
-      const profile = await pg("profiles")
-        .select([
-          "id",
-          "uid",
-          "followers",
-          "reactions",
-          "point",
-          "photos.created_at"
-        ])
-        .innerJoin("photos", "profiles.uid", "photos.owner_id")
-        .whereNull("point")
-        .whereNotNull("reactions")
-        .limit(50);
-      length = profile.length;
-      console.log(profile.length);
-      profile.forEach(async p => {
-        const now = Math.sqrt(
-          Math.sqrt((Date.now() - p.created_at) / 17280000000)
-        );
-        const point = Math.floor(
-          (p.reactions * Math.sqrt(p.reactions) * 1000) /
-            ((p.followers + 5000) * now)
-        );
-        // console.log(point, p);
-        const a = await pg("photos")
-          // .select("*")
-          .where("id", p.id)
-          .update("point", point);
-        //   // console.log(a);
-      });
+    // let length = 0;
+    // for (let i = 0; i < 1000; i++) {
+    console.log("start", "university");
+    const profile = await pg("profiles")
+      .select([
+        "id",
+        "uid",
+        "followers",
+        "reactions",
+        "point",
+        "photos.created_at"
+      ])
+      .innerJoin("photos", "profiles.uid", "photos.owner_id")
+      .whereNull("point")
+      .whereNotNull("reactions")
+      .limit(1500);
+    length = profile.length;
+    console.log(profile.length);
+    for (let i = 0; i < profile.length; i++) {
+      const p = profile[i];
+
+      // profile.forEach(async p => {
+      const now = Math.sqrt(
+        Math.sqrt((Date.now() - p.created_at) / 17280000000)
+      );
+      const point = Math.floor(
+        (p.reactions * Math.sqrt(p.reactions) * 1000) /
+          ((p.followers + 5000) * now)
+      );
+      // console.log(point, p);
+      const a = await pg("photos")
+        // .select("*")
+        .where("id", p.id)
+        .update("point", point);
+      //   // console.log(a);
+      // });
     }
+    console.log("done");
   } catch (err) {
     console.log(err.response);
     console.log(err);
   }
 };
-
-formatUni();
+(async () => {
+  for (let i = 0; i < 25; i++) {
+    await formatUni();
+  }
+})();
