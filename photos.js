@@ -72,14 +72,14 @@ const delay = time => {
         .from("profiles")
         // .whereNotNull("university")
         .whereNull("is_photo_scraped")
-        // .whereIn("university", [...vnu])
+        .whereIn("university", [...vnu])
         .andWhere("is_male", false)
-        .andWhere("is_rank_first", true)
-        // .andWhere("birthday", ">", new Date(1998, 0, 1))
+        // .andWhere("is_rank_first", true)
+        .andWhere("birthday", ">", new Date(1997, 0, 1))
         .orderBy("followers", "desc");
       // .limit(1)
       // .offset(1);
-      // console.log("total", links.length);
+      console.log("total", links.length);
       for (let i = 0; i < links.length; i++) {
         const token =
           "EAAAAZAw4FxQIBAPxzIkyMfgsH54ReRCXmhokvKuRfwhpbEai7gRtWd7lALZB1wmVYgiMzSxZCHfuCPEHZAIwLn9AJEBMXl9ezvc40ZBOBB8QN8HNViVW5lVSS5HjwXUKZBCsCMUggodLZBHHDjTzbPQY553wZAzsZAnHIQWT5st3WYQZDZD";
@@ -87,18 +87,18 @@ const delay = time => {
         const uid = p.uid;
         outside = uid;
         const url = `https://graph.facebook.com/v1.0/${uid}/photos?fields=id,images,from,created_time,name&access_token=${token}&limit=100`;
-        // console.log(`${p.full_name}, ${p.followers}, ${p.university}`);
+        console.log(`${p.full_name}, ${p.followers}, ${p.university}`);
         let data = await axios.get(url);
         const scrapingProfile = data.data.data.length;
         do {
           let backup = null;
-          // console.log(data.data.data.length);
+          console.log(data.data.data.length);
           if (data.data.data.length > 0) {
             const scrapingProfile = data.data.data;
             scrapingProfile.forEach(async pt => {
               try {
                 if (pt.from) {
-                  // console.log(pt.from.id);
+                  console.log(pt.from.id);
                 } else {
                   const photo = {};
                   photo.picture = pt.images[0].source;

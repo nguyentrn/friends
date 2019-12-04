@@ -37,18 +37,18 @@ const pg = require("./database");
 //   }
 // };
 
-const formatUni = async function() {
-  try {
-    console.log("start", "university");
-    const a = await pg("profiles")
-      .update("is_photo_scraped", null)
-      .whereNotNull("is_photo_scraped");
-    console.log(a);
-  } catch (err) {
-    console.log(err);
-    console.log(err.code);
-  }
-};
+// const formatUni = async function() {
+//   try {
+//     console.log("start", "university");
+//     const a = await pg("profiles")
+//       .update("is_photo_scraped", null)
+//       .whereNotNull("is_photo_scraped");
+//     console.log(a);
+//   } catch (err) {
+//     console.log(err);
+//     console.log(err.code);
+//   }
+// };
 
 // const formatUni = async function() {
 //   try {
@@ -64,36 +64,46 @@ const formatUni = async function() {
 // };
 // formatUni();
 
-// const formatUni = async function() {
-//   try {
-//     let length = 0;
-//     do {
-//       console.log("start", "university");
-//       const profile = await pg("profiles")
-//         .select(["id", "uid", "followers", "reactions", "point"])
-//         .innerJoin("photos", "profiles.uid", "photos.owner_id")
-//         .whereNull("point")
-//         .whereNotNull("reactions")
-//         .limit(500);
-//       length = profile.length;
-//       console.log(profile.length);
-//       profile.forEach(async p => {
-//         const point =
-//           (p.reactions * Math.sqrt(p.reactions)) / (p.followers + 5000);
-
-//         // console.log(point);
-//         // console.log(p);
-//         const a = await pg("photos")
-//           // .select("*")
-//           .where("id", p.id)
-//           .update("point", Math.floor(point * 100));
-//         // console.log(a);
-//       });
-//     } while (length > 0);
-//   } catch (err) {
-//     console.log(err.response);
-//     console.log(err);
-//   }
-// };
+const formatUni = async function() {
+  try {
+    let length = 0;
+    for (let i = 0; i < 1000; i++) {
+      console.log("start", "university");
+      const profile = await pg("profiles")
+        .select([
+          "id",
+          "uid",
+          "followers",
+          "reactions",
+          "point",
+          "photos.created_at"
+        ])
+        .innerJoin("photos", "profiles.uid", "photos.owner_id")
+        .whereNull("point")
+        .whereNotNull("reactions")
+        .limit(50);
+      length = profile.length;
+      console.log(profile.length);
+      profile.forEach(async p => {
+        const now = Math.sqrt(
+          Math.sqrt((Date.now() - p.created_at) / 17280000000)
+        );
+        const point = Math.floor(
+          (p.reactions * Math.sqrt(p.reactions) * 1000) /
+            ((p.followers + 5000) * now)
+        );
+        // console.log(point, p);
+        const a = await pg("photos")
+          // .select("*")
+          .where("id", p.id)
+          .update("point", point);
+        //   // console.log(a);
+      });
+    }
+  } catch (err) {
+    console.log(err.response);
+    console.log(err);
+  }
+};
 
 formatUni();

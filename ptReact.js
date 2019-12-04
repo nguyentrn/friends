@@ -15,11 +15,25 @@ const delay = time => {
   let outside = "";
   for (let i = 0; i < 4000000; i++) {
     try {
-      const links = await pg
-        .select("owner_id", "id", "picture", "created_at")
-        .from("photos")
+      // const links = await pg
+      //   .select("owner_id", "id", "picture", "created_at")
+      //   .from("photos")
+      //   .whereNull("reactions")
+      //   .limit(100);
+
+      const links = await pg("profiles")
+        .select([
+          "id",
+          "uid",
+          "followers",
+          "reactions",
+          "point",
+          "photos.created_at"
+        ])
+        .innerJoin("photos", "profiles.uid", "photos.owner_id")
         .whereNull("reactions")
-        .limit(100);
+        // .whereNotNull("reactions")
+        .limit(300);
 
       // console.log("total", links.length);
       for (let i = 0; i < links.length; i++) {
@@ -28,7 +42,7 @@ const delay = time => {
           "EAAAAZAw4FxQIBAPxzIkyMfgsH54ReRCXmhokvKuRfwhpbEai7gRtWd7lALZB1wmVYgiMzSxZCHfuCPEHZAIwLn9AJEBMXl9ezvc40ZBOBB8QN8HNViVW5lVSS5HjwXUKZBCsCMUggodLZBHHDjTzbPQY553wZAzsZAnHIQWT5st3WYQZDZD";
         const p = links[i];
         outside = p.id;
-        const url = `https://graph.facebook.com/v2.6/${p.owner_id}_${p.id}/reactions?summary=total_count&access_token=${token}&limit=500`;
+        const url = `https://graph.facebook.com/v2.6/${p.uid}_${p.id}/reactions?summary=total_count&access_token=${token}&limit=500`;
         // console.log(url);
         let data = await axios.get(url);
         let reactions = 0;
@@ -37,14 +51,23 @@ const delay = time => {
         }
 
         if (reactions < 10 && Date.now() - p.created_at * 1 > 8640000000) {
+          // console.log("da");
+
           await pg("photos")
             .where({ id: p.id })
             .del();
         } else {
           // console.log(reactions);
-
+          const now = Math.sqrt(
+            Math.sqrt((Date.now() - p.created_at) / 17280000000)
+          );
+          const point = Math.floor(
+            (reactions * Math.sqrt(reactions) * 1000) /
+              ((p.followers + 5000) * now)
+          );
+          // console.log(reactions, point);
           await pg("photos")
-            .update({ reactions })
+            .update({ reactions, point })
             .where({ id: p.id });
         }
       }
@@ -59,11 +82,11 @@ const delay = time => {
         // console.log("Restart", err.response.data.error);
         // console.log("Restart", outside);
         // console.log(0);
-        await pg("photos")
-          .where({ id: outside })
-          .del();
+        // await pg("photos")
+        //   .where({ id: outside })
+        //   .del();
       } else {
-        console.log("cant handle", outside);
+        console.log("cant handle");
       }
     }
   }
