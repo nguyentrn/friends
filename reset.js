@@ -81,26 +81,28 @@ const formatUni = async function() {
       .innerJoin("photos", "profiles.uid", "photos.owner_id")
       .whereNull("point")
       .whereNotNull("reactions")
-      .limit(1500);
+      .limit(100);
     length = profile.length;
     console.log(profile.length);
     for (let i = 0; i < profile.length; i++) {
       const p = profile[i];
-
+      (async () => {
+        const now = Math.sqrt(
+          Math.sqrt((Date.now() - p.created_at) / 17280000000)
+        );
+        const point = Math.floor(
+          (p.reactions * Math.sqrt(p.reactions) * 1000) /
+            ((p.followers + 5000) * now)
+        );
+        // console.log(point, p);
+        const a = await pg("photos")
+          // .select("*")
+          .where("id", p.id)
+          .update("point", point);
+        //   // console.log(a);
+      })();
       // profile.forEach(async p => {
-      const now = Math.sqrt(
-        Math.sqrt((Date.now() - p.created_at) / 17280000000)
-      );
-      const point = Math.floor(
-        (p.reactions * Math.sqrt(p.reactions) * 1000) /
-          ((p.followers + 5000) * now)
-      );
-      // console.log(point, p);
-      const a = await pg("photos")
-        // .select("*")
-        .where("id", p.id)
-        .update("point", point);
-      //   // console.log(a);
+
       // });
     }
     console.log("done");
@@ -110,7 +112,7 @@ const formatUni = async function() {
   }
 };
 (async () => {
-  for (let i = 0; i < 25; i++) {
+  for (let i = 0; i < 9999; i++) {
     await formatUni();
   }
 })();

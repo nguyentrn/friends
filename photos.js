@@ -72,10 +72,10 @@ const delay = time => {
         .from("profiles")
         // .whereNotNull("university")
         .whereNull("is_photo_scraped")
-        .whereIn("university", [...vnu])
+        .whereIn("university", [...vnu, ...hcmcong, ...hcmtu])
         .andWhere("is_male", false)
         // .andWhere("is_rank_first", true)
-        .andWhere("birthday", ">", new Date(1997, 0, 1))
+        .andWhere("birthday", ">", new Date(1998, 0, 1))
         .orderBy("followers", "desc");
       // .limit(1)
       // .offset(1);
@@ -86,13 +86,13 @@ const delay = time => {
         const p = links[i];
         const uid = p.uid;
         outside = uid;
-        const url = `https://graph.facebook.com/v1.0/${uid}/photos?fields=id,images,from,created_time,name&access_token=${token}&limit=100`;
-        // console.log(`${p.full_name}, ${p.followers}, ${p.university}`);
+        const url = `https://graph.facebook.com/v1.0/${uid}/photos/uploaded?fields=id,images,from,created_time,name&access_token=${token}&limit=100`;
+        console.log(`${p.full_name}, ${p.followers}, ${p.university}`);
         let data = await axios.get(url);
         const scrapingProfile = data.data.data.length;
         do {
           let backup = null;
-          // console.log(data.data.data.length);
+          console.log(data.data.data.length);
           if (data.data.data.length > 0) {
             const scrapingProfile = data.data.data;
             scrapingProfile.forEach(async pt => {

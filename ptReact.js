@@ -62,7 +62,7 @@ const delay = time => {
             Math.sqrt((Date.now() - p.created_at) / 17280000000)
           );
           const point = Math.floor(
-            (reactions * Math.sqrt(reactions) * 1000) /
+            (reactions * Math.sqrt(Math.sqrt(reactions)) * 1000) /
               ((p.followers + 5000) * now)
           );
           // console.log(reactions, point);
