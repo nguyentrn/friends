@@ -32,6 +32,7 @@ const delay = time => {
         ])
         .innerJoin("photos", "profiles.uid", "photos.owner_id")
         .whereNull("reactions")
+        .andWhere("height", ">", 1400)
         // .whereNotNull("reactions")
         .limit(300);
 
@@ -51,13 +52,13 @@ const delay = time => {
         }
 
         if (reactions < 10 && Date.now() - p.created_at * 1 > 8640000000) {
-          // console.log("da");
+          // console.log(url);
 
           await pg("photos")
             .where({ id: p.id })
             .del();
         } else {
-          // console.log(reactions);
+          console.log(reactions);
           const now = Math.sqrt(
             Math.sqrt((Date.now() - p.created_at) / 17280000000)
           );
@@ -86,6 +87,8 @@ const delay = time => {
           .where({ id: outside })
           .del();
       } else {
+        // console.log(err);
+
         console.log("cant handle");
       }
     }
