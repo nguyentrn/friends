@@ -33,6 +33,8 @@ const delay = time => {
         .innerJoin("photos", "profiles.uid", "photos.owner_id")
         .whereNull("reactions")
         .andWhere("height", ">", 1400)
+        .andWhere("followers", ">", 500)
+
         // .whereNotNull("reactions")
         .limit(300);
 

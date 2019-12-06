@@ -148,10 +148,22 @@ const delay = time => {
                   //   .update({ is_photo_scraped: "out" });
                 } else {
                   console.log(`backkkkkkkkkkkkkkkkkkkkk: ${backup.slice(-5)}`);
-                  console.log(err);
+                  // console.log(err);
                   console.log(
                     err.response.data.error.type !== "OAuthException"
                   );
+
+                  if (
+                    err.response &&
+                    err.response.data.error.message.includes(
+                      "Cannot specify type in both the path and query parameter"
+                    )
+                  ) {
+                    console.log(err.response.data.error.message);
+                    await pg("profiles")
+                      .where({ uid: outside })
+                      .update({ is_photo_scraped: false });
+                  }
 
                   if (err.response.data.error.type === "OAuthException") {
                     data.data.paging = null;
@@ -204,6 +216,9 @@ const delay = time => {
         ) ||
           err.response.data.error.message.includes(
             "Người dùng này không có trang cá nhân nào."
+          ) ||
+          err.response.data.error.message.includes(
+            "Cannot specify type in both the path and query parameter"
           ))
       ) {
         console.log(err.response.data.error.message);
