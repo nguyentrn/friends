@@ -53,7 +53,7 @@ const delay = time => {
           reactions = data.data.summary.total_count;
         }
 
-        if (reactions < 10 && Date.now() - p.created_at * 1 > 8640000000) {
+        if (reactions < 5 && Date.now() - p.created_at * 1 > 432000000) {
           // console.log(url);
 
           await pg("photos")

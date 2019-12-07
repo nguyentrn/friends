@@ -107,9 +107,22 @@ const pg = require("./database");
 //   }
 // })();
 
+// (async () => {
+//   const a = await pg("photos")
+//     .count("*")
+//     .where("height", ">", 1400);
+//   console.log(a);
+// })();
+
 (async () => {
+  // if (reactions < 10 && Date.now() - p.created_at * 1 > 8640000000) {
+  // console.log(url);
+
   const a = await pg("photos")
-    .count("*")
-    .where("height", ">", 1400);
+    .where("reactions", "<", 10)
+    // .andWhere('created_at', '>' ,8640000000)
+    .count("*");
   console.log(a);
+  //   .del();
+  // }
 })();
