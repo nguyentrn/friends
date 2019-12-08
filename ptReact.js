@@ -27,7 +27,7 @@ const delay = time => {
           "uid",
           "followers",
           "reactions",
-          "point",
+          "photos.point",
           "photos.created_at"
         ])
         .innerJoin("photos", "profiles.uid", "photos.owner_id")
@@ -82,7 +82,7 @@ const delay = time => {
             "Người dùng này không có trang cá nhân nào."
           ))
       ) {
-        console.log("Restart", err.response.data.error);
+        // console.log("Restart", err.response.data.error);
         // console.log("Restart", outside);
         // console.log(0);
         await pg("photos")
@@ -90,7 +90,6 @@ const delay = time => {
           .del();
       } else {
         // console.log(err);
-
         console.log("cant handle");
       }
     }

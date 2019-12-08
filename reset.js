@@ -113,16 +113,110 @@ const pg = require("./database");
 //     .where("height", ">", 1400);
 //   console.log(a);
 // })();
+////////////////////////////// DELETE LOW REACTION PHOTOS
+// (async () => {
+//   // if (reactions < 10 && Date.now() - p.created_at * 1 > 8640000000) {
+//   // console.log(url);
 
-(async () => {
-  // if (reactions < 10 && Date.now() - p.created_at * 1 > 8640000000) {
-  // console.log(url);
+//   const a = await pg("photos")
+//     // .select("*")
+//     .where("reactions", "<", 5)
+//     .whereNotNull("point")
+//     // .andWhere('created_at', '>' ,8640000000)
+//     .count("*");
+//   // .limit(100);
+//   console.log(a);
+//   // .del();
+//   // }
+// })();
 
+// const setPoint = async () => {
+//   a = await pg("photos")
+//     .select("*")
+//     .whereNotNull("reactions")
+//     .orderBy("point", "desc")
+//     .join("profiles", "photos.owner_id", "=", "profiles.uid")
+//     .limit(100);
+//   // console.log(a);
+//   a.map(async p => {
+//     const now = Math.sqrt(Math.sqrt((Date.now() - p.created_at) / 17280000000));
+//     const point = Math.floor(
+//       (p.reactions * Math.sqrt(Math.sqrt(p.reactions)) * 1000) /
+//         ((p.followers + 5000) * now)
+//     );
+//     console.log(p.point, point, p.picture);
+//     // await pg("photos")
+//     //   .update({ reactions, point })
+//     //   .where({ id: p.id });
+//   });
+// };
+
+// (async () => {
+//   await setPoint();
+// })();
+
+// (async () => {
+//   const a = await pg("profiles")
+//     // .count("*")
+//     .select(["full_name", "uid"])
+//     .where("full_name", "like", "%(%");
+//   // .limit(10);
+//   a.map(async p => {
+//     console.log(p.full_name);
+//     const full_name = p.full_name.split("(")[0];
+//     const alter_name = p.full_name
+//       .split("(")[1]
+//       .replace("(", "")
+//       .replace(")", "");
+//     console.log(full_name, "|", alter_name);
+//     const u = await pg("profiles")
+//       .update({ full_name, alter_name })
+//       .where("uid", p.uid);
+//     console.log(u);
+//   });
+//   console.log("do");
+// })();
+
+const get = async () => {
   const a = await pg("photos")
-    .where("reactions", "<", 10)
-    // .andWhere('created_at', '>' ,8640000000)
-    .count("*");
+    .distinct("owner_id")
+    .whereNotNull("photos.point")
+    .join("profiles", "photos.owner_id", "profiles.uid")
+    .whereNull("profiles.point");
+  // .limit(100);
   console.log(a);
-  //   .del();
+  // a.map(async p => {
+  for (let i = 0; i < a.length; i++) {
+    const p = a[i];
+    const pt = await pg("photos")
+      .select(["point", "picture"])
+      .whereNotNull("point")
+      .andWhere("owner_id", p.owner_id)
+      .orderBy("point", "desc")
+      .limit(10);
+
+    if (pt.length === 10) {
+      let sum = 0;
+      for (let i = 0; i < pt.length; i++) {
+        sum += pt[i].point * 10;
+      }
+      const avg = sum / pt.length;
+      const point = parseInt(avg);
+      const avatar = pt[0].picture;
+      // console.log(point, avatar);
+      const ud = await pg("profiles")
+        // .select("*")
+        .update({ point, avatar })
+        .where("uid", p.owner_id);
+      console.log(ud);
+    }
+  }
+  // })
+};
+(async () => {
+  await get();
+
+  // for (let i = 0; i < 10; i++) {
+  //   console.log(i);
   // }
 })();
