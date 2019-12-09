@@ -208,7 +208,7 @@ const get = async () => {
         // .select("*")
         .update({ point, avatar })
         .where("uid", p.owner_id);
-      console.log(ud);
+      console.log(i);
     }
   }
   // })

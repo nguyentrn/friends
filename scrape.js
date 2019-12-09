@@ -71,7 +71,6 @@ const delay = time => {
         .limit(100);
       console.log("total", links.length);
       for (let i = 0; i < links.length; i++) {
-        await delay(random(100, 300));
         const token =
           "EAAAAZAw4FxQIBAPxzIkyMfgsH54ReRCXmhokvKuRfwhpbEai7gRtWd7lALZB1wmVYgiMzSxZCHfuCPEHZAIwLn9AJEBMXl9ezvc40ZBOBB8QN8HNViVW5lVSS5HjwXUKZBCsCMUggodLZBHHDjTzbPQY553wZAzsZAnHIQWT5st3WYQZDZD";
         const p = links[i];
@@ -167,7 +166,7 @@ const delay = time => {
                 console.log(err);
               }
             });
-            await delay(random(100, 300));
+
             const next = async () => {
               try {
                 backup = data.data.paging.cursors.before;
