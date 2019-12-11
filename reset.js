@@ -181,16 +181,18 @@ const get = async () => {
   const a = await pg("photos")
     .distinct("owner_id")
     .whereNotNull("photos.point")
-    .join("profiles", "photos.owner_id", "profiles.uid")
-    .whereNull("profiles.point");
+    .join("profiles", "photos.owner_id", "profiles.uid");
+  // .whereNull("profiles.point");
   // .limit(100);
   console.log(a);
   // a.map(async p => {
+  let total = 0;
   for (let i = 0; i < a.length; i++) {
     const p = a[i];
     const pt = await pg("photos")
       .select(["point", "picture"])
-      .whereNotNull("point")
+      .andWhere("point", ">", 0)
+      .andWhere("height", ">", 2000)
       .andWhere("owner_id", p.owner_id)
       .orderBy("point", "desc")
       .limit(10);
@@ -208,9 +210,11 @@ const get = async () => {
         // .select("*")
         .update({ point, avatar })
         .where("uid", p.owner_id);
+      total += 1;
       console.log(i);
     }
   }
+  console.log(total);
   // })
 };
 (async () => {
