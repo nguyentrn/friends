@@ -70,9 +70,9 @@ const delay = time => {
           "is_photo_scraped"
         )
         .from("profiles")
-        // .whereNotNull("university")
+        .whereNotNull("university")
         .whereNull("is_photo_scraped")
-        .whereIn("university", [...vnu, ...hcmcong, ...hcmtu])
+        // .whereIn("university", [...vnu, ...hcmcong, ...hcmtu])
         .andWhere("is_male", false)
         // .andWhere("is_rank_first", true)
         .andWhere("birthday", ">", new Date(1998, 0, 1))
