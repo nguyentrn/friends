@@ -184,7 +184,7 @@ const get = async () => {
     .join("profiles", "photos.owner_id", "profiles.uid");
   // .whereNull("profiles.point");
   // .limit(100);
-  console.log(a);
+  // console.log(a);
   // a.map(async p => {
   let total = 0;
   for (let i = 0; i < a.length; i++) {
@@ -197,21 +197,21 @@ const get = async () => {
       .orderBy("point", "desc")
       .limit(10);
 
-    if (pt.length === 10) {
+    if (pt.length) {
       let sum = 0;
       for (let i = 0; i < pt.length; i++) {
         sum += pt[i].point * 10;
       }
-      const avg = sum / pt.length;
+      const avg = sum / 10;
       const point = parseInt(avg);
       const avatar = pt[0].picture;
-      // console.log(point, avatar);
+      // console.log(point);
       const ud = await pg("profiles")
         // .select("*")
         .update({ point, avatar })
         .where("uid", p.owner_id);
       total += 1;
-      console.log(i);
+      console.log(i, pt.length, sum, avg, point);
     }
   }
   console.log(total);
