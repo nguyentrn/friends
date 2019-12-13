@@ -1097,7 +1097,7 @@ const formatUni = async function(university, stringArr) {
     "Trường Đại học Võ Trường Toản",
     "Đại Học Võ Trường Toản"
   ]);
-  -------------------------------------------------------------------------------Hanoi
+  //////////////////-------------------------------------------------------------------------------Hanoi
   await formatUni("Đại học Bách khoa Hà Nội", [
     "ĐẠI HỌC BÁCH KHOA HÀ NỘI - HANOI UNIVERSITY OF SCIENCE AND TECHNOLOGY",
     "Hanoi University of Science and Technology",
@@ -1489,10 +1489,10 @@ const formatUni = async function(university, stringArr) {
     'Đại học Tài chính - Quản trị kinh doanh',
     "Đại Học Tài Chính Quản Trị Kinh Doanh",
   ]);
-  // await formatUni("Đại học Lao động Xã hội - Cơ sở 2", [
-  //   "Trường Đại Học Lao Động - Xã Hội CSII",
-  //   "Trường Đại học Lao động - Xã hội (CSII)"
-  // ]);
+  await formatUni("Đại học Lao động Xã hội - Cơ sở 2", [
+    "Trường Đại Học Lao Động - Xã Hội CSII",
+    "Trường Đại học Lao động - Xã hội (CSII)"
+  ]);
 
   await formatUni("Đại học Quốc tế Sài Gòn", [
     "Trường Đại học Quốc tế Sài Gòn - The Saigon International  University",
@@ -1504,28 +1504,28 @@ const formatUni = async function(university, stringArr) {
     "Trường Đại học Thể dục Thể thao TP.HCM"
   ]);
 
-  // await formatUni("Đại học Sư phạm Thể dục Thể thao TP.HCM", [
-  //   "Dai hoc Su pham The Duc The Thao TP HCM",
-  //   "Trường Đại học Sư phạm Thể dục Thể thao Thành phố Hồ Chí Minh"
-  // ]);
+  await formatUni("Đại học Sư phạm Thể dục Thể thao TP.HCM", [
+    "Dai hoc Su pham The Duc The Thao TP HCM",
+    "Trường Đại học Sư phạm Thể dục Thể thao Thành phố Hồ Chí Minh"
+  ]);
 
-  // await formatUni("Đại học Sân khấu Điện ảnh TP.HCM", [
-  //   "Trường Đại học Sân khấu - Điện ảnh Thành phố Hồ Chí Minh",
-  //   "Đại Học Sân Khấu Điện Ảnh",
-  //   "Đại học Sân Khấu Điện Ảnh TP. Hồ Chí Minh",
-  //   "Đại học Sân khấu Điện ảnh",
-  //   "Trường Đại học Sân khấu - Điện ảnh Tp. Hồ Chí Minh",
-  //   "Movie and Stage University-Đại Học Sân Khấu Điện Ảnh Tp. HCM",
-  //   "Film theater university",
-  //   "Đại Học Nghệ Thuật Sân Khấu Điện Ảnh Hồ Chí Minh",
-  //   "Trường Đại Học Sân Khấu Điện Ảnh Tp.Hcm",
-  //   "Đại Học Sân Khấu Điện Ảnh",
-  //   "ĐH Sân Khấu Điện Ảnh TP.HCM",
-  //   "Trường ĐH Sân khấu - Điện ảnh TP. HCM",
-  //   "DH San Khau Dien Anh TPHCM",
-  //   "Sân Khấu Điện Ảnh",
-  //   "Sân khấu - Điện ảnh - Truyền hình & Sự kiện"
-  // ]);
+  await formatUni("Đại học Sân khấu Điện ảnh TP.HCM", [
+    "Trường Đại học Sân khấu - Điện ảnh Thành phố Hồ Chí Minh",
+    "Đại Học Sân Khấu Điện Ảnh",
+    "Đại học Sân Khấu Điện Ảnh TP. Hồ Chí Minh",
+    "Đại học Sân khấu Điện ảnh",
+    "Trường Đại học Sân khấu - Điện ảnh Tp. Hồ Chí Minh",
+    "Movie and Stage University-Đại Học Sân Khấu Điện Ảnh Tp. HCM",
+    "Film theater university",
+    "Đại Học Nghệ Thuật Sân Khấu Điện Ảnh Hồ Chí Minh",
+    "Trường Đại Học Sân Khấu Điện Ảnh Tp.Hcm",
+    "Đại Học Sân Khấu Điện Ảnh",
+    "ĐH Sân Khấu Điện Ảnh TP.HCM",
+    "Trường ĐH Sân khấu - Điện ảnh TP. HCM",
+    "DH San Khau Dien Anh TPHCM",
+    "Sân Khấu Điện Ảnh",
+    "Sân khấu - Điện ảnh - Truyền hình & Sự kiện"
+  ]);
 
   await formatUni("Đại học An ninh Nhân dân TP.HCM", [
     "Đại học An ninh nhân dân TP.Hồ Chí Minh",
