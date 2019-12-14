@@ -8,9 +8,9 @@ const pg = require("./database");
 
 (async () => {
   const a = await pg("photos")
-    .count("*")
+    // .count("*")
     // .select(["full_name", "uid"])
-    .where("height", "<", 500)
+    .where("height", "<", 800)
     .del();
   // .limit(10);
 
