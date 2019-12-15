@@ -215,9 +215,11 @@ const get = async () => {
           .where("uid", p.owner_id);
         total += 1;
         console.log(i, pt.length, sum, avg, point);
+      } else {
+        console.log(i, "not changed");
       }
     } else {
-      console.log(i, "ignore");
+      console.log("no image");
     }
   }
   console.log(total);
