@@ -66,8 +66,8 @@ const delay = time => {
           "full_name",
           "birthday",
           "university",
-          "followers",
-          "is_photo_scraped"
+          "followers"
+          // "photo_scraped_date"
         )
         .from("profiles")
         .whereNotNull("university")
@@ -146,7 +146,7 @@ const delay = time => {
                   console.log(err.response.data.error.message);
                   // await pg("profiles")
                   //   .where({ uid: outside })
-                  //   .update({ is_photo_scraped: "out" });
+                  //   .update({ photo_scraped_date: "out" });
                 } else {
                   console.log(`backkkkkkkkkkkkkkkkkkkkk: ${backup.slice(-5)}`);
                   // console.log(err);
@@ -161,9 +161,8 @@ const delay = time => {
                     )
                   ) {
                     console.log(err.response.data.error.message);
-                    await pg("profiles")
-                      .where({ uid: outside })
-                      .update({ is_photo_scraped: false });
+                    await pg("profiles").where({ uid: outside });
+                    // .update({ photo_scraped_date: false });
                   }
 
                   if (err.response.data.error.type === "OAuthException") {
@@ -187,13 +186,13 @@ const delay = time => {
           }
         } while (data.data.paging);
         const photo_scraped_date = new Date();
-        // const is_photo_scraped = true;
+        // const photo_scraped_date = true;
         if (scrapingProfile !== 0) {
           // console.log("Add data");
           await pg("profiles")
             .where({ uid })
             .update({
-              // is_photo_scraped,
+              // photo_scraped_date,
               photo_scraped_date
             });
         } else {
@@ -201,7 +200,7 @@ const delay = time => {
           await pg("profiles")
             .where({ uid })
             .update({
-              // is_photo_scraped,
+              // photo_scraped_date,
               photo_scraped_date
             });
         }
@@ -223,8 +222,9 @@ const delay = time => {
           ))
       ) {
         console.log(err.response.data.error.message);
-        await pg("profiles").where({ uid: outside });
-        // .update({ is_photo_scraped: false });
+        await pg("profiles")
+          .where({ uid: outside })
+          .update({ photo_scraped_date: new Date() });
       }
     }
   }
