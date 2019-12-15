@@ -187,13 +187,13 @@ const delay = time => {
           }
         } while (data.data.paging);
         const photo_scraped_date = new Date();
-        const is_photo_scraped = true;
+        // const is_photo_scraped = true;
         if (scrapingProfile !== 0) {
           // console.log("Add data");
           await pg("profiles")
             .where({ uid })
             .update({
-              is_photo_scraped,
+              // is_photo_scraped,
               photo_scraped_date
             });
         } else {
@@ -201,7 +201,7 @@ const delay = time => {
           await pg("profiles")
             .where({ uid })
             .update({
-              is_photo_scraped,
+              // is_photo_scraped,
               photo_scraped_date
             });
         }
@@ -223,9 +223,8 @@ const delay = time => {
           ))
       ) {
         console.log(err.response.data.error.message);
-        await pg("profiles")
-          .where({ uid: outside })
-          .update({ is_photo_scraped: false });
+        await pg("profiles").where({ uid: outside });
+        // .update({ is_photo_scraped: false });
       }
     }
   }
