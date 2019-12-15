@@ -180,15 +180,16 @@ const pg = require("./database");
 const get = async () => {
   const a = await pg("photos")
     .distinct("owner_id")
+    .select("profiles.point")
     .whereNotNull("photos.point")
-    .join("profiles", "photos.owner_id", "profiles.uid");
-  // .whereNull("profiles.point");
-  // .limit(100);
-  // console.log(a);
+    .join("profiles", "photos.owner_id", "profiles.uid")
+    // .whereNull("profiles.point");
+    .limit(200);
   // a.map(async p => {
   let total = 0;
   for (let i = 0; i < a.length; i++) {
     const p = a[i];
+    console.log(p);
     const pt = await pg("photos")
       .select(["point", "picture"])
       .andWhere("point", ">", 0)
@@ -208,7 +209,7 @@ const get = async () => {
       // console.log(point);
       const ud = await pg("profiles")
         // .select("*")
-        .update({ point, avatar })
+        .update({ point, avatar, updated_photo_at: new Date() })
         .where("uid", p.owner_id);
       total += 1;
       console.log(i, pt.length, sum, avg, point);

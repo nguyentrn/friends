@@ -71,7 +71,7 @@ const delay = time => {
         )
         .from("profiles")
         .whereNotNull("university")
-        .whereNull("is_photo_scraped")
+        .whereNull("photo_scraped_date")
         .whereIn("university", vnu)
         // .whereIn("university", [...vnu, ...hcmcong, ...hcmtu])
         .andWhere("is_male", false)
