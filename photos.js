@@ -72,12 +72,13 @@ const delay = time => {
         .from("profiles")
         .whereNotNull("university")
         .whereNull("is_photo_scraped")
+        .whereIn("university", vnu)
         // .whereIn("university", [...vnu, ...hcmcong, ...hcmtu])
         .andWhere("is_male", false)
         // .andWhere("is_rank_first", true)
         .andWhere("birthday", ">", new Date(1998, 0, 1))
-        .orderBy("followers", "desc");
-      // .limit(1)
+        .orderBy("followers", "desc")
+        .limit(100);
       // .offset(1);
       console.log("total", links.length);
       for (let i = 0; i < links.length; i++) {
