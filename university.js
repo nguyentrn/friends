@@ -30,6 +30,10 @@ const formatUni = async function(university, stringArr) {
   await formatUni("Trung cấp Bách khoa Sài Gòn", [
     "Trường Trung Cấp Bách Khoa Sài Gòn - Official"
   ]);
+
+  await formatUni("Trung cấp Đại Việt TP.HCM", [
+    "Trường Trung Cấp Đại Việt TP HCM"
+  ]);
   await formatUni("Trung cấp Du lịch và Khách sạn", [
     "STHC - Saigontourist Hospitality College",
     "Saigontourist Hospitality College"
@@ -273,6 +277,7 @@ const formatUni = async function(university, stringArr) {
   ]);
 
   formatUni("Cao đẳng Kinh tế Kế hoạch Đà Nẵng", [
+    "Trường Cao Đẳng Kinh Tế Kế Hoạch Đà Nẵng",
     "Trường Cao Đẳng Kinh Tế Kế Hoạch Đà Nẵng"
   ]);
   formatUni("Cao đẳng Kinh tế - Kỹ thuật Cần Thơ", [
@@ -1022,9 +1027,11 @@ const formatUni = async function(university, stringArr) {
     "Hung Yen University of Technology and Education"
   ]);
   await formatUni("Đại học Y Dược Thái Bình", ["Đại Học Y Dược Thái Bình"]);
+  await formatUni("Đại học Chu Văn An", ["Trường Đại học Chu Văn An"]);
 
   await formatUni("Đại học Hoa Lư Ninh Bình", [
-    "Trường Đại Học Hoa Lư Ninh Bình"
+    "Trường Đại Học Hoa Lư Ninh Bình",
+    "Đại học Hoa Lư Ninh Bình"
   ]);
 
   //-------------------------------------------------------------------------------Trung
@@ -2033,7 +2040,8 @@ const formatUni = async function(university, stringArr) {
     "Đại học Công nghiệp Thực phẩm TP.HCM",
     "DAI HOC CONG NGHIEP THUC PHAM TP.HCM",
     "Trường Đại Học Công Nghệ Thực Phẩm",
-    "DH Cong nghiep thuc pham TPHCM"
+    "DH Cong nghiep thuc pham TPHCM",
+    "HUFI"
   ]);
 
   await formatUni("Đại học Giao thông vận tải TP.HCM", [

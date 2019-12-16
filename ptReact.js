@@ -21,24 +21,49 @@ const delay = time => {
       //   .whereNull("reactions")
       //   .limit(100);
 
-      const links = await pg("profiles")
+      // const links = await pg("profiles")
+      //   .select([
+      //     "id",
+      //     "uid",
+      //     "followers",
+      //     "reactions",
+      //     "photos.point",
+      //     "photos.created_at"
+      //   ]).count
+      //   .innerJoin("photos", "profiles.uid", "photos.owner_id")
+      //   .whereNull("reactions")
+      //   .andWhere("height", ">", 2000)
+      //   .andWhere("photos.created_at", ">", "2019-1-1")
+      //   .limit(3);
+
+      const links = await pg
+        .with(
+          "with_alias",
+          pg.raw(
+            "SELECT owner_id,count(*) FROM photos WHERE point IS NULL AND height>2000 GROUP BY owner_id ORDER BY count"
+          )
+        )
         .select([
           "id",
           "uid",
           "followers",
           "reactions",
           "photos.point",
-          "photos.created_at"
+          "photos.created_at",
+          "with_alias.count",
+          "photos.height"
         ])
+        .from("profiles")
+        .innerJoin("with_alias", "profiles.uid", "with_alias.owner_id")
         .innerJoin("photos", "profiles.uid", "photos.owner_id")
         .whereNull("reactions")
-        .andWhere("height", ">", 2000)
-        // .andWhere("followers", ">", 500)
+        .andWhere("photos.height", ">", 2000)
+        .orderBy("with_alias.count")
+        .limit(1000);
+      // .select("*")
+      // .from("with_alias");
 
-        // .whereNotNull("reactions")
-        .limit(300);
-
-      // console.log("total", links.length);
+      // console.log(links);
       for (let i = 0; i < links.length; i++) {
         await delay(random(100, 300));
         const token =
