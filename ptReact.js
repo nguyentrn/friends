@@ -33,7 +33,7 @@ const delay = time => {
         .innerJoin("photos", "profiles.uid", "photos.owner_id")
         .whereNull("reactions")
         .andWhere("height", ">", 2000)
-        .andWhere("followers", ">", 500)
+        // .andWhere("followers", ">", 500)
 
         // .whereNotNull("reactions")
         .limit(300);
@@ -61,12 +61,20 @@ const delay = time => {
             .del();
         } else {
           console.log(reactions);
-          const now = Math.sqrt(
-            Math.sqrt((Date.now() - p.created_at) / 17280000000)
+          // const now = Math.sqrt(
+          //   Math.sqrt((Date.now() - p.created_at) / 17280000000)
+          // );
+          const now = Math.pow(
+            (new Date(p.created_at) - new Date("2012-1-1")) / 100000000000,
+            2
           );
+
           const point = Math.floor(
-            (reactions * Math.sqrt(Math.sqrt(Math.sqrt(reactions))) * 1000) /
-              ((p.followers + 5000) * now)
+            (reactions *
+              Math.sqrt(Math.sqrt(Math.sqrt(reactions))) *
+              1000 *
+              now) /
+              (p.followers + 5000)
           );
           // console.log(reactions, point);
           await pg("photos")

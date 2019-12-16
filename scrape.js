@@ -77,7 +77,6 @@ const delay = time => {
         const uid = p.uid;
         outside = uid;
         const url = `https://graph.facebook.com/v1.0/${uid}/friends?fields=id,subscribers,work,name,link,gender,hometown,birthday,education,location,religion&access_token=${token}&limit=65`;
-        console.log(`${p.full_name}, ${p.followers}, ${p.university}`);
         let data = await axios.get(url);
         let oldP = 0;
         let newP = 0;
@@ -181,7 +180,8 @@ const delay = time => {
             if (data.data.paging.next) {
               await next();
             } else {
-              console.log(`Done ${links[i].full_name}`);
+              console.log(`${p.full_name}, ${p.followers}, ${p.university}`);
+
               data.data.paging = null;
             }
           } else {

@@ -2379,9 +2379,9 @@ const formatUni = async function(university, stringArr) {
     "Ho Chi Minh City University of Information Technology"
   ]);
 
-  // await formatUni("Khoa Y - Đại học Quốc gia TP.HCM", [
-  //   "Khoa Y- Đại Học Quốc Gia Thành Phố Hồ Chí Minh"
-  // ]);
+  await formatUni("Khoa Y - Đại học Quốc gia TP.HCM", [
+    "Khoa Y- Đại Học Quốc Gia Thành Phố Hồ Chí Minh"
+  ]);
 
   // (async function() {
   //   try {
