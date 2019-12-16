@@ -87,8 +87,8 @@ const setPoint = async () => {
       (p.created_at - new Date("2012-1-1")) / 100000000000,
       2
     );
-    console.log(p.created_at);
-    console.log(now);
+    // console.log(p.created_at);
+    // console.log(now);
 
     const point = Math.floor(
       (p.reactions *
@@ -97,10 +97,10 @@ const setPoint = async () => {
         now) /
         (p.followers + 5000)
     );
-    console.log(i, p.reactions, point);
-    // await pg("photos")
-    //   .update({ point })
-    //   .where({ id: p.id });
+    console.log(i, point, now);
+    await pg("photos")
+      .update({ point })
+      .where({ id: p.id });
   }
 };
 
