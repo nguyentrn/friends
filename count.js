@@ -5,18 +5,36 @@
 //
 //
 const pg = require("./database");
-/////////////////////////////// counttttttttt
+///////////////////////////// counttttttttt
 (async () => {
   const a = await pg("photos")
     // .count("*")
     // .select(["full_name", "uid"])
-    .where("height", "<", 700);
-  // .del();
+    .where("height", "<", 700)
+    .del();
   // .limit(10);
 
   console.log(a);
 })();
 
+/// delete point
+// (async () => {
+//   const a = await pg("photos")
+//     // .count("*")
+//     // .select(["full_name", "uid"])
+//     .whereNotNull("point")
+//     .update("point", null);
+//   // .limit(10);
+
+//   console.log(a);
+// })();
+
+//////
+//
+//
+//
+//
+//
 // (async () => {
 //   const a = await pg("profiles")
 //     .update("is_vnuer", true)

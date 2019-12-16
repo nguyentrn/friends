@@ -74,19 +74,21 @@ const pg = require("./database");
 
 const setPoint = async () => {
   a = await pg("photos")
-    .select("*")
+    .select(["reactions", "followers", "id", "photos.created_at"])
     .whereNotNull("reactions")
     .orderBy("photos.point", "desc")
-    .join("profiles", "photos.owner_id", "=", "profiles.uid")
-    .limit(10000);
+    .join("profiles", "photos.owner_id", "=", "profiles.uid");
+  // .limit(100);
   // console.log(a);
   // a.map(async p => {
   for (let i = 0; i < a.length; i++) {
     const p = a[i];
     const now = Math.pow(
-      (new Date(p.created_at) - new Date("2012-1-1")) / 100000000000,
+      (p.created_at - new Date("2012-1-1")) / 100000000000,
       2
     );
+    console.log(p.created_at);
+    console.log(now);
 
     const point = Math.floor(
       (p.reactions *
@@ -95,17 +97,17 @@ const setPoint = async () => {
         now) /
         (p.followers + 5000)
     );
-    console.log(i, p.point, point);
-    await pg("photos")
-      .update({ point })
-      .where({ id: p.id });
+    console.log(i, p.reactions, point);
+    // await pg("photos")
+    //   .update({ point })
+    //   .where({ id: p.id });
   }
 };
 
 (async () => {
-  for (let i = 0; i < 30; i++) {
-    await setPoint();
-  }
+  // for (let i = 0; i < 30; i++) {
+  await setPoint();
+  // }
 })();
 
 // (async () => {
