@@ -66,7 +66,7 @@ const delay = time => {
         .whereNotNull("university")
         .whereNull("is_scraped_friends")
         // .where("birthday", ">", new Date(1998, 0, 1))
-        .whereIn("university", [...vnu, ...hcmtu, ...hcmcong])
+        //.whereIn("university", [...vnu, ...hcmtu, ...hcmcong])
         .orderBy("followers", "desc")
         .limit(100);
       console.log("total", links.length);
