@@ -105,323 +105,323 @@ const formatHometown = async function(hometown, stringArr) {
   //   "Cần Giờ, Hồ Chí Minh, Vietnam"
   // ]);
 
-  // await formatHometown("Hòa Bình", ["Hòa Bình, Hòa Bình, Vietnam"]);
-  // await formatHometown("Sơn La", ["Sơn La", "Mộc Châu", "Phù Yên"]);
-  // await formatHometown("Điện Biên", ["Điện Biên Phủ"]);
-  // await formatHometown("Lai Châu", ["Lai Chau"]);
-  // await formatHometown("Lào Cai", ["Lào Cai (thành phố)"]);
-  // await formatHometown("Yên Bái", [
-  //   "Yên Bái (thành phố)",
-  //   "Lục Yên",
-  //   "Nghĩa Lộ"
-  // ]);
+  await formatHometown("Hòa Bình", ["Hòa Bình, Hòa Bình, Vietnam"]);
+  await formatHometown("Sơn La", ["Sơn La", "Mộc Châu", "Phù Yên"]);
+  await formatHometown("Điện Biên", ["Điện Biên Phủ"]);
+  await formatHometown("Lai Châu", ["Lai Chau"]);
+  await formatHometown("Lào Cai", ["Lào Cai (thành phố)"]);
+  await formatHometown("Yên Bái", [
+    "Yên Bái (thành phố)",
+    "Lục Yên",
+    "Nghĩa Lộ"
+  ]);
 
-  // await formatHometown("Phú Thọ", [
-  //   "Việt Trì",
-  //   "Phu Tho, Phú Thọ, Vietnam",
-  //   "Phú Thọ (thị xã)",
-  //   "Thanh Sơn",
-  //   "Vietri, Phú Thọ, Vietnam"
-  // ]);
-  // await formatHometown("Hà Giang", [
-  //   "Hà Giang (thành phố)",
-  //   "Bắc Quang, Hà Giang, Vietnam"
-  // ]);
-  // await formatHometown("Tuyên Quang", ["Tuyên Quang, Tuyên Quang, Vietnam"]);
-  // await formatHometown("Cao Bằng", ["Cao Bằng"]);
-  // await formatHometown("Bắc Kạn", ["Bac Can, Bắc Kạn, Vietnam", "Bắc Kạn"]);
-  // await formatHometown("Thái Nguyên", ["Thái Nguyên (thành phố)"]);
-  // await formatHometown("Lạng Sơn", ["Lạng Sơn"]);
-  // await formatHometown("Bắc Giang", ["Bắc Giang (thành phố)", "Lục Nam"]);
-  // await formatHometown("Quảng Ninh", [
-  //   "Cẩm Phả Port, Quảng Ninh, Vietnam",
-  //   "Quảng Yên, Quảng Ninh, Vietnam",
-  //   "Khê Mao, Quảng Ninh, Vietnam",
-  //   "Cua Ong, Quảng Ninh, Vietnam",
-  //   "Ha Coi, Quảng Ninh, Vietnam",
-  //   "Hạ Long (thành phố)",
-  //   "Móng Cái",
-  //   "Tiên Yên",
-  //   "Uông Bí",
-  //   "Cẩm Phả"
-  // ]);
+  await formatHometown("Phú Thọ", [
+    "Việt Trì",
+    "Phu Tho, Phú Thọ, Vietnam",
+    "Phú Thọ (thị xã)",
+    "Thanh Sơn",
+    "Vietri, Phú Thọ, Vietnam"
+  ]);
+  await formatHometown("Hà Giang", [
+    "Hà Giang (thành phố)",
+    "Bắc Quang, Hà Giang, Vietnam"
+  ]);
+  await formatHometown("Tuyên Quang", ["Tuyên Quang, Tuyên Quang, Vietnam"]);
+  await formatHometown("Cao Bằng", ["Cao Bằng"]);
+  await formatHometown("Bắc Kạn", ["Bac Can, Bắc Kạn, Vietnam", "Bắc Kạn"]);
+  await formatHometown("Thái Nguyên", ["Thái Nguyên (thành phố)"]);
+  await formatHometown("Lạng Sơn", ["Lạng Sơn"]);
+  await formatHometown("Bắc Giang", ["Bắc Giang (thành phố)", "Lục Nam"]);
+  await formatHometown("Quảng Ninh", [
+    "Cẩm Phả Port, Quảng Ninh, Vietnam",
+    "Quảng Yên, Quảng Ninh, Vietnam",
+    "Khê Mao, Quảng Ninh, Vietnam",
+    "Cua Ong, Quảng Ninh, Vietnam",
+    "Ha Coi, Quảng Ninh, Vietnam",
+    "Hạ Long (thành phố)",
+    "Móng Cái",
+    "Tiên Yên",
+    "Uông Bí",
+    "Cẩm Phả"
+  ]);
 
-  // await formatHometown("Bắc Ninh", ["Bắc Ninh (thành phố)", "Từ Sơn"]);
-  // await formatHometown("Hà Nam", [
-  //   "Ha-Nam, Hà Nam, Vietnam",
-  //   "Phủ Lý",
-  //   "Binh Luc, Hà Nam, Vietnam"
-  // ]);
-  // await formatHometown("Hải Dương", [
-  //   "Hải Dương (thành phố)",
-  //   "Haidöng, Hải Dương, Vietnam"
-  // ]);
-  // await formatHometown("Hải Phòng", [
-  //   "Haiphong, Hải Phòng, Vietnam",
-  //   "Vinh Bao, Hải Phòng, Vietnam",
-  //   "Hải Phòng"
-  // ]);
-  // await formatHometown("Hưng Yên", [
-  //   "Hung Yen, Hưng Yên, Vietnam",
-  //   "Ân Thi, Hưng Yên",
-  //   "Mỹ Hào"
-  // ]);
-  // await formatHometown("Nam Định", [
-  //   "Nam Định, Nam Định, Vietnam",
-  //   "Xuân Trường",
-  //   "Giao Thủy",
-  //   "Nam Trực",
-  //   "Hải Hậu"
-  // ]);
-  // await formatHometown("Ninh Bình", [
-  //   "Nho Quan, Ninh Bình, Vietnam",
-  //   "Ninh Bình (thành phố)"
-  // ]);
-  // await formatHometown("Thái Bình", [
-  //   "Thái Bình, Thái Bình, Vietnam",
-  //   "Thái Bình (thành phố)"
-  // ]);
-  // await formatHometown("Vĩnh Phúc", [
-  //   "Vinh Phuc, Ha Noi, Vietnam",
-  //   "Phúc Yên",
-  //   "Yen, Vĩnh Phúc, Vietnam",
-  //   "Vĩnh Yên",
-  //   "Vĩnh Tường"
-  // ]);
+  await formatHometown("Bắc Ninh", ["Bắc Ninh (thành phố)", "Từ Sơn"]);
+  await formatHometown("Hà Nam", [
+    "Ha-Nam, Hà Nam, Vietnam",
+    "Phủ Lý",
+    "Binh Luc, Hà Nam, Vietnam"
+  ]);
+  await formatHometown("Hải Dương", [
+    "Hải Dương (thành phố)",
+    "Haidöng, Hải Dương, Vietnam"
+  ]);
+  await formatHometown("Hải Phòng", [
+    "Haiphong, Hải Phòng, Vietnam",
+    "Vinh Bao, Hải Phòng, Vietnam",
+    "Hải Phòng"
+  ]);
+  await formatHometown("Hưng Yên", [
+    "Hung Yen, Hưng Yên, Vietnam",
+    "Ân Thi, Hưng Yên",
+    "Mỹ Hào"
+  ]);
+  await formatHometown("Nam Định", [
+    "Nam Định, Nam Định, Vietnam",
+    "Xuân Trường",
+    "Giao Thủy",
+    "Nam Trực",
+    "Hải Hậu"
+  ]);
+  await formatHometown("Ninh Bình", [
+    "Nho Quan, Ninh Bình, Vietnam",
+    "Ninh Bình (thành phố)"
+  ]);
+  await formatHometown("Thái Bình", [
+    "Thái Bình, Thái Bình, Vietnam",
+    "Thái Bình (thành phố)"
+  ]);
+  await formatHometown("Vĩnh Phúc", [
+    "Vinh Phuc, Ha Noi, Vietnam",
+    "Phúc Yên",
+    "Yen, Vĩnh Phúc, Vietnam",
+    "Vĩnh Yên",
+    "Vĩnh Tường"
+  ]);
 
-  // await formatHometown("Cần Thơ", [
-  //   "Cần Thơ",
-  //   "Ap Binh Duong (1), Vietnam",
-  //   "Thốt Nốt"
-  // ]);
-  // await formatHometown("An Giang", [
-  //   "Long Xuyên",
-  //   "Chau Phú, An Giang, Vietnam",
-  //   "Chaudok, An Giang, Vietnam",
-  //   "Angiang, An Giang, Vietnam",
-  //   "Chợ Mới",
-  //   "Tri Tôn (thị trấn)",
-  //   "Tịnh Biên"
-  // ]);
-  // await formatHometown("Thanh Hóa", [
-  //   "Yen Dinh, Thanh Hóa, Vietnam",
-  //   "Thanh Hóa",
-  //   "Sầm Sơn"
-  // ]);
-  // await formatHometown("Nghệ An", [
-  //   "Cho Do Luong, Nghệ An, Vietnam",
-  //   "Phu Dien Chau, Nghệ An, Vietnam",
-  //   "Quynh Luu, Nghệ An, Vietnam",
-  //   "Thái Hõa, Nghệ An, Vietnam",
-  //   "Nam �Àn, Nghệ An, Vietnam",
-  //   "Vin, Nghệ An, Vietnam",
-  //   "Thành phố Vinh",
-  //   "Thanh Chương",
-  //   "Yên Thành",
-  //   "Con Cuông",
-  //   "Diễn Châu",
-  //   "Nghi Lộc",
-  //   "Quỳ Hợp",
-  //   "Anh Sơn",
-  //   "Cửa Lò",
-  //   "Tân Kỳ",
-  //   "Vinh"
-  // ]);
-  // await formatHometown("Hà Tĩnh", [
-  //   "Trường THPT Phan Đình Phùng - Hà Tĩnh",
-  //   "Ha Tin', Hà Tĩnh, Vietnam",
-  //   "Hà Tĩnh (thành phố)",
-  //   "Hương Khê, Hà Tĩnh, Vietnam",
-  //   "Hương Sơn",
-  //   "THPT Hương Sơn",
-  //   "Kỳ Anh"
-  // ]);
-  // await formatHometown("Quảng Trị", [
-  //   "Quảng Trị (thị xã)",
-  //   "Vĩnh Linh",
-  //   "Huong Hoa, Quảng Trị, Vietnam",
-  //   "Hồ Xá, Quảng Trị, Vietnam",
-  //   "Đông Hà",
-  //   "Khe Sanh, Binh Tri Thien, Vietnam",
-  //   "Lao Bảo (thị trấn)",
-  //   "Hải Lăng"
-  // ]);
-  // await formatHometown("Thừa Thiên - Huế", ["Huế"]);
-  // await formatHometown("Quảng Bình", [
-  //   "Quang Ninh, Binh Tri Thien, Vietnam",
-  //   "Le Thuy, Quảng Bình, Vietnam",
-  //   "Quảng Trạch",
-  //   "Tuyên Hóa",
-  //   "Đồng Hới",
-  //   "Bố Trạch",
-  //   "Ba Đồn"
-  // ]);
-  // await formatHometown("Đà Nẵng", ["Đà Nẵng"]);
-  // await formatHometown("Quảng Nam", [
-  //   "Quang Nam, Quang Nam-Da Nang, Vietnam",
-  //   "Hoi An, Quang Nam-Da Nang, Vietnam",
-  //   "Que Son, Quảng Nam, Vietnam",
-  //   "Tiên Phước",
-  //   "Hội An",
-  //   "Tam Kỳ"
-  // ]);
-  // await formatHometown("Quảng Ngãi", [
-  //   "Quảng Ngãi (thành phố)",
-  //   "Binh Son, Quảng Ngãi, Vietnam",
-  //   "Kwang Ngai, Quảng Ngãi, Vietnam"
-  // ]);
-  // await formatHometown("Bình Định", [
-  //   "Binh Dinh, Nghia Binh, Vietnam",
-  //   "Hoài Nhon, Bình Ðịnh, Vietnam",
-  //   "Phú Phong, Bình Ðịnh, Vietnam",
-  //   "Tam Quan, Bình Ðịnh, Vietnam",
-  //   "Qui Nhon, Bình Ðịnh, Vietnam",
-  //   "Bồng Sơn, Bình Ðịnh, Vietnam",
-  //   "Hoài Ân, Bình Ðịnh, Vietnam",
-  //   "Tuy Phước",
-  //   "Tuy Phong",
-  //   "Quy Nhơn",
-  //   "Phù Cát",
-  //   "An Nhơn"
-  // ]);
+  await formatHometown("Cần Thơ", [
+    "Cần Thơ",
+    "Ap Binh Duong (1), Vietnam",
+    "Thốt Nốt"
+  ]);
+  await formatHometown("An Giang", [
+    "Long Xuyên",
+    "Chau Phú, An Giang, Vietnam",
+    "Chaudok, An Giang, Vietnam",
+    "Angiang, An Giang, Vietnam",
+    "Chợ Mới",
+    "Tri Tôn (thị trấn)",
+    "Tịnh Biên"
+  ]);
+  await formatHometown("Thanh Hóa", [
+    "Yen Dinh, Thanh Hóa, Vietnam",
+    "Thanh Hóa",
+    "Sầm Sơn"
+  ]);
+  await formatHometown("Nghệ An", [
+    "Cho Do Luong, Nghệ An, Vietnam",
+    "Phu Dien Chau, Nghệ An, Vietnam",
+    "Quynh Luu, Nghệ An, Vietnam",
+    "Thái Hõa, Nghệ An, Vietnam",
+    "Nam �Àn, Nghệ An, Vietnam",
+    "Vin, Nghệ An, Vietnam",
+    "Thành phố Vinh",
+    "Thanh Chương",
+    "Yên Thành",
+    "Con Cuông",
+    "Diễn Châu",
+    "Nghi Lộc",
+    "Quỳ Hợp",
+    "Anh Sơn",
+    "Cửa Lò",
+    "Tân Kỳ",
+    "Vinh"
+  ]);
+  await formatHometown("Hà Tĩnh", [
+    "Trường THPT Phan Đình Phùng - Hà Tĩnh",
+    "Ha Tin', Hà Tĩnh, Vietnam",
+    "Hà Tĩnh (thành phố)",
+    "Hương Khê, Hà Tĩnh, Vietnam",
+    "Hương Sơn",
+    "THPT Hương Sơn",
+    "Kỳ Anh"
+  ]);
+  await formatHometown("Quảng Trị", [
+    "Quảng Trị (thị xã)",
+    "Vĩnh Linh",
+    "Huong Hoa, Quảng Trị, Vietnam",
+    "Hồ Xá, Quảng Trị, Vietnam",
+    "Đông Hà",
+    "Khe Sanh, Binh Tri Thien, Vietnam",
+    "Lao Bảo (thị trấn)",
+    "Hải Lăng"
+  ]);
+  await formatHometown("Thừa Thiên - Huế", ["Huế"]);
+  await formatHometown("Quảng Bình", [
+    "Quang Ninh, Binh Tri Thien, Vietnam",
+    "Le Thuy, Quảng Bình, Vietnam",
+    "Quảng Trạch",
+    "Tuyên Hóa",
+    "Đồng Hới",
+    "Bố Trạch",
+    "Ba Đồn"
+  ]);
+  await formatHometown("Đà Nẵng", ["Đà Nẵng"]);
+  await formatHometown("Quảng Nam", [
+    "Quang Nam, Quang Nam-Da Nang, Vietnam",
+    "Hoi An, Quang Nam-Da Nang, Vietnam",
+    "Que Son, Quảng Nam, Vietnam",
+    "Tiên Phước",
+    "Hội An",
+    "Tam Kỳ"
+  ]);
+  await formatHometown("Quảng Ngãi", [
+    "Quảng Ngãi (thành phố)",
+    "Binh Son, Quảng Ngãi, Vietnam",
+    "Kwang Ngai, Quảng Ngãi, Vietnam"
+  ]);
+  await formatHometown("Bình Định", [
+    "Binh Dinh, Nghia Binh, Vietnam",
+    "Hoài Nhon, Bình Ðịnh, Vietnam",
+    "Phú Phong, Bình Ðịnh, Vietnam",
+    "Tam Quan, Bình Ðịnh, Vietnam",
+    "Qui Nhon, Bình Ðịnh, Vietnam",
+    "Bồng Sơn, Bình Ðịnh, Vietnam",
+    "Hoài Ân, Bình Ðịnh, Vietnam",
+    "Tuy Phước",
+    "Tuy Phong",
+    "Quy Nhơn",
+    "Phù Cát",
+    "An Nhơn"
+  ]);
 
-  // await formatHometown("Long An", [
-  //   "Tân An",
-  //   "Cần Giuộc",
-  //   "Cần Đước",
-  //   "Thạnh Hóa",
-  //   "Mộc Hóa",
-  //   "Can Gioc, Long An, Vietnam"
-  // ]);
-  // await formatHometown("Tiền Giang", [
-  //   "Châu Thành, Tiền Giang, Vietnam",
-  //   "Mitho, Tiền Giang, Vietnam",
-  //   "Cai Lậy (huyện)",
-  //   "Cái Bè",
-  //   "Mỹ Tho",
-  //   "Gò Công",
-  //   "Chợ Gạo",
-  //   "Long An, Tiền Giang, Vietnam",
-  //   "Ap My Tho, Tiền Giang, Vietnam",
-  //   "Huu An, Tiền Giang, Vietnam",
-  //   "Vĩnh Bình (1), Tiền Giang, Vietnam"
-  // ]);
-  // await formatHometown("Vĩnh Long", ["Vĩnh Long (thành phố)", "Vũng Liêm"]);
-  // await formatHometown("Bến Tre", [
-  //   "Bến Tre",
-  //   "Ben, Bến Tre, Vietnam",
-  //   "Ba Tri",
-  //   "Chợ Lách"
-  // ]);
-  // await formatHometown("Đồng Tháp", [
-  //   "Thanh Bình, Ðồng Tháp, Vietnam",
-  //   "Cao Lãnh",
-  //   "Lai Vung",
-  //   "Dong Thap, Hoang Lien Son, Vietnam",
-  //   "Sa Đéc",
-  //   "Lấp Vò",
-  //   "Hồng Ngự (thị xã)",
-  //   "Tháp Mười",
-  //   "Tân Châu",
-  //   "Tràm Chim, Ðồng Tháp, Vietnam"
-  // ]);
-  // await formatHometown("Trà Vinh", ["Trà Vinh"]);
-  // await formatHometown("Sóc Trăng", ["Sóc Trăng (thành phố)"]);
-  // await formatHometown("Bạc Liêu", ["Bạc Liêu (thành phố)"]);
-  // await formatHometown("Kiên Giang", [
-  //   "Rach Gia, Vietnam",
-  //   "Rạch Giá",
-  //   "Vinh Thuan (1), Kiến Giang, Vietnam",
-  //   "Phu Quoc, Kiến Giang, Vietnam",
-  //   "Giồng Riềng",
-  //   "Hà Tiên",
-  //   "Gò Quao",
-  //   "Kiên Lương",
-  //   "An Biên",
-  //   "Rach Soi, Kiến Giang, Vietnam"
-  // ]);
-  // await formatHometown("Hậu Giang", ["Phụng Hiệp", "Vị Thanh"]);
-  // await formatHometown("Cà Mau", ["Cà Mau", "Thới Bình, Cà Mau, Vietnam"]);
+  await formatHometown("Long An", [
+    "Tân An",
+    "Cần Giuộc",
+    "Cần Đước",
+    "Thạnh Hóa",
+    "Mộc Hóa",
+    "Can Gioc, Long An, Vietnam"
+  ]);
+  await formatHometown("Tiền Giang", [
+    "Châu Thành, Tiền Giang, Vietnam",
+    "Mitho, Tiền Giang, Vietnam",
+    "Cai Lậy (huyện)",
+    "Cái Bè",
+    "Mỹ Tho",
+    "Gò Công",
+    "Chợ Gạo",
+    "Long An, Tiền Giang, Vietnam",
+    "Ap My Tho, Tiền Giang, Vietnam",
+    "Huu An, Tiền Giang, Vietnam",
+    "Vĩnh Bình (1), Tiền Giang, Vietnam"
+  ]);
+  await formatHometown("Vĩnh Long", ["Vĩnh Long (thành phố)", "Vũng Liêm"]);
+  await formatHometown("Bến Tre", [
+    "Bến Tre",
+    "Ben, Bến Tre, Vietnam",
+    "Ba Tri",
+    "Chợ Lách"
+  ]);
+  await formatHometown("Đồng Tháp", [
+    "Thanh Bình, Ðồng Tháp, Vietnam",
+    "Cao Lãnh",
+    "Lai Vung",
+    "Dong Thap, Hoang Lien Son, Vietnam",
+    "Sa Đéc",
+    "Lấp Vò",
+    "Hồng Ngự (thị xã)",
+    "Tháp Mười",
+    "Tân Châu",
+    "Tràm Chim, Ðồng Tháp, Vietnam"
+  ]);
+  await formatHometown("Trà Vinh", ["Trà Vinh"]);
+  await formatHometown("Sóc Trăng", ["Sóc Trăng (thành phố)"]);
+  await formatHometown("Bạc Liêu", ["Bạc Liêu (thành phố)"]);
+  await formatHometown("Kiên Giang", [
+    "Rach Gia, Vietnam",
+    "Rạch Giá",
+    "Vinh Thuan (1), Kiến Giang, Vietnam",
+    "Phu Quoc, Kiến Giang, Vietnam",
+    "Giồng Riềng",
+    "Hà Tiên",
+    "Gò Quao",
+    "Kiên Lương",
+    "An Biên",
+    "Rach Soi, Kiến Giang, Vietnam"
+  ]);
+  await formatHometown("Hậu Giang", ["Phụng Hiệp", "Vị Thanh"]);
+  await formatHometown("Cà Mau", ["Cà Mau", "Thới Bình, Cà Mau, Vietnam"]);
 
-  // await formatHometown("Bình Thuận", [
-  //   "Xa Phan Thiet, Bình Thuận, Vietnam",
-  //   "Phan Ri Cua, Thuin Hai, Vietnam",
-  //   "Tánh Linh, Bình Thuận, Vietnam",
-  //   "Fanthit, Bình Thuận, Vietnam",
-  //   "Võ Xu, Thuin Hai, Vietnam",
-  //   "Lagi, Thuin Hai, Vietnam",
-  //   "Phan Rang - Tháp Chàm",
-  //   "Phan Thiết",
-  //   "Bắc Bình",
-  //   "Hàm Tân",
-  //   "Phú Quý"
-  // ]);
-  // await formatHometown("Phú Yên", [
-  //   "Tuy Hòa",
-  //   "Tuy An, Phú Yên, Vietnam",
-  //   "Tây Hòa, Phú Yên",
-  //   "Sông Cầu (thị xã)",
-  //   "Sơn Hòa",
-  //   "Đông Hòa, Phú Yên"
-  // ]);
-  // await formatHometown("Khánh Hòa", [
-  //   "Cam Ranh Port, Khánh Hòa, Vietnam",
-  //   "Diên Khánh, Khánh Hòa, Vietnam",
-  //   "Khanh Hoa, Khánh Hòa, Vietnam",
-  //   "Ninh Hòa, Khánh Hòa, Vietnam",
-  //   "Cam Lâm, Khánh Hòa, Vietnam",
-  //   "Vạn Ninh, Khánh Hòa",
-  //   "Nha Trang",
-  //   "Cam Ranh"
-  // ]);
-  // await formatHometown("Ninh Thuận", [
-  //   "Phan Rang-Tháp Chàm, Ninh Thuận, Vietnam"
-  // ]);
-  // await formatHometown("Đồng Nai", [
-  //   "Biên Hòa",
-  //   "Bến Lức",
-  //   "Cẩm Mỹ",
-  //   "Gia Kiem, Vietnam",
-  //   "Long Khánh",
-  //   "Long Thành",
-  //   "Nhơn Trạch",
-  //   "Tân Phú",
-  //   "Tan Phu, Vietnam",
-  //   "Trảng Bom",
-  //   "Vĩnh Cửu, Đồng Nai",
-  //   "Xuân Lộc, Ðồng Nai, Vietnam",
-  //   "Xa Dau Giay, Vietnam"
-  // ]);
-  // await formatHometown("Bình Dương", [
-  //   "Binh Duong - Viet Nam",
-  //   "Bến Cát",
-  //   "Dầu Tiếng",
-  //   "Dĩ An",
-  //   "Lái Thiêu",
-  //   "Phu Giáo, Vietnam",
-  //   "Tân Uyên (huyện cũ)",
-  //   "Thủ Dầu Một"
-  // ]);
+  await formatHometown("Bình Thuận", [
+    "Xa Phan Thiet, Bình Thuận, Vietnam",
+    "Phan Ri Cua, Thuin Hai, Vietnam",
+    "Tánh Linh, Bình Thuận, Vietnam",
+    "Fanthit, Bình Thuận, Vietnam",
+    "Võ Xu, Thuin Hai, Vietnam",
+    "Lagi, Thuin Hai, Vietnam",
+    "Phan Rang - Tháp Chàm",
+    "Phan Thiết",
+    "Bắc Bình",
+    "Hàm Tân",
+    "Phú Quý"
+  ]);
+  await formatHometown("Phú Yên", [
+    "Tuy Hòa",
+    "Tuy An, Phú Yên, Vietnam",
+    "Tây Hòa, Phú Yên",
+    "Sông Cầu (thị xã)",
+    "Sơn Hòa",
+    "Đông Hòa, Phú Yên"
+  ]);
+  await formatHometown("Khánh Hòa", [
+    "Cam Ranh Port, Khánh Hòa, Vietnam",
+    "Diên Khánh, Khánh Hòa, Vietnam",
+    "Khanh Hoa, Khánh Hòa, Vietnam",
+    "Ninh Hòa, Khánh Hòa, Vietnam",
+    "Cam Lâm, Khánh Hòa, Vietnam",
+    "Vạn Ninh, Khánh Hòa",
+    "Nha Trang",
+    "Cam Ranh"
+  ]);
+  await formatHometown("Ninh Thuận", [
+    "Phan Rang-Tháp Chàm, Ninh Thuận, Vietnam"
+  ]);
+  await formatHometown("Đồng Nai", [
+    "Biên Hòa",
+    "Bến Lức",
+    "Cẩm Mỹ",
+    "Gia Kiem, Vietnam",
+    "Long Khánh",
+    "Long Thành",
+    "Nhơn Trạch",
+    "Tân Phú",
+    "Tan Phu, Vietnam",
+    "Trảng Bom",
+    "Vĩnh Cửu, Đồng Nai",
+    "Xuân Lộc, Ðồng Nai, Vietnam",
+    "Xa Dau Giay, Vietnam"
+  ]);
+  await formatHometown("Bình Dương", [
+    "Binh Duong - Viet Nam",
+    "Bến Cát",
+    "Dầu Tiếng",
+    "Dĩ An",
+    "Lái Thiêu",
+    "Phu Giáo, Vietnam",
+    "Tân Uyên (huyện cũ)",
+    "Thủ Dầu Một"
+  ]);
 
-  // await formatHometown("Tây Ninh", [
-  //   "Gò Dầu Hạ, Tây Ninh, Vietnam",
-  //   "Tây Ninh",
-  //   "Trảng Bàng"
-  // ]);
-  // await formatHometown("Bình Phước", [
-  //   "Bình Long, Bìn Phước, Vietnam",
-  //   "Lộc Ninh, Bìn Phước, Vietnam",
-  //   "Binh Phuoc, Vietnam",
-  //   "Long Hai, Vietnam",
-  //   "Bình Long",
-  //   "Đồng Xoài"
-  // ]);
-  // await formatHometown("Bà Rịa - Vũng Tàu", [
-  //   "Xa Vung Tau, Bà Rịa-Vũng Tàu, Vietnam",
-  //   "Long Điền",
-  //   "Vũng Tàu",
-  //   "Bà Rịa"
-  // ]);
+  await formatHometown("Tây Ninh", [
+    "Gò Dầu Hạ, Tây Ninh, Vietnam",
+    "Tây Ninh",
+    "Trảng Bàng"
+  ]);
+  await formatHometown("Bình Phước", [
+    "Bình Long, Bìn Phước, Vietnam",
+    "Lộc Ninh, Bìn Phước, Vietnam",
+    "Binh Phuoc, Vietnam",
+    "Long Hai, Vietnam",
+    "Bình Long",
+    "Đồng Xoài"
+  ]);
+  await formatHometown("Bà Rịa - Vũng Tàu", [
+    "Xa Vung Tau, Bà Rịa-Vũng Tàu, Vietnam",
+    "Long Điền",
+    "Vũng Tàu",
+    "Bà Rịa"
+  ]);
 
   await formatHometown("Lâm Đồng", [
     "Trường THPT chuyên Thăng Long - Đà Lạt",
