@@ -167,6 +167,9 @@ const formatUni = async function(university, stringArr) {
     "Trường Cao đẳng Công nghiệp Huế"
   ]);
 
+  await formatUni("Cao đẳng Công nghiệp Nam Định", [
+    "Trường Cao Đẳng Công Nghiệp Nam Định"
+  ]);
   await formatUni("Cao đẳng Công nghiệp Tuy Hòa", [
     "Cao Dang Cong Nghiep Tuy Hoa"
   ]);
@@ -249,6 +252,7 @@ const formatUni = async function(university, stringArr) {
     "Cao Đẳng Kinh Tế Đối Ngoại _ College Of Foreign Economic Relations (COFER)",
     "College Of Foreign Economic Relations (COFER)",
     "Trường Cao Đẳng Kinh Tế Đối Ngoại TP.HCM",
+    'College of Foreign Economic Relations',
     "Cao đẳng Kinh tế Đối ngoại - COFER",
     "Cao đẳng Kinh tế Đối ngoại TP.HCM",
     "Cao Đẳng Kinh Tế Đối Ngoại TP.HCM",
@@ -256,6 +260,10 @@ const formatUni = async function(university, stringArr) {
     "Cao Đẳng Kinh Tế Đối Ngoại",
     "cao dang kinh te doi ngoai"
   ]);
+  formatUni("Cao đẳng Kinh tế Huế", [
+    "Hue College of Economics"
+  ]);
+
   formatUni("Cao đẳng Kinh tế TP.HCM", [
     "Trường Cao Đẳng Kinh Tế Thành Phố Hồ Chí Minh",
     "HCE - Trường Cao đẳng Kinh Tế TP.HCM",
@@ -281,7 +289,6 @@ const formatUni = async function(university, stringArr) {
 
   formatUni("Cao đẳng Kinh tế Kế hoạch Đà Nẵng", [
     "Trường Cao Đẳng Kinh Tế Kế Hoạch Đà Nẵng",
-    "Trường Cao Đẳng Kinh Tế Kế Hoạch Đà Nẵng",
     "cao dang kinh te ke hoach da nang"
   ]);
   formatUni("Cao đẳng Kinh tế - Kỹ thuật Cần Thơ", [
@@ -305,7 +312,8 @@ const formatUni = async function(university, stringArr) {
     "Trường Cao Đẳng Kinh Tế -  Kỹ Thuật Vĩnh Phúc"
   ]);
   await formatUni("Cao đẳng Kinh tế - Kỹ thuật Thương mại", [
-    "Trường Cao Đẳng Kinh Tế - Kỹ Thuật Thương Mại"
+    "Trường Cao Đẳng Kinh Tế - Kỹ Thuật Thương Mại",
+    "cao dang kinh te ky thuat thuong mai"
   ]);
 
   await formatUni("Cao đẳng Kinh tế - Tài chính Thái Nguyên", [
@@ -380,10 +388,14 @@ const formatUni = async function(university, stringArr) {
     "Cao đẳng nghề công nghệ Việt-Hàn Bắc Giang"
   ]);
 
+  await formatUni("Cao đẳng nghề Công nghệ Viettronics Hải Phòng", [
+    "Trường Cao đẳng Công nghệ Viettronics Hải Phòng"
+  ]);
+
   await formatUni("Cao đẳng nghề Du lịch Sài Gòn", [
     "Trường Cao đẳng nghề Du lịch Sài Gòn",
+    "Saigon Tourism Vocational College",
     "Cao Đẳng Nghề Du Lịch Sài Gòn",
-    "Saigon Tourism Vocational College"
   ]);
 
   await formatUni("Cao đẳng nghề Du lịch Vũng Tàu", [
@@ -477,7 +489,8 @@ const formatUni = async function(university, stringArr) {
 
   await formatUni("Cao đẳng Sư phạm Hà Nội", [
     "Trường Cao đẳng Sư phạm Hà Nội",
-    "Cao đẳng sư phạm Hà Nội"
+    "Cao đẳng sư phạm Hà Nội",
+    "cao dang su pham ha noi"
   ]);
 
   await formatUni("Cao đẳng Sư phạm Hà Tây", [
@@ -538,6 +551,9 @@ const formatUni = async function(university, stringArr) {
 
   await formatUni("Cao đẳng Sư phạm TP.HCM", ["Cao Đẳng Sư Phạm TPHCM"]);
 
+  await formatUni("Cao đẳng Sư phạm Trung ương Hà Nội", [
+    "Cao Đẳng sư phạm Trung ương-Hà Nội"
+  ]);
   await formatUni("Cao đẳng Sư phạm Trung ương Nha Trang", [
     "TRƯỜNG CAO ĐẲNG SƯ PHẠM TRUNG ƯƠNG - NHA TRANG",
     "Truong Cao Dang Su Pham Trung Uong Nha Trang"
@@ -553,6 +569,7 @@ const formatUni = async function(university, stringArr) {
     "Cao đẳng Sư Phạm Trung Ương",
     "Cao đẳng Sư phạm Trung Ương"
   ]);
+
   await formatUni("Cao đẳng Sư phạm Vĩnh Phúc", [
     "Trường Cao Đẳng Sư Phạm Vĩnh Phúc"
   ]);
@@ -577,7 +594,8 @@ const formatUni = async function(university, stringArr) {
   await formatUni("Cao đẳng Thương mại", [
     "Cao Đẳng Thương Mại - Đà Nẵng",
     "Cao Dang thuong mai da nang",
-    "Trường Cao đẳng Thương mại"
+    "Trường Cao đẳng Thương mại",
+    "Cao Đẳng Thương Mại"
   ]);
   await formatUni("Cao đẳng Thương mại và Du lịch Hà Nội", [
     "Cao Đẳng Thương Mại và Du Lịch Hà Nội-HCCT",
@@ -616,7 +634,7 @@ const formatUni = async function(university, stringArr) {
     "Cao Dang van Hoa Nghe Thuat Va du Lich Sai Gon"
   ]);
 
-  await formatUni("Cao đẳng Viễn Đông", ["Cao đẳng Viễn Đông"]);
+  await formatUni("Cao đẳng Viễn Đông", ['Cao Đẳng Viễn Đông - Vido College',"Cao đẳng Viễn Đông"]);
   await formatUni("Cao đẳng Việt Mỹ", [
     "Cao đẳng Việt Mỹ - American Polytechnic College"
   ]);
@@ -679,7 +697,10 @@ const formatUni = async function(university, stringArr) {
     "Can Tho Medical College"
   ]);
 
-  await formatUni("Cao đẳng Y tế Đắk Lắk", ["Trường Cao Đẳng Y Tế DakLak"]);
+  await formatUni("Cao đẳng Y tế Đắk Lắk", [
+    "Trường Cao đẳng Y tế Đắk Lắk",
+    "Trường Cao Đẳng Y Tế DakLak",
+  ]);
   await formatUni("Cao đẳng Y tế Đặng Thùy Trâm", [
     "Trường Cao Đẳng Y Tế Đặng Thùy Trâm"
   ]);
@@ -705,12 +726,14 @@ const formatUni = async function(university, stringArr) {
     "Cao đẳng Y tế Hà Nội (Hanoi Medical College - HMC)",
     "Trường Cao Đẳng Y Tế Hà Nội",
     "Trường Cao đẳng Y tế Hà Nội",
+    "Cao Đẳng Y Tế Hà Nội",
     "Cao Đẳng Y tế Hà Nội"
   ]);
 
   await formatUni("Cao đẳng Y tế Hà Tĩnh", [
     "Trường Cao Đẳng Y Tế Hà Tĩnh",
-    "Trường CaoĐẳng Y Tế Hà Tĩnh"
+    "Trường CaoĐẳng Y Tế Hà Tĩnh",
+    "Cao Đẳng Y tế Hà Tĩnh"
   ]);
 
   await formatUni("Cao đẳng Y tế Hải Phòng", [
@@ -734,7 +757,10 @@ const formatUni = async function(university, stringArr) {
     "Phòng Đào tạo - Trường Cao đẳng Y tế Ninh Bình"
   ]);
 
-  await formatUni("Cao đẳng Y tế Phú Thọ", ["Trường Cao đẳng Y tế Phú Thọ"]);
+  await formatUni("Cao đẳng Y tế Phú Thọ", [
+    "Trường Cao đẳng Y tế Phú Thọ",
+    "cao dang y te phu tho"
+  ]);
   await formatUni("Cao đẳng Y tế Phú Yên", ["Trường Cao đẳng Y tế Phú Yên"]);
 
   await formatUni("Cao đẳng Y tế Sơn La", ["Cao Đẳng Y Tế Sơn La"]);
@@ -752,7 +778,8 @@ const formatUni = async function(university, stringArr) {
 
   await formatUni("Cao đẳng Y tế Thái Nguyên", [
     "Trường Cao Đẳng Y Tế Thái Nguyên",
-    "Cao Đẳng Y Tế Thái Nguyên"
+    "Cao Đẳng Y Tế Thái Nguyên",
+    "Cao Dang y te thai nguyen"
   ]);
 
   await formatUni("Cao đẳng Y tế Thanh Hóa", [
@@ -765,12 +792,13 @@ const formatUni = async function(university, stringArr) {
   ]);
 
   await formatUni("Cao đẳng Y tế Tiền Giang", [
-    "Cao Đẳng Y Tế Tiền Giang - Tien Giang Medical College"
+    "Cao Đẳng Y Tế Tiền Giang - Tien Giang Medical College",
+    "cao dang y te tien giang"
   ]);
 
   await formatUni("Cao đẳng Y tế Trà Vinh", ["Truong Cao Dang Y Te Tra Vinh"]);
 
-  //----------------------------------------------------------------------------------------hoc vien
+  // //----------------------------------------------------------------------------------------hoc vien
   await formatUni("Học viện Âm nhạc Huế", ["Học viện Âm nhạc Huế"]);
   await formatUni("Học viện Âm nhạc Quốc gia Việt Nam", [
     "Học Viện Âm Nhạc Quốc Gia Việt Nam - Vietnam National Academy Of Music",
@@ -781,10 +809,10 @@ const formatUni = async function(university, stringArr) {
     "VNAM - Học Viện Âm Nhạc Quốc Gia Việt Nam"
   ]);
   await formatUni("Học viện Báo chí và Tuyên truyền", [
-    "Học viện Báo chí và Tuyên truyền",
-    "Học viện Báo chí và Tuyên truyền - AJC",
+    "Academy of Journalism and Communication (AJC)",
     "Academy of Journalism and Communication",
-    "Academy of Journalism and Communication (AJC)"
+    "Học viện Báo chí và Tuyên truyền - AJC",
+    "Học viện Báo chí và Tuyên truyền",
   ]);
   await formatUni("Học viện Biên phòng", ["HỌC VIỆN BIÊN PHÒNG"]);
   await formatUni("Học viện Cán bộ TP.HCM", [
@@ -801,27 +829,29 @@ const formatUni = async function(university, stringArr) {
     "Học Viện Công Nghệ Bưu Chính Viễn Thông - PTIT",
     "Học viện Công nghệ Bưu Chính Viễn Thông - PTIT"
   ]);
-
-  await formatUni("Học viện Hải quân", [
-    "Học viện Hải quân",
-    "Học viện Hải Quân"
-  ]);
   await formatUni("Học viện Cảnh sát Nhân dân", [
     "Học viện Cảnh sát Nhân dân",
     "Học Viện Cảnh Sát Nhân Dân"
   ]);
+  
+    await formatUni("Học viện Hải quân", [
+      "Học viện Hải quân",
+      "Học viện Hải Quân"
+    ]);
   await formatUni("Học viện Hàng không Việt Nam", [
     "Học viện Hàng không Việt Nam - Vietnam Aviation Academy",
     "Học Viện Hàng Không",
     "Học viện Hàng không Việt Nam"
   ]);
   await formatUni("Học viện Hành chính Quốc gia", [
+    'National Academy of Public Administration',
     "Học viện Hành Chính Quốc Gia",
     "Học viện Hành chính Quốc gia"
   ]);
 
   await formatUni("Học viện Hậu cần", [
-    "Học Viện Hậu Cần- Military Academy of Logistics"
+    "Học Viện Hậu Cần- Military Academy of Logistics",
+    'Học Viện Hậu Cần'
   ]);
 
   await formatUni("Học viện Kỹ thuật Quân sự", [
@@ -860,7 +890,7 @@ const formatUni = async function(university, stringArr) {
   await formatUni("Học viện Tài chính", [
     "Học viện Tài Chính (Academy Of Finance)",
     "Học Viện Tài Chính",
-    "Học viện Tài chính"
+    "Học viện Tài chính",
   ]);
 
   await formatUni("Học viện Thanh thiếu niên Việt Nam", [
@@ -868,6 +898,9 @@ const formatUni = async function(university, stringArr) {
     "Học viện Thanh Thiếu Niên Việt Nam"
   ]);
   await formatUni("Học viện Tòa án", ["HỌC VIỆN TÒA ÁN"]);
+  await formatUni("Học viện Tư pháp", ["Học viện Tư pháp"]);
+  
+  
   await formatUni("Học viện Y Dược học Cổ truyền Việt Nam", [
     "Học Viện Y Dược Học Cổ Truyền Việt Nam"
   ]);
@@ -1259,7 +1292,7 @@ const formatUni = async function(university, stringArr) {
     "Dai Hoc Quang Nam"
   ]);
 
-  await formatUni("Đại học Quang Trung", ["Đại Học Quang Trung"]);
+  await formatUni("Đại học Quang Trung", ["Đại Học Quang Trung",'Quang Trung college']);
   await formatUni("Đại học Quy Nhơn", [
     "Sinh Viên Đại học Quy Nhơn",
     "Trường Đại học Quy Nhơn",
