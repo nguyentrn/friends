@@ -26,6 +26,7 @@ const formatHometown = async function(hometown, stringArr) {
     console.log(err.code, hometown);
   }
 };
+
 (async () => {
   // await formatHometown("Thái Lan", ["Băng Cốc"]);
   // await formatHometown("Campuchia", ["Phnôm Pênh"]);
@@ -36,73 +37,73 @@ const formatHometown = async function(hometown, stringArr) {
   // ]);
 
   await formatHometown("Hà Nội", [
-    "Hà Nội",
-    "Hanoi – Amsterdam High School",
     "Trường THPT Nguyễn Thị Minh Khai - Hà Nội",
-    "Hà Nội Phố",
-    "Hoai Duc Phu, Ha Noi, Vietnam",
-    "Ha Loi, Ha Noi, Vietnam",
-    "Tay Ho, Ha Noi, Vietnam",
-    "Phú Xuyên, Ha Noi, Vietnam",
-    "Gia Lâm Pho, Ha Noi, Vietnam",
-    "Thanh Oai, Ha Son Binh, Vietnam",
-    "Sơn Tây (thị xã)",
-    "THPT Phan Đình Phùng",
-    "THPT Vân Nội",
-    "THPT Trần Hưng Đạo - Thanh Xuân",
-    "Trường THPT Trương Định - Hà Nội",
-    "THPT Nguyễn Trãi - Ba Đình",
-    "Marie Curie Hanoi School",
-    "THPT Trần Phú - Hoàn Kiếm",
     "THCS & THPT Lương Thế Vinh - Hà Nội",
+    "Trường THPT Trương Định - Hà Nội",
+    "THPT Trần Hưng Đạo - Thanh Xuân",
+    "Thanh Oai, Ha Son Binh, Vietnam",
+    "Hanoi – Amsterdam High School",
+    "Hoai Duc Phu, Ha Noi, Vietnam",
+    "Gia Lâm Pho, Ha Noi, Vietnam",
     "THPT Trần Nhân Tông - Hà Nội",
+    "Ba Vì, Ha Son Binh, Vietnam",
+    "THPT Nguyễn Trãi - Ba Đình",
+    "Phú Xuyên, Ha Noi, Vietnam",
+    "THPT Trần Phú - Hoàn Kiếm",
     "THPT Lê Quý Đôn - Đống Đa",
-    "THPT Cầu Giấy - Hà Nội",
-    "THPT Lê Quý Đôn-Hà Đông",
-    "PTTH Đống Đa - Hà Nội",
     "THPT Xuân Đỉnh ( Hà Nội )",
-    "Xuân Mai",
+    "Marie Curie Hanoi School",
+    "Tay Ho, Ha Noi, Vietnam",
+    "Ha Loi, Ha Noi, Vietnam",
+    "THPT Lê Quý Đôn-Hà Đông",
     "Duc Tu, Ha Noi, Vietnam",
+    "THPT Cầu Giấy - Hà Nội",
+    "PTTH Đống Đa - Hà Nội",
+    "THPT Phan Đình Phùng",
+    "Sơn Tây (thị xã)",
+    "THPT Vân Nội",
+    "Hà Nội Phố",
+    "Xuân Mai",
     "Hà Đông",
-    "Ba Vì, Ha Son Binh, Vietnam"
+    "Hà Nội"
   ]);
   await formatHometown("Hồ Chí Minh", [
-    "Thành phố Hồ Chí Minh",
-    "Trường THPT Gia Định",
-    "Ho Chi Minh City",
     "THPT Chuẩn Quốc Gia Võ Trường Toản - P. Hiệp Thành, Q12, TP. HCM",
-    "Lê Hồng Phong High School",
-    "THPT Nguyễn Công Trứ",
-    "Trường THPT Phú Nhuận",
-    "Trường THPT Marie Curie",
-    "Thành Phố Hồ Chí Minh",
-    "Trường THPT Trần Phú TPHCM",
-    "THPT Nguyễn Du",
-    "Nhà Bè, Hồ Chí Minh, Vietnam",
-    "Phu Nhuan, Hồ Chí Minh, Vietnam",
-    "Bình Chánh, Hồ Chí Minh, Vietnam",
-    "Go Vap, Hồ Chí Minh, Vietnam",
-    "Binh Thanh, Hồ Chí Minh, Vietnam",
-    "Hóc Môn, Hồ Chí Minh, Vietnam",
-    "Củ Chi, Hồ Chí Minh, Vietnam",
-    "THPT Bình Phú (Quận 6)",
-    "THPT Nguyễn An Ninh quận 10",
-    "THPT Nguyễn Trãi , Q4 , Sài Gòn",
-    "THPT Nguyễn Thượng Hiền",
-    "Marie Curie High School",
-    "THPT Trưng Vương Q.1",
-    "THPT Nguyễn Hữu Thọ Q.4 Tp.HCM",
     "Trường THPT Trần Quang Khải TPHCM",
     "Trường THPT Lê Thánh Tôn Q7 - ZIP",
+    "Bình Chánh, Hồ Chí Minh, Vietnam",
+    "Binh Thanh, Hồ Chí Minh, Vietnam",
+    "THPT Nguyễn Trãi , Q4 , Sài Gòn",
+    "Phu Nhuan, Hồ Chí Minh, Vietnam",
     "Trường THPT Nguyễn Tất Thành Q6",
-    "Tran Van On secondary school",
-    "Trường THCS Nguyễn Du - Q.1",
-    "THPT Nguyễn Khuyến Q10",
-    "THPT Nguyễn Thị Diệu",
+    "THPT Nguyễn Hữu Thọ Q.4 Tp.HCM",
     "THPT Nguyễn Thái Bình - TpHCM",
-    "Trường THPT Thanh Đa",
+    "Cần Giờ, Hồ Chí Minh, Vietnam",
+    "Hóc Môn, Hồ Chí Minh, Vietnam",
+    "Go Vap, Hồ Chí Minh, Vietnam",
+    "Củ Chi, Hồ Chí Minh, Vietnam",
+    "Nhà Bè, Hồ Chí Minh, Vietnam",
+    "Tran Van On secondary school",
+    "THPT Nguyễn An Ninh quận 10",
+    "Trường THCS Nguyễn Du - Q.1",
+    "Trường THPT Trần Phú TPHCM",
+    "Lê Hồng Phong High School",
+    "THPT Nguyễn Thượng Hiền",
+    "Trường THPT Marie Curie",
+    "Marie Curie High School",
+    "THPT Bình Phú (Quận 6)",
+    "THPT Nguyễn Khuyến Q10",
     "Học sinh THPT Thủ Đức",
-    "Cần Giờ, Hồ Chí Minh, Vietnam"
+    "Thành Phố Hồ Chí Minh",
+    "Trường THPT Phú Nhuận",
+    "Thành phố Hồ Chí Minh",
+    "THPT Nguyễn Thị Diệu",
+    "Trường THPT Thanh Đa",
+    "THPT Trưng Vương Q.1",
+    "THPT Nguyễn Công Trứ",
+    "Trường THPT Gia Định",
+    "Ho Chi Minh City",
+    "THPT Nguyễn Du"
   ]);
 
   await formatHometown("Thái Nguyên", [
@@ -112,9 +113,10 @@ const formatHometown = async function(hometown, stringArr) {
   await formatHometown("Lạng Sơn", ["Bac Son, Lạng Sơn, Vietnam", "Lạng Sơn"]);
   await formatHometown("Bắc Giang", [
     "Bắc Giang (thành phố)",
-    "Lục Nam",
-    "Lục Ngạn"
+    "Lục Ngạn",
+    "Lục Nam"
   ]);
+
   await formatHometown("Quảng Ninh", [
     "Cẩm Phả Port, Quảng Ninh, Vietnam",
     "Quảng Yên, Quảng Ninh, Vietnam",
@@ -184,20 +186,59 @@ const formatHometown = async function(hometown, stringArr) {
     "Phúc Yên",
     "Vĩnh Yên"
   ]);
-  await formatHometown("Cần Thơ", [
-    "Cần Thơ",
-    "Ap Binh Duong (1), Vietnam",
-    "Thốt Nốt"
+
+  await formatHometown("Hòa Bình", [
+    "Hương Tân Lạc, Hòa Bình, Vietnam",
+    "Luong Son, Hòa Bình, Vietnam",
+    "Hòa Bình, Hòa Bình, Vietnam",
+    "Lac Son, Hòa Bình, Vietnam",
+    "Phuong Lam, Vietnam"
   ]);
-  await formatHometown("An Giang", [
-    "Long Xuyên",
-    "Chau Phú, An Giang, Vietnam",
-    "Chaudok, An Giang, Vietnam",
-    "Angiang, An Giang, Vietnam",
-    "Chợ Mới",
-    "Tri Tôn (thị trấn)",
-    "Tịnh Biên"
+  await formatHometown("Sơn La", [
+    "Son La Chau, Sơn La, Vietnam",
+    "Sơn La",
+    "Mộc Châu",
+    "Phù Yên"
   ]);
+  await formatHometown("Điện Biên", ["Điện Biên Phủ"]);
+  await formatHometown("Lai Châu", [
+    "Muong Lay, Lai Châu, Vietnam",
+    "Mương Té, Lai Châu, Vietnam",
+    ",Tam Duong, Lai Châu, Vietnam",
+    "Lai Chau"
+  ]);
+  await formatHometown("Lào Cai", [
+    "Lao Kay, Lào Cai, Vietnam",
+    "Laokai, Lào Cai, Vietnam",
+    "Lào Cai (thành phố)"
+  ]);
+  await formatHometown("Yên Bái", [
+    "Thác Bà, Yên Bái, Vietnam",
+    "Yên Bái (thành phố)",
+    "Nghĩa Lộ",
+    "Lục Yên"
+  ]);
+
+  await formatHometown("Phú Thọ", [
+    "Phu Tho, Phú Thọ, Vietnam",
+    "Vietri, Phú Thọ, Vietnam",
+    "Thanh Thủy, Phú Thọ",
+    "Phú Thọ (thị xã)",
+    "Thanh Sơn",
+    "Lâm Thao",
+    "Thanh Ba",
+    "Việt Trì",
+    "Hạ Hòa",
+    "Cẩm Khê"
+  ]);
+  await formatHometown("Hà Giang", [
+    "Hà Giang (thành phố)",
+    "Bắc Quang, Hà Giang, Vietnam"
+  ]);
+  await formatHometown("Tuyên Quang", ["Tuyên Quang, Tuyên Quang, Vietnam"]);
+  await formatHometown("Cao Bằng", ["Cao Bằng"]);
+  await formatHometown("Bắc Kạn", ["Bac Can, Bắc Kạn, Vietnam", "Bắc Kạn"]);
+
   await formatHometown("Thanh Hóa", [
     "Hương Lang Chánh, Thanh Hóa, Vietnam",
     "Hương Cẩm Thủy, Thanh Hóa, Vietnam",
@@ -258,130 +299,76 @@ const formatHometown = async function(hometown, stringArr) {
     "Tĩnh Gia",
     "Kỳ Anh"
   ]);
-  await formatHometown("Hòa Bình", [
-    "Hương Tân Lạc, Hòa Bình, Vietnam",
-    "Luong Son, Hòa Bình, Vietnam",
-    "Hòa Bình, Hòa Bình, Vietnam",
-    "Lac Son, Hòa Bình, Vietnam",
-    "Phuong Lam, Vietnam"
-  ]);
-  await formatHometown("Sơn La", [
-    "Son La Chau, Sơn La, Vietnam",
-    "Sơn La",
-    "Mộc Châu",
-    "Phù Yên"
-  ]);
-  await formatHometown("Điện Biên", ["Điện Biên Phủ"]);
-  await formatHometown("Lai Châu", [
-    "Muong Lay, Lai Châu, Vietnam",
-    "Mương Té, Lai Châu, Vietnam",
-    ",Tam Duong, Lai Châu, Vietnam",
-    "Lai Chau"
-  ]);
-  await formatHometown("Lào Cai", [
-    "Lao Kay, Lào Cai, Vietnam",
-    "Laokai, Lào Cai, Vietnam",
-    "Lào Cai (thành phố)"
-  ]);
-  await formatHometown("Yên Bái", [
-    "Thác Bà, Yên Bái, Vietnam",
-    "Yên Bái (thành phố)",
-    "Nghĩa Lộ",
-    "Lục Yên"
-  ]);
 
-  await formatHometown("Phú Thọ", [
-    "Phu Tho, Phú Thọ, Vietnam",
-    "Vietri, Phú Thọ, Vietnam",
-    "Thanh Thủy, Phú Thọ",
-    "Phú Thọ (thị xã)",
-    "Thanh Sơn",
-    "Lâm Thao",
-    "Thanh Ba",
-    "Việt Trì",
-    "Hạ Hòa",
-    "Cẩm Khê"
-  ]);
-  await formatHometown("Hà Giang", [
-    "Hà Giang (thành phố)",
-    "Bắc Quang, Hà Giang, Vietnam"
-  ]);
-  await formatHometown("Tuyên Quang", ["Tuyên Quang, Tuyên Quang, Vietnam"]);
-  await formatHometown("Cao Bằng", ["Cao Bằng"]);
-  await formatHometown("Bắc Kạn", ["Bac Can, Bắc Kạn, Vietnam", "Bắc Kạn"]);
-
-  await formatHometown("Quảng Trị", [
-    "Thi Xã �Òng Hà, Quảng Trị, Vietnam",
-    "Khe Sanh, Binh Tri Thien, Vietnam",
-    "Huong Hoa, Quảng Trị, Vietnam",
-    "Gio Lin, Quảng Trị, Vietnam",
-    "Hồ Xá, Quảng Trị, Vietnam",
-    "Lao Bảo (thị trấn)",
-    "Quảng Trị (thị xã)",
-    "Vĩnh Linh",
-    "Hải Lăng",
-    "Gio Linh",
-    "Đông Hà"
-  ]);
-  await formatHometown("Thừa Thiên - Huế", ["Huế"]);
-  await formatHometown("Quảng Bình", [
-    "Quang Ninh, Binh Tri Thien, Vietnam",
-    "Kwang Binh, Quảng Bình, Vietnam",
-    "Hoàn Lão, Quảng Bình, Vietnam",
-    "Le Thuy, Quảng Bình, Vietnam",
-    "Lệ Thủy, Quảng Bình",
-    "Quảng Trạch",
-    "Tuyên Hóa",
-    "Minh Hóa",
-    "Đồng Hới",
-    "Bố Trạch",
-    "Ba Đồn"
+  await formatHometown("Cần Thơ", [
+    "Cần Thơ",
+    "Ap Binh Duong (1), Vietnam",
+    "Thốt Nốt"
   ]);
   await formatHometown("Đà Nẵng", [
     "Da Dang, Quang Nam-Da Nang, Vietnam",
     "Đà Nẵng"
   ]);
-  await formatHometown("Quảng Nam", [
-    "Binh Duong, Quang Nam-Da Nang, Vietnam",
-    "Quang Nam, Quang Nam-Da Nang, Vietnam",
-    "Phuoc Son, Quang Nam-Da Nang, Vietnam",
-    "Nong Son, Quang Nam-Da Nang, Vietnam",
-    "Ai Nghia, Quang Nam-Da Nang, Vietnam",
-    "Quận Năm, Quang Nam-Da Nang, Vietnam",
-    "Viet An, Quang Nam-Da Nang, Vietnam",
-    "Chu Lai, Quang Nam-Da Nang, Vietnam",
-    "Trà My, Quang Nam-Da Nang, Vietnam",
-    "Hoi An, Quang Nam-Da Nang, Vietnam",
-    "Ha Lam, Quang Nam-Da Nang, Vietnam",
-    "Que Son, Quảng Nam, Vietnam",
-    "Nam Giang, Quảng Nam",
-    "Tiên Phước",
-    "Duy Xuyên",
-    "Đại Lộc",
-    "Hội An",
-    "Tam Kỳ"
+  await formatHometown("An Giang", [
+    "Long Xuyên",
+    "Chau Phú, An Giang, Vietnam",
+    "Chaudok, An Giang, Vietnam",
+    "Angiang, An Giang, Vietnam",
+    "Chợ Mới",
+    "Tri Tôn (thị trấn)",
+    "Tịnh Biên"
   ]);
-  await formatHometown("Quảng Ngãi", [
-    "Kwang Ngai, Quảng Ngãi, Vietnam",
-    "Binh Son, Quảng Ngãi, Vietnam",
-    "Mộ Đức, Quảng Ngãi, Vietnam",
-    "Quảng Ngãi (thành phố)"
+  await formatHometown("Đồng Nai", [
+    "Xuân Lộc, Ðồng Nai, Vietnam",
+    "Xa Dau Giay, Vietnam",
+    "Vĩnh Cửu, Đồng Nai",
+    "Gia Kiem, Vietnam",
+    "Tan Phu, Vietnam",
+    "Là Ngà, Vietnam",
+    "Long Khánh",
+    "Long Thành",
+    "Nhơn Trạch",
+    "Trảng Bom",
+    "Biên Hòa",
+    "Tân Phú",
+    "Bến Lức",
+    "Cẩm Mỹ"
   ]);
-  await formatHometown("Bình Định", [
-    "Binh Dinh, Nghia Binh, Vietnam",
-    "Hoài Nhon, Bình Ðịnh, Vietnam",
-    "Phú Phong, Bình Ðịnh, Vietnam",
-    "Tam Quan, Bình Ðịnh, Vietnam",
-    "Qui Nhon, Bình Ðịnh, Vietnam",
-    "Bồng Sơn, Bình Ðịnh, Vietnam",
-    "Hoài Ân, Bình Ðịnh, Vietnam",
-    "Tuy Phước",
-    "Tuy Phong",
-    "Quy Nhơn",
-    "Phù Cát",
-    "An Nhơn"
+  await formatHometown("Bình Dương", [
+    "Binh Duong - Viet Nam",
+    "Bến Cát",
+    "Dầu Tiếng",
+    "Dĩ An",
+    "Lái Thiêu",
+    "Phu Giáo, Vietnam",
+    "Tân Uyên (huyện cũ)",
+    "Thủ Dầu Một"
   ]);
 
+  await formatHometown("Tây Ninh", [
+    "Gò Dầu Hạ, Tây Ninh, Vietnam",
+    "Tây Ninh",
+    "Trảng Bàng"
+  ]);
+  await formatHometown("Bình Phước", [
+    "Phuoc Binh, Bìn Phước, Vietnam",
+    "Bình Long, Bìn Phước, Vietnam",
+    "Phu Rieng, Bìn Phước, Vietnam",
+    "Dong Xoa, Bìn Phước, Vietnam",
+    "Hớn Quản, Bìn Phước, Vietnam",
+    "Lộc Ninh, Bìn Phước, Vietnam",
+    "Binh Phuoc, Vietnam",
+    "Long Hai, Vietnam",
+    "Bình Long",
+    "Đồng Xoài"
+  ]);
+  await formatHometown("Bà Rịa - Vũng Tàu", [
+    "Xa Vung Tau, Bà Rịa-Vũng Tàu, Vietnam",
+    "Long Điền",
+    "Xuyên Mộc",
+    "Vũng Tàu",
+    "Bà Rịa"
+  ]);
   await formatHometown("Long An", [
     "Tân An",
     "Cần Giuộc",
@@ -443,6 +430,75 @@ const formatHometown = async function(hometown, stringArr) {
   await formatHometown("Hậu Giang", ["Phụng Hiệp", "Vị Thanh", "Long Mỹ"]);
   await formatHometown("Cà Mau", ["Cà Mau", "Thới Bình, Cà Mau, Vietnam"]);
 
+  await formatHometown("Quảng Trị", [
+    "Thi Xã �Òng Hà, Quảng Trị, Vietnam",
+    "Khe Sanh, Binh Tri Thien, Vietnam",
+    "Huong Hoa, Quảng Trị, Vietnam",
+    "Gio Lin, Quảng Trị, Vietnam",
+    "Hồ Xá, Quảng Trị, Vietnam",
+    "Lao Bảo (thị trấn)",
+    "Quảng Trị (thị xã)",
+    "Vĩnh Linh",
+    "Hải Lăng",
+    "Gio Linh",
+    "Đông Hà"
+  ]);
+  await formatHometown("Thừa Thiên - Huế", ["Huế"]);
+  await formatHometown("Quảng Bình", [
+    "Quang Ninh, Binh Tri Thien, Vietnam",
+    "Kwang Binh, Quảng Bình, Vietnam",
+    "Hoàn Lão, Quảng Bình, Vietnam",
+    "Le Thuy, Quảng Bình, Vietnam",
+    "Lệ Thủy, Quảng Bình",
+    "Quảng Trạch",
+    "Tuyên Hóa",
+    "Minh Hóa",
+    "Đồng Hới",
+    "Bố Trạch",
+    "Ba Đồn"
+  ]);
+
+  await formatHometown("Quảng Nam", [
+    "Binh Duong, Quang Nam-Da Nang, Vietnam",
+    "Quang Nam, Quang Nam-Da Nang, Vietnam",
+    "Phuoc Son, Quang Nam-Da Nang, Vietnam",
+    "Nong Son, Quang Nam-Da Nang, Vietnam",
+    "Ai Nghia, Quang Nam-Da Nang, Vietnam",
+    "Quận Năm, Quang Nam-Da Nang, Vietnam",
+    "Viet An, Quang Nam-Da Nang, Vietnam",
+    "Chu Lai, Quang Nam-Da Nang, Vietnam",
+    "Trà My, Quang Nam-Da Nang, Vietnam",
+    "Hoi An, Quang Nam-Da Nang, Vietnam",
+    "Ha Lam, Quang Nam-Da Nang, Vietnam",
+    "Que Son, Quảng Nam, Vietnam",
+    "Nam Giang, Quảng Nam",
+    "Tiên Phước",
+    "Duy Xuyên",
+    "Đại Lộc",
+    "Hội An",
+    "Tam Kỳ"
+  ]);
+  await formatHometown("Quảng Ngãi", [
+    "Kwang Ngai, Quảng Ngãi, Vietnam",
+    "Binh Son, Quảng Ngãi, Vietnam",
+    "Mộ Đức, Quảng Ngãi, Vietnam",
+    "Quảng Ngãi (thành phố)"
+  ]);
+  await formatHometown("Bình Định", [
+    "Binh Dinh, Nghia Binh, Vietnam",
+    "Hoài Nhon, Bình Ðịnh, Vietnam",
+    "Phú Phong, Bình Ðịnh, Vietnam",
+    "Tam Quan, Bình Ðịnh, Vietnam",
+    "Qui Nhon, Bình Ðịnh, Vietnam",
+    "Bồng Sơn, Bình Ðịnh, Vietnam",
+    "Hoài Ân, Bình Ðịnh, Vietnam",
+    "Tuy Phước",
+    "Tuy Phong",
+    "Quy Nhơn",
+    "Phù Cát",
+    "An Nhơn"
+  ]);
+
   await formatHometown("Bình Thuận", [
     "Xa Phan Thiet, Bình Thuận, Vietnam",
     "Phan Ri Cua, Thuin Hai, Vietnam",
@@ -477,57 +533,6 @@ const formatHometown = async function(hometown, stringArr) {
   ]);
   await formatHometown("Ninh Thuận", [
     "Phan Rang-Tháp Chàm, Ninh Thuận, Vietnam"
-  ]);
-  await formatHometown("Đồng Nai", [
-    "Xuân Lộc, Ðồng Nai, Vietnam",
-    "Xa Dau Giay, Vietnam",
-    "Vĩnh Cửu, Đồng Nai",
-    "Gia Kiem, Vietnam",
-    "Tan Phu, Vietnam",
-    "Là Ngà, Vietnam",
-    "Long Khánh",
-    "Long Thành",
-    "Nhơn Trạch",
-    "Trảng Bom",
-    "Biên Hòa",
-    "Tân Phú",
-    "Bến Lức",
-    "Cẩm Mỹ"
-  ]);
-  await formatHometown("Bình Dương", [
-    "Binh Duong - Viet Nam",
-    "Bến Cát",
-    "Dầu Tiếng",
-    "Dĩ An",
-    "Lái Thiêu",
-    "Phu Giáo, Vietnam",
-    "Tân Uyên (huyện cũ)",
-    "Thủ Dầu Một"
-  ]);
-
-  await formatHometown("Tây Ninh", [
-    "Gò Dầu Hạ, Tây Ninh, Vietnam",
-    "Tây Ninh",
-    "Trảng Bàng"
-  ]);
-  await formatHometown("Bình Phước", [
-    "Phuoc Binh, Bìn Phước, Vietnam",
-    "Bình Long, Bìn Phước, Vietnam",
-    "Phu Rieng, Bìn Phước, Vietnam",
-    "Dong Xoa, Bìn Phước, Vietnam",
-    "Hớn Quản, Bìn Phước, Vietnam",
-    "Lộc Ninh, Bìn Phước, Vietnam",
-    "Binh Phuoc, Vietnam",
-    "Long Hai, Vietnam",
-    "Bình Long",
-    "Đồng Xoài"
-  ]);
-  await formatHometown("Bà Rịa - Vũng Tàu", [
-    "Xa Vung Tau, Bà Rịa-Vũng Tàu, Vietnam",
-    "Long Điền",
-    "Xuyên Mộc",
-    "Vũng Tàu",
-    "Bà Rịa"
   ]);
 
   await formatHometown("Lâm Đồng", [
