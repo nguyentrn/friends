@@ -8,15 +8,14 @@ const pg = require("./database");
 
 const formatHometown = async function(hometown, stringArr) {
   try {
-    const arr = stringArr.map(a => `'${a}'`);
     const a = await pg("profiles")
-      .select("*")
+      // .select("*")
       .update({ hometown })
       .whereIn("uid", function() {
         this.select("profiles.uid")
           .from("profiles")
           .whereNull("hometown")
-          .innerJoin("profile_raws", "profiles.uid", "profile_raws.uid")
+          .join("profile_raws", "profiles.uid", "profile_raws.uid")
           .whereIn("location_from", stringArr)
           .orWhereIn("location_now", stringArr);
       });
@@ -65,7 +64,7 @@ const formatHometown = async function(hometown, stringArr) {
     "Hà Nội Phố",
     "Xuân Mai",
     "Hà Đông",
-    "Hà Nội"
+    "Hà Nội",
   ]);
   await formatHometown("Hồ Chí Minh", [
     "THPT Chuẩn Quốc Gia Võ Trường Toản - P. Hiệp Thành, Q12, TP. HCM",
@@ -95,26 +94,32 @@ const formatHometown = async function(hometown, stringArr) {
     "THPT Nguyễn Khuyến Q10",
     "Học sinh THPT Thủ Đức",
     "Thành Phố Hồ Chí Minh",
+    'Thành phố Hồ Chí Minh',
     "Trường THPT Phú Nhuận",
     "Thành phố Hồ Chí Minh",
-    "THPT Nguyễn Thị Diệu",
     "Trường THPT Thanh Đa",
     "THPT Trưng Vương Q.1",
     "THPT Nguyễn Công Trứ",
     "Trường THPT Gia Định",
+    "THPT Nguyễn Thị Diệu",
     "Ho Chi Minh City",
     "THPT Nguyễn Du"
   ]);
 
+  await formatHometown("Hải Phòng", [
+    "Thái Bình, Hải Phòng, Vietnam",
+    "An Duong, Hải Phòng, Vietnam",
+    "Haiphong, Hải Phòng, Vietnam",
+    "Vinh Bao, Hải Phòng, Vietnam",
+    "Cat Hai, Hải Phòng, Vietnam",
+    "Lap Le, Hải Phòng, Vietnam",
+    "Cát Bà, Hải Phòng, Vietnam",
+    "An Lu, Hải Phòng, Vietnam",
+    "Hải Phòng"
+  ]);
   await formatHometown("Thái Nguyên", [
     "Ba Hàng, Thái Nguyên, Vietnam",
     "Thái Nguyên (thành phố)"
-  ]);
-  await formatHometown("Lạng Sơn", ["Bac Son, Lạng Sơn, Vietnam", "Lạng Sơn"]);
-  await formatHometown("Bắc Giang", [
-    "Bắc Giang (thành phố)",
-    "Lục Ngạn",
-    "Lục Nam"
   ]);
 
   await formatHometown("Quảng Ninh", [
@@ -130,6 +135,13 @@ const formatHometown = async function(hometown, stringArr) {
     "Uông Bí",
     "Cẩm Phả"
   ]);
+  await formatHometown("Lạng Sơn", ["Bac Son, Lạng Sơn, Vietnam", "Lạng Sơn"]);
+  await formatHometown("Bắc Giang", [
+    "Bắc Giang (thành phố)",
+    "Lục Ngạn",
+    "Lục Nam"
+  ]);
+
   await formatHometown("Bắc Ninh", ["Bắc Ninh (thành phố)", "Từ Sơn"]);
   await formatHometown("Hà Nam", [
     "Kim Bang, Ha Nam Ninh, Vietnam",
@@ -143,17 +155,7 @@ const formatHometown = async function(hometown, stringArr) {
     "Hải Dương (thành phố)",
     "Chí Linh"
   ]);
-  await formatHometown("Hải Phòng", [
-    "Thái Bình, Hải Phòng, Vietnam",
-    "An Duong, Hải Phòng, Vietnam",
-    "Haiphong, Hải Phòng, Vietnam",
-    "Vinh Bao, Hải Phòng, Vietnam",
-    "Cat Hai, Hải Phòng, Vietnam",
-    "Lap Le, Hải Phòng, Vietnam",
-    "Cát Bà, Hải Phòng, Vietnam",
-    "An Lu, Hải Phòng, Vietnam",
-    "Hải Phòng"
-  ]);
+
   await formatHometown("Hưng Yên", [
     "Hung Yen, Hưng Yên, Vietnam",
     "Ân Thi, Hưng Yên",
@@ -301,9 +303,10 @@ const formatHometown = async function(hometown, stringArr) {
   ]);
 
   await formatHometown("Cần Thơ", [
-    "Cần Thơ",
     "Ap Binh Duong (1), Vietnam",
-    "Thốt Nốt"
+    'Thành phố Cần Thơ',
+    "Thốt Nốt",
+    "Cần Thơ",
   ]);
   await formatHometown("Đà Nẵng", [
     "Da Dang, Quang Nam-Da Nang, Vietnam",
@@ -347,8 +350,8 @@ const formatHometown = async function(hometown, stringArr) {
 
   await formatHometown("Tây Ninh", [
     "Gò Dầu Hạ, Tây Ninh, Vietnam",
+    "Trảng Bàng",
     "Tây Ninh",
-    "Trảng Bàng"
   ]);
   await formatHometown("Bình Phước", [
     "Phuoc Binh, Bìn Phước, Vietnam",
@@ -392,10 +395,10 @@ const formatHometown = async function(hometown, stringArr) {
   ]);
   await formatHometown("Vĩnh Long", ["Vĩnh Long (thành phố)", "Vũng Liêm"]);
   await formatHometown("Bến Tre", [
-    "Bến Tre",
     "Ben, Bến Tre, Vietnam",
+    "Chợ Lách",
+    "Bến Tre",
     "Ba Tri",
-    "Chợ Lách"
   ]);
   await formatHometown("Đồng Tháp", [
     "Thanh Bình, Ðồng Tháp, Vietnam",
@@ -416,16 +419,17 @@ const formatHometown = async function(hometown, stringArr) {
   ]);
   await formatHometown("Bạc Liêu", ["Bạc Liêu (thành phố)"]);
   await formatHometown("Kiên Giang", [
-    "Rach Gia, Vietnam",
-    "Rạch Giá",
     "Vinh Thuan (1), Kiến Giang, Vietnam",
     "Phu Quoc, Kiến Giang, Vietnam",
+    "Rach Soi, Kiến Giang, Vietnam",
+    "Rach Gia, Vietnam",
+    'Rạch Giá City',
     "Giồng Riềng",
+    "Kiên Lương",
+    "Rạch Giá",
+    "An Biên",
     "Hà Tiên",
     "Gò Quao",
-    "Kiên Lương",
-    "An Biên",
-    "Rach Soi, Kiến Giang, Vietnam"
   ]);
   await formatHometown("Hậu Giang", ["Phụng Hiệp", "Vị Thanh", "Long Mỹ"]);
   await formatHometown("Cà Mau", ["Cà Mau", "Thới Bình, Cà Mau, Vietnam"]);

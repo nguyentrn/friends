@@ -76,7 +76,7 @@ const delay = time => {
         const p = links[i];
         const uid = p.uid;
         outside = uid;
-        const url = `https://graph.facebook.com/v1.0/${uid}/friends?fields=id,subscribers,work,name,link,gender,hometown,birthday,education,location,religion&access_token=${token}&limit=65`;
+        const url = `https://graph.facebook.com/v1.0/${uid}/friends?fields=id,subscribers,work,name,link,gender,hometown,birthday,education,location&access_token=${token}&limit=80`;
         let data = await axios.get(url);
         let oldP = 0;
         let newP = 0;
@@ -109,7 +109,6 @@ const delay = time => {
                 profile.is_male = p.gender === "female" ? false : true;
                 profile.followers = p.subscribers.summary.total_count;
                 profile.birthday = setBirthday(dumpBirthday);
-                profile.religion = p.religion;
                 profile.is_rank_first = false;
                 profile.created_at = new Date();
 
@@ -147,7 +146,6 @@ const delay = time => {
                     .update({
                       facebook_id: profile.facebookId,
                       birthday: profile.birthday,
-                      religion: profile.religion,
                       is_male: profile.gender,
                       followers: profile.followers,
                       updated_at: new Date()
