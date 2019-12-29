@@ -59,11 +59,13 @@ const delay = time => {
         "Học viện Hàng không Việt Nam"
       ];
 
-      const provinces = await pg.raw(
+      const provincesF = await pg.raw(
         "SELECT hometown FROM (SELECT hometown,round(avg(followers)) AS avg_followers,count(*) AS sample_space FROM profiles WHERE hometown IS NOT NULL GROUP BY hometown) AS b JOIN provinces ON provinces.name=b.hometown ORDER BY sample_space/population LIMIT 10"
       );
-      console.log(provinces.rows);
-      //
+      const provinces = [];
+      provinces.rows.map(province => provinces.push(province));
+      console.log(provinces);
+
       const links = await pg
         .select("uid", "full_name", "birthday", "university", "followers")
         .from("profiles")
