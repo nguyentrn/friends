@@ -13,9 +13,7 @@ const formatUni = async function(university, stringArr) {
       .whereIn("uid", function() {
         this.with(
           "unnestA",
-          pg("profile_raws").select(
-            pg.raw("uid,unnest(other) as other").whereNot("other", "{}")
-          )
+          pg("profile_raws").select(pg.raw("uid,unnest(other) as other"))
         )
           .select("uid")
           .from("unnestA")

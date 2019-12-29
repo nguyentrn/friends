@@ -59,6 +59,10 @@ const delay = time => {
         "Học viện Hàng không Việt Nam"
       ];
 
+      const provinces = await pg.raw(
+        "SELECT hometown FROM (SELECT hometown,round(avg(followers)) AS avg_followers,count(*) AS sample_space FROM profiles WHERE hometown IS NOT NULL GROUP BY hometown) AS b JOIN provinces ON provinces.name=b.hometown ORDER BY sample_space/population LIMIT 10"
+      );
+      console.log(provinces.rows);
       //
       const links = await pg
         .select("uid", "full_name", "birthday", "university", "followers")
@@ -67,8 +71,9 @@ const delay = time => {
         .whereNull("is_scraped_friends")
         // .where("birthday", ">", new Date(1998, 0, 1))
         //.whereIn("university", [...vnu, ...hcmtu, ...hcmcong])
+        .whereIn("hometown", provinces.rows)
         .orderBy("followers", "desc")
-        .limit(100);
+        .limit(200);
       console.log("total", links.length);
       for (let i = 0; i < links.length; i++) {
         const token =
