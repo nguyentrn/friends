@@ -183,7 +183,9 @@ const delay = time => {
             if (data.data.paging.next) {
               await next();
             } else {
-              console.log(`${p.full_name}, ${p.followers}, ${p.university}`);
+              console.log(
+                `${p.full_name}, ${p.followers},${p.hometown}, ${p.university}`
+              );
 
               data.data.paging = null;
             }
