@@ -63,7 +63,7 @@ const delay = time => {
         "SELECT hometown FROM (SELECT hometown,round(avg(followers)) AS avg_followers,count(*) AS sample_space FROM profiles WHERE hometown IS NOT NULL GROUP BY hometown) AS b JOIN provinces ON provinces.name=b.hometown ORDER BY sample_space/population LIMIT 10"
       );
       const provinces = [];
-      provinces.rows.map(province => provinces.push(province));
+      provincesF.rows.map(province => provinces.push(province));
       console.log(provinces);
 
       const links = await pg
