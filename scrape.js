@@ -67,7 +67,14 @@ const delay = time => {
       console.log(provinces);
 
       const links = await pg
-        .select("uid", "full_name", "birthday", "university", "followers")
+        .select(
+          "uid",
+          "full_name",
+          "birthday",
+          "university",
+          "hometown",
+          "followers"
+        )
         .from("profiles")
         .whereNotNull("university")
         .whereNull("is_scraped_friends")
