@@ -105,7 +105,8 @@ module.exports = [
     raws: [
       "Ba Hàng, Thái Nguyên, Vietnam",
       "Cho Moi, Thái Nguyên, Vietnam",
-      "Thái Nguyên (thành phố)"
+      "Thái Nguyên (thành phố)",
+      "Đại Từ"
     ]
   },
 
@@ -145,7 +146,17 @@ module.exports = [
     ]
   },
 
-  { name: "Lạng Sơn", raws: ["Bac Son, Lạng Sơn, Vietnam", "Lạng Sơn"] },
+  {
+    name: "Lạng Sơn",
+    raws: [
+      "Pho Binh Gia, Lạng Sơn, Vietnam",
+      "Van Quan, Lạng Sơn, Vietnam",
+      "Thất Khê, Lạng Sơn, Vietnam",
+      "Lang Met, Lạng Sơn, Vietnam",
+      "Bac Son, Lạng Sơn, Vietnam",
+      "Lạng Sơn"
+    ]
+  },
   {
     name: "Bắc Giang",
     raws: [
@@ -174,6 +185,7 @@ module.exports = [
     raws: [
       "Hai Dzung, Hải Dương, Vietnam",
       "Hai-Doung, Hải Dương, Vietnam",
+      "Ninh Giang, Hai Hung, Vietnam",
       "Haidöng, Hải Dương, Vietnam",
       "Hải Dương (thành phố)",
       "Kinh Môn",
@@ -225,7 +237,8 @@ module.exports = [
       "Luong Son, Hòa Bình, Vietnam",
       "Hòa Bình, Hòa Bình, Vietnam",
       "Lac Son, Hòa Bình, Vietnam",
-      "Phuong Lam, Vietnam"
+      "Phuong Lam, Vietnam",
+      "Mai Châu"
     ]
   },
   {
@@ -236,9 +249,12 @@ module.exports = [
   {
     name: "Lai Châu",
     raws: [
-      "Muong Lay, Lai Châu, Vietnam",
-      "Mương Té, Lai Châu, Vietnam",
       ",Tam Duong, Lai Châu, Vietnam",
+      "Muong Lay, Lai Châu, Vietnam",
+      "Tam Duong, Lai Châu, Vietnam",
+      "Muong Ang, Lai Châu, Vietnam",
+      "Muong So, Lai Châu, Vietnam",
+      "Mương Té, Lai Châu, Vietnam",
       "Lai Chau"
     ]
   },
@@ -280,7 +296,10 @@ module.exports = [
     name: "Hà Giang",
     raws: ["Hà Giang (thành phố)", "Bắc Quang, Hà Giang, Vietnam"]
   },
-  { name: "Tuyên Quang", raws: ["Tuyên Quang, Tuyên Quang, Vietnam"] },
+  {
+    name: "Tuyên Quang",
+    raws: ["Tuyên Quang, Tuyên Quang, Vietnam", "Chiêm Hóa"]
+  },
   { name: "Cao Bằng", raws: ["Cao Bằng"] },
   { name: "Bắc Kạn", raws: ["Bac Can, Bắc Kạn, Vietnam", "Bắc Kạn"] },
 
@@ -304,6 +323,7 @@ module.exports = [
       "Futim, Thanh Hóa, Vietnam",
       "Thọ Xuân (huyện)",
       "Thanh Hóa",
+      "Hoằng Hóa",
       "Nga Sơn",
       "Bỉm Sơn",
       "Sầm Sơn"
@@ -465,6 +485,7 @@ module.exports = [
       "Vĩnh Hưng",
       "Cần Đước",
       "Mộc Hóa",
+      "Tân Trụ",
       "Tân An"
     ]
   },
@@ -504,19 +525,58 @@ module.exports = [
       "Tràm Chim, Ðồng Tháp, Vietnam"
     ]
   },
-  { name: "Trà Vinh", raws: ["Cànglong, Trà Vinh, Vietnam", "Trà Vinh"] },
+  {
+    name: "Trà Vinh",
+    raws: [
+      "Huong Cau Ngang, Trà Vinh, Vietnam",
+      "Huong Cau Ke, Trà Vinh, Vietnam",
+      "Huong Tra Cu, Trà Vinh, Vietnam",
+      "Tra Vinâ?, Trà Vinh, Vietnam",
+      "Châu Thành, Trà Vinh, Vietnam",
+      "Long Toan, Trà Vinh, Vietnam",
+      "Long Vĩnh, Trà Vinh, Vietnam",
+      "Cànglong, Trà Vinh, Vietnam",
+      "Vinh Kim, Trà Vinh, Vietnam",
+      "Long Huu, Trà Vinh, Vietnam",
+      "Trà Vinh"
+    ]
+  },
   {
     name: "Sóc Trăng",
-    raws: ["Sóc Trăng (thành phố)", "Sài Gòn, Sóc Trăng, Vietnam"]
+    raws: [
+      "Sài Gòn, Sóc Trăng, Vietnam",
+      "Tinh, Sóc Trăng, Vietnam",
+      "Sóc Trăng (thành phố)",
+      "Vĩnh Châu"
+    ]
   },
-  { name: "Bạc Liêu", raws: ["Bạc Liêu (thành phố)"] },
+  {
+    name: "Bạc Liêu",
+    raws: [
+      "Huyện Thạnh Trị, Bạc Liêu, Vietnam",
+      "Ấp Hô Phòng, Bạc Liêu, Vietnam",
+      "Xom Gia Rai, Bạc Liêu, Vietnam",
+      "Bach Lieu, Bạc Liêu, Vietnam",
+      "Bak Lieu, Bạc Liêu, Vietnam",
+      "Hòa Bình, Bạc Liêu, Vietnam",
+      "Hô Phòng, Bạc Liêu, Vietnam",
+      "Vinh Loi, Bạc Liêu, Vietnam",
+      "Cay Gua, Bạc Liêu, Vietnam",
+      "Bien, Bạc Liêu, Vietnam",
+      "Bạc Liêu (thành phố)"
+    ]
+  },
   {
     name: "Kiên Giang",
     raws: [
+      "Huyen Chau Thanh, Kiến Giang, Vietnam",
       "Vinh Thuan (1), Kiến Giang, Vietnam",
       "Phu Quoc, Kiến Giang, Vietnam",
       "Rach Soi, Kiến Giang, Vietnam",
+      "Kiên Tân, Kiến Giang, Vietnam",
+      "Kiên An, Kiến Giang, Vietnam",
       "Rach Gia, Vietnam",
+      "Tỉnh Kiên Giang",
       "Rạch Giá City",
       "Giồng Riềng",
       "Kiên Lương",
@@ -526,7 +586,7 @@ module.exports = [
       "Gò Quao"
     ]
   },
-  { name: "Hậu Giang", raws: ["Phụng Hiệp", "Vị Thanh", "Long Mỹ"] },
+  { name: "Hậu Giang", raws: ["Phụng Hiệp", "Vị Thanh", "Long Mỹ", "Vị Thủy"] },
   { name: "Cà Mau", raws: ["Cà Mau", "Thới Bình, Cà Mau, Vietnam"] },
 
   {
