@@ -1,3 +1,4 @@
+const lcts = require("./locationFrom");
 //
 //
 //
@@ -27,6 +28,19 @@ const formatHometown = async function(hometown, stringArr) {
 };
 
 (async () => {
+  const provincesF = await pg.raw(
+    "SELECT hometown,provinces.id FROM (SELECT hometown,round(avg(followers)) AS avg_followers,count(*) AS sample_space FROM profiles WHERE hometown IS NOT NULL GROUP BY hometown) AS b JOIN provinces ON provinces.name=b.hometown ORDER BY sample_space/population LIMIT 10"
+  );
+  const provincesArray = [];
+  provincesF.rows.map(province => provincesArray.push(province.hometown));
+  console.log(provincesArray);
+  const provinces = lcts.filter(lct =>
+    provincesArray.some(p => p === lct.name)
+  );
+  console.log(provinces);
+  for (let i = 0; i < provinces.length; i++) {
+    await formatHometown(provinces[i].name, provinces[i].raws);
+  }
   // await formatHometown("Thái Lan", ["Băng Cốc"]);
   // await formatHometown("Campuchia", ["Phnôm Pênh"]);
   // await formatHometown("Lào", [
@@ -670,32 +684,32 @@ const formatHometown = async function(hometown, stringArr) {
   //   "THPT Buôn Đôn",
   //   "Buôn Ma Thuột"
   // ]);
-  await formatHometown("Gia Lai", [
-    "Nam thanh nữ tú trường THPT lê quý đôn gia lai",
-    "Trường THPT Nguyễn Huệ, Đắk Đoa, Gia Lai",
-    "Trường THPT Chuyên Hùng Vương - Gia Lai",
-    "THPT Nguyễn Bỉnh Khiêm, Chư Sê, Gia Lai",
-    "Phú Yên (1), Gia Lai-Cong Tum, Vietnam",
-    "Plei Tpang, Gia Lai-Cong Tum, Vietnam",
-    "Dak Ha (1), Gia Lai-Cong Tum, Vietnam",
-    "Trường THPT Phan Bội Châu - Gia Lai",
-    "THPT  Trần Phú, Chư Prông, Gia Lai",
-    "THPT  Chư sê - Nguyễn Bỉnh Khiêm",
-    "Trường THPT Trần Phú (Gia Lai)",
-    "THPT Nguyễn Trường Tộ-Gia Lai",
-    "Tinh Pleiku, Gia Lai, Vietnam",
-    "THPT Mạc Đĩnh Chi - Gia Lai",
-    "Trường THPT Hoàng Hoa Thám",
-    "Phu Nhon, Gia Lai, Vietnam",
-    "Plei Kly, Gia Lai, Vietnam",
-    "Gia Lai, Gia Lai, Vietnam",
-    "Phú Túc, Gia Lai, Vietnam",
-    "Plây Ku, Gia Lai, Vietnam",
-    "Plây Cu, Gia Lai, Vietnam",
-    "An Khê, Gia Lai, Vietnam",
-    "THPT Pleiku - Gia Lai",
-    "THPT Nguyễn Chí Thanh",
-    "THPT LÊ LỢI",
-    "Pleiku"
-  ]);
+  // await formatHometown("Gia Lai", [
+  //   "Nam thanh nữ tú trường THPT lê quý đôn gia lai",
+  //   "Trường THPT Nguyễn Huệ, Đắk Đoa, Gia Lai",
+  //   "Trường THPT Chuyên Hùng Vương - Gia Lai",
+  //   "THPT Nguyễn Bỉnh Khiêm, Chư Sê, Gia Lai",
+  //   "Phú Yên (1), Gia Lai-Cong Tum, Vietnam",
+  //   "Plei Tpang, Gia Lai-Cong Tum, Vietnam",
+  //   "Dak Ha (1), Gia Lai-Cong Tum, Vietnam",
+  //   "Trường THPT Phan Bội Châu - Gia Lai",
+  //   "THPT  Trần Phú, Chư Prông, Gia Lai",
+  //   "THPT  Chư sê - Nguyễn Bỉnh Khiêm",
+  //   "Trường THPT Trần Phú (Gia Lai)",
+  //   "THPT Nguyễn Trường Tộ-Gia Lai",
+  //   "Tinh Pleiku, Gia Lai, Vietnam",
+  //   "THPT Mạc Đĩnh Chi - Gia Lai",
+  //   "Trường THPT Hoàng Hoa Thám",
+  //   "Phu Nhon, Gia Lai, Vietnam",
+  //   "Plei Kly, Gia Lai, Vietnam",
+  //   "Gia Lai, Gia Lai, Vietnam",
+  //   "Phú Túc, Gia Lai, Vietnam",
+  //   "Plây Ku, Gia Lai, Vietnam",
+  //   "Plây Cu, Gia Lai, Vietnam",
+  //   "An Khê, Gia Lai, Vietnam",
+  //   "THPT Pleiku - Gia Lai",
+  //   "THPT Nguyễn Chí Thanh",
+  //   "THPT LÊ LỢI",
+  //   "Pleiku"
+  // ]);
 })();

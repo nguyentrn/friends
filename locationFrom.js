@@ -6,27 +6,7 @@
 //
 const pg = require("./database");
 
-const formatHometown = async function(hometown, stringArr) {
-  try {
-    const a = await pg("profiles")
-      // .select("*")
-      .update({ hometown })
-      .whereIn("uid", function() {
-        this.select("profiles.uid")
-          .from("profiles")
-          .whereNull("hometown")
-          .join("profile_raws", "profiles.uid", "profile_raws.uid")
-          .whereIn("location_from", stringArr)
-          .orWhereIn("location_now", stringArr);
-      });
-    console.log(hometown, a);
-  } catch (err) {
-    console.log(err);
-    console.log(err.code, hometown);
-  }
-};
-
-[
+module.exports = [
   {
     name: "Hà Nội",
     raws: [
