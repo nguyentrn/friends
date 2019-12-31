@@ -214,7 +214,20 @@ module.exports = [
   },
   {
     name: "Thái Bình",
-    raws: ["Thái Bình, Thái Bình, Vietnam", "Thái Bình (thành phố)", "Tiền Hải"]
+    raws: [
+      "Thai Binâ?, Thái Bình, Vietnam",
+      "Quynh Ngoc, Thái Bình, Vietnam",
+      "Thuy Duong, Thái Bình, Vietnam",
+      "Thái Bình, Thái Bình, Vietnam",
+      "Quynh Coi, Thái Bình, Vietnam",
+      "Hung Nhan, Thái Bình, Vietnam",
+      "Nguyên Xá, Thái Bình, Vietnam",
+      "Thuy Anh, Thái Bình, Vietnam",
+      "Thanh Nê, Thái Bình, Vietnam",
+      "An Lê, Thái Bình, Vietnam",
+      "Thái Bình (thành phố)",
+      "Tiền Hải"
+    ]
   },
   {
     name: "Vĩnh Phúc",
@@ -513,16 +526,34 @@ module.exports = [
   {
     name: "Đồng Tháp",
     raws: [
-      "Thanh Bình, Ðồng Tháp, Vietnam",
-      "Cao Lãnh",
-      "Lai Vung",
       "Dong Thap, Hoang Lien Son, Vietnam",
-      "Sa Đéc",
-      "Lấp Vò",
+      "Thuong Phuoc, Ðồng Tháp, Vietnam",
+      "Thuong Thoi, Ðồng Tháp, Vietnam",
+      "Sóc Sa Rài, Ðồng Tháp, Vietnam",
+      "Thanh Bình, Ðồng Tháp, Vietnam",
+      "Long Thuan, Ðồng Tháp, Vietnam",
+      "Long Khánh, Ðồng Tháp, Vietnam",
+      "Binh Thanh, Ðồng Tháp, Vietnam",
+      "Tràm Chim, Ðồng Tháp, Vietnam",
+      "Tan Thanh, Ðồng Tháp, Vietnam",
+      "Phu Thuan, Ðồng Tháp, Vietnam",
+      "An Phong, Ðồng Tháp, Vietnam",
+      "Tân Long, Ðồng Tháp, Vietnam",
+      "Tan Binh, Ðồng Tháp, Vietnam",
+      "Tân Huê, Ðồng Tháp, Vietnam",
+      "Tân Phú, Ðồng Tháp, Vietnam",
+      "Dinh Bà, Ðồng Tháp, Vietnam",
+      "An Long, Ðồng Tháp, Vietnam",
+      "An Hoa, Ðồng Tháp, Vietnam",
+      "My Tho, Ðồng Tháp, Vietnam",
       "Hồng Ngự (thị xã)",
+      "Tỉnh Đồng Tháp",
       "Tháp Mười",
+      "Cao Lãnh",
       "Tân Châu",
-      "Tràm Chim, Ðồng Tháp, Vietnam"
+      "Lai Vung",
+      "Sa Đéc",
+      "Lấp Vò"
     ]
   },
   {
@@ -715,7 +746,15 @@ module.exports = [
       "Cam Ranh"
     ]
   },
-  { name: "Ninh Thuận", raws: ["Phan Rang-Tháp Chàm, Ninh Thuận, Vietnam"] },
+  {
+    name: "Ninh Thuận",
+    raws: [
+      "Phan Rang-Tháp Chàm, Ninh Thuận, Vietnam",
+      "Ninh Thuân, Thuin Hai, Vietnam",
+      "Phan Ranh, Ninh Thuận, Vietnam",
+      "An Phuoc, Ninh Thuận, Vietnam"
+    ]
+  },
 
   {
     name: "Lâm Đồng",
