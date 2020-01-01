@@ -159,6 +159,7 @@ const delay = time => {
                     .where({ uid: scrapedProfile.uid })
                     .update({
                       facebook_id: profile.facebookId,
+                      full_name: profile.full_name,
                       birthday: profile.birthday,
                       is_male: profile.gender,
                       followers: profile.followers,
