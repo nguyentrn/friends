@@ -153,7 +153,10 @@ module.exports = [
       "Van Quan, Lạng Sơn, Vietnam",
       "Thất Khê, Lạng Sơn, Vietnam",
       "Lang Met, Lạng Sơn, Vietnam",
+      "Don Dang, Lạng Sơn, Vietnam",
+      "Mau Son, Lạng Sơn, Vietnam",
       "Bac Son, Lạng Sơn, Vietnam",
+      "Xuat Le, Lạng Sơn, Vietnam",
       "Lạng Sơn"
     ]
   },
@@ -210,7 +213,14 @@ module.exports = [
   },
   {
     name: "Ninh Bình",
-    raws: ["Nho Quan, Ninh Bình, Vietnam", "Ninh Bình (thành phố)"]
+    raws: [
+      "Phát Diệm, Ninh Bình, Vietnam",
+      "Nho Quan, Ninh Bình, Vietnam",
+      "Tam Điệp, Ninh Bình, Vietnam",
+      "Nho Quan, Ninh Bình, Vietnam",
+      "Ninbinh, Ninh Bình, Vietnam",
+      "Ninh Bình (thành phố)"
+    ]
   },
   {
     name: "Thái Bình",
@@ -256,7 +266,15 @@ module.exports = [
   },
   {
     name: "Sơn La",
-    raws: ["Son La Chau, Sơn La, Vietnam", "Sơn La", "Mộc Châu", "Phù Yên"]
+    raws: [
+      "Son La Chau, Sơn La, Vietnam",
+      "Ban Co Noi, Sơn La, Vietnam",
+      "Muong Hung, Sơn La, Vietnam",
+      "Mường Bu, Sơn La, Vietnam",
+      "Mộc Châu",
+      "Phù Yên",
+      "Sơn La"
+    ]
   },
   { name: "Điện Biên", raws: ["Điện Biên Phủ"] },
   {
@@ -528,6 +546,7 @@ module.exports = [
     raws: [
       "Dong Thap, Hoang Lien Son, Vietnam",
       "Thuong Phuoc, Ðồng Tháp, Vietnam",
+      "Phong My (3), Ðồng Tháp, Vietnam",
       "Thuong Thoi, Ðồng Tháp, Vietnam",
       "Sóc Sa Rài, Ðồng Tháp, Vietnam",
       "Thanh Bình, Ðồng Tháp, Vietnam",
@@ -637,7 +656,14 @@ module.exports = [
       "Đông Hà"
     ]
   },
-  { name: "Thừa Thiên - Huế", raws: ["Huế"] },
+  {
+    name: "Thừa Thiên - Huế",
+    raws: [
+      "Bach Ma, Thừa Thiên-Huế, Vietnam ,Vietnam",
+      "Huong Ã?Ien, Thừa Thiên-Huế",
+      "Huế"
+    ]
+  },
   {
     name: "Quảng Bình",
     raws: [
@@ -690,9 +716,12 @@ module.exports = [
   {
     name: "Bình Định",
     raws: [
+      "Vân Canh (1), Bình Ðịnh, Vietnam",
       "Binh Dinh, Nghia Binh, Vietnam",
+      "Vinh Thanh, Bình Ðịnh, Vietnam",
       "Hoài Nhon, Bình Ðịnh, Vietnam",
       "Phú Phong, Bình Ðịnh, Vietnam",
+      "Sa Huỳnh, Bình Ðịnh, Vietnam",
       "Tam Quan, Bình Ðịnh, Vietnam",
       "Qui Nhon, Bình Ðịnh, Vietnam",
       "Bồng Sơn, Bình Ðịnh, Vietnam",
@@ -725,12 +754,15 @@ module.exports = [
   {
     name: "Phú Yên",
     raws: [
-      "Tuy Hòa",
+      "Songkau, Phú Yên, Vietnam",
+      "Toy Hoa, Phú Yên, Vietnam",
       "Tuy An, Phú Yên, Vietnam",
-      "Tây Hòa, Phú Yên",
+      "Đông Hòa, Phú Yên",
+      "Phú Hòa, Phú Yên",
       "Sông Cầu (thị xã)",
-      "Sơn Hòa",
-      "Đông Hòa, Phú Yên"
+      "Tây Hòa, Phú Yên",
+      "Tuy Hòa",
+      "Sơn Hòa"
     ]
   },
   {
