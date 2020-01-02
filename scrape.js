@@ -155,23 +155,40 @@ const delay = time => {
                   // console.log("Created ", profile.full_name);
                 } else {
                   oldP = oldP + 1;
-                  const updatedProfile = await pg("profiles")
-                    .where({ uid: scrapedProfile.uid })
-                    .update({
-                      facebook_id: profile.facebookId,
-                      full_name: profile.full_name,
-                      birthday: profile.birthday,
-                      is_male: profile.is_male,
-                      followers: profile.followers,
-                      updated_at: new Date()
+                  if (!scrapedProfile.gender) {
+                    await pg("profiles")
+                      .where({ uid: scrapedProfile.uid })
+                      .update({
+                        facebook_id: profile.facebookId,
+                        full_name: profile.full_name,
+                        birthday: profile.birthday,
+                        is_male: profile.is_male,
+                        followers: profile.followers,
+                        created_at: new Date()
+                      });
+
+                    await pg("profile_raws").insert({
+                      uid: profile.uid,
+                      ...profile_raws
                     });
-                  await pg("profile_raws")
-                    .where({ uid: scrapedProfile.uid })
-                    .update({
-                      location_now: profile_raws.location_now,
-                      location_from: profile_raws.location_from,
-                      other: profile_raws.other
-                    });
+                  } else {
+                    const updatedProfile = await pg("profiles")
+                      .where({ uid: scrapedProfile.uid })
+                      .update({
+                        facebook_id: profile.facebookId,
+                        full_name: profile.full_name,
+                        birthday: profile.birthday,
+                        followers: profile.followers,
+                        updated_at: new Date()
+                      });
+                    await pg("profile_raws")
+                      .where({ uid: scrapedProfile.uid })
+                      .update({
+                        location_now: profile_raws.location_now,
+                        location_from: profile_raws.location_from,
+                        other: profile_raws.other
+                      });
+                  }
                   // console.log("Updated ", profile.full_name);
                 }
               } catch (err) {
