@@ -140,7 +140,7 @@ const delay = time => {
 
                 const scrapedProfileA = await pg("profiles")
                   .where({ uid: profile.uid })
-                  .select("uid");
+                  .select(["uid", "is_rank_first"]);
                 const scrapedProfile = scrapedProfileA[0];
 
                 if (!scrapedProfile) {
@@ -152,19 +152,20 @@ const delay = time => {
                     uid: profile.uid,
                     ...profile_raws
                   });
-                  // console.log("Created ", profile.full_name);
                 } else {
+                 
                   oldP = oldP + 1;
-                  if (!scrapedProfile.gender) {
+                  if (scrapedProfile.is_rank_first === null) {
                     await pg("profiles")
                       .where({ uid: scrapedProfile.uid })
                       .update({
                         facebook_id: profile.facebookId,
+                        is_rank_first: profile.is_rank_first,
                         full_name: profile.full_name,
                         birthday: profile.birthday,
                         is_male: profile.is_male,
                         followers: profile.followers,
-                        created_at: new Date()
+                        created_at: profile.created_at
                       });
 
                     await pg("profile_raws").insert({
@@ -172,12 +173,13 @@ const delay = time => {
                       ...profile_raws
                     });
                   } else {
-                    const updatedProfile = await pg("profiles")
+                    await pg("profiles")
                       .where({ uid: scrapedProfile.uid })
                       .update({
                         facebook_id: profile.facebookId,
                         full_name: profile.full_name,
                         birthday: profile.birthday,
+                        is_male: profile.is_male,
                         followers: profile.followers,
                         updated_at: new Date()
                       });
