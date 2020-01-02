@@ -161,7 +161,7 @@ const delay = time => {
                       facebook_id: profile.facebookId,
                       full_name: profile.full_name,
                       birthday: profile.birthday,
-                      is_male: profile.gender,
+                      is_male: profile.is_male,
                       followers: profile.followers,
                       updated_at: new Date()
                     });
