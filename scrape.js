@@ -90,7 +90,7 @@ const delay = time => {
         const p = links[i];
         const uid = p.uid;
         outside = uid;
-        const url = `https://graph.facebook.com/v1.0/${uid}/friends?fields=id,subscribers,work,name,link,gender,hometown,birthday,education,location&access_token=${token}&limit=80`;
+        const url = `https://graph.facebook.com/v1.0/${uid}/friends?fields=id,subscribers,work,name,link,gender,hometown,birthday,education,location&access_token=${token}&limit=85`;
         let data = await axios.get(url);
         let oldP = 0;
         let newP = 0;
@@ -123,7 +123,6 @@ const delay = time => {
                 profile.is_male = p.gender === "female" ? false : true;
                 profile.followers = p.subscribers.summary.total_count;
                 profile.birthday = setBirthday(dumpBirthday);
-                profile.is_rank_first = false;
                 profile.created_at = new Date();
 
                 profile_raws.location_now = p.location && p.location.name;
@@ -140,7 +139,7 @@ const delay = time => {
 
                 const scrapedProfileA = await pg("profiles")
                   .where({ uid: profile.uid })
-                  .select(["uid", "is_rank_first"]);
+                  .select(["uid", "is_male"]);
                 const scrapedProfile = scrapedProfileA[0];
 
                 if (!scrapedProfile) {
@@ -153,14 +152,12 @@ const delay = time => {
                     ...profile_raws
                   });
                 } else {
-                 
                   oldP = oldP + 1;
-                  if (scrapedProfile.is_rank_first === null) {
+                  if (scrapedProfile.is_male === null) {
                     await pg("profiles")
                       .where({ uid: scrapedProfile.uid })
                       .update({
                         facebook_id: profile.facebookId,
-                        is_rank_first: profile.is_rank_first,
                         full_name: profile.full_name,
                         birthday: profile.birthday,
                         is_male: profile.is_male,
