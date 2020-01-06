@@ -191,7 +191,11 @@ const delay = time => {
                   // console.log("Updated ", profile.full_name);
                 }
               } catch (err) {
-                console.log(err);
+                if (err.name) {
+                  console.log(err.name);
+                } else {
+                  console.log(err);
+                }
               }
             });
 
