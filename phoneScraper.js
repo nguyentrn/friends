@@ -15,9 +15,9 @@ const delay = time => {
 
 (async () => {
   try {
-    for (let j = 9000000; j < 9999900; j += 110) {
+    for (let j = 9000000; j < 9999900; j += 100) {
       // console.log("---------", j);
-      for (let i = j; i < j + 110; i++) {
+      for (let i = j; i < j + 100; i++) {
         (async () => {
           // console.log(i);
           const phone_number = `090${i}`;
@@ -41,7 +41,7 @@ const delay = time => {
             const scrapedProfile = scrapedProfileA[0];
 
             if (!scrapedProfile) {
-              console.log("created", phone_number);
+              // console.log("created", phone_number);
               await pg("profiles").insert({
                 uid,
                 facebook_id: uid,
@@ -49,13 +49,15 @@ const delay = time => {
                 phone_number
               });
             } else {
-              console.log("update ", scrapedProfile.full_name, phone_number);
+              if (scrapedProfile.full_name !== "_No_Name_") {
+                console.log("update ", scrapedProfile.full_name, phone_number);
 
-              await pg("profiles")
-                .where({ uid })
-                .update({
-                  phone_number
-                });
+                await pg("profiles")
+                  .where({ uid })
+                  .update({
+                    phone_number
+                  });
+              }
             }
           }
         })();
