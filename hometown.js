@@ -29,7 +29,7 @@ const formatHometown = async function(hometown, stringArr) {
 
 (async () => {
   const provincesF = await pg.raw(
-    "SELECT hometown,provinces.id FROM (SELECT hometown,round(avg(followers)) AS avg_followers,count(*) AS sample_space FROM profiles WHERE hometown IS NOT NULL GROUP BY hometown) AS b JOIN provinces ON provinces.name=b.hometown ORDER BY sample_space/population LIMIT 63"
+    "SELECT hometown,provinces.id FROM (SELECT hometown,round(avg(followers)) AS avg_followers,count(*) AS sample_space FROM profiles WHERE hometown IS NOT NULL GROUP BY hometown) AS b JOIN provinces ON provinces.name=b.hometown ORDER BY sample_space/population LIMIT 20"
   );
   const provincesArray = [];
   provincesF.rows.map(province => provincesArray.push(province.hometown));
