@@ -153,7 +153,7 @@ const delay = time => {
                   });
                 } else {
                   oldP = oldP + 1;
-                  if (scrapedProfile.is_male === null) {
+                  if (scrapedProfile.followers === null) {
                     await pg("profiles")
                       .where({ uid: scrapedProfile.uid })
                       .update({
