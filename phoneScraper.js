@@ -13,15 +13,14 @@ const delay = time => {
   });
 };
 
-const pn = ["090"];
 (async () => {
   try {
     for (let j = 9000000; j < 9999900; j += 100) {
-      console.log("---------", j);
+      // console.log("---------", j);
       for (let i = j; i < j + 100; i++) {
         (async () => {
           // console.log(i);
-          const phone_number = `091${i}`;
+          const phone_number = `090${i}`;
           const headers = {
             Cookie: "PHPSESSID=bbvs1dkkjcj77dtoakc1q85uv2;"
           };
@@ -34,7 +33,7 @@ const pn = ["090"];
           const res = $(".fb-icon").attr("src");
           const uid = res ? res.split("/")[3] : null;
           // console.log(uid);
-          // console.log(phone_number);
+          console.log(phone_number);
           if (uid) {
             const scrapedProfileA = await pg("profiles")
               .where({ uid })
@@ -42,7 +41,7 @@ const pn = ["090"];
             const scrapedProfile = scrapedProfileA[0];
 
             if (!scrapedProfile) {
-              // console.log("created", phone_number);
+              console.log("created", phone_number);
               await pg("profiles").insert({
                 uid,
                 facebook_id: uid,
@@ -50,7 +49,7 @@ const pn = ["090"];
                 phone_number
               });
             } else {
-              // console.log("update ", scrapedProfile.full_name, phone_number);
+              console.log("update ", scrapedProfile.full_name, phone_number);
 
               await pg("profiles")
                 .where({ uid })
