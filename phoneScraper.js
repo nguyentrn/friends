@@ -32,8 +32,8 @@ const delay = time => {
           const $ = cheerio.load(a.data);
           const res = $(".fb-icon").attr("src");
           const uid = res ? res.split("/")[3] : null;
-          console.log(res);
-          console.log(phone_number);
+          // console.log(res);
+          // console.log(phone_number);
           if (uid) {
             const scrapedProfileA = await pg("profiles")
               .where({ uid })
