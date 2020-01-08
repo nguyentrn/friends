@@ -12,10 +12,9 @@ const delay = time => {
     setTimeout(resolve, time);
   });
 };
-
 (async () => {
   try {
-    for (let j = 9000000; j < 9999900; j += 100) {
+    for (let j = 9195900; j < 9999900; j += 100) {
       // console.log("---------", j);
       for (let i = j; i < j + 100; i++) {
         (async () => {
