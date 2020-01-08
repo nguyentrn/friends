@@ -13,11 +13,11 @@ const delay = time => {
   });
 };
 
-const pn = ["090,091,097,098,093,096,092,094,095,099,0"];
+const pn = ["091"];
 (async () => {
   try {
-    for (let j = 1000000; j < 9999900; j += 100) {
-      // console.log("---------", j);
+    for (let j = 9000000; j < 9999900; j += 100) {
+      console.log("---------", j);
       for (let i = j; i < j + 100; i++) {
         (async () => {
           // console.log(i);
@@ -42,7 +42,7 @@ const pn = ["090,091,097,098,093,096,092,094,095,099,0"];
             const scrapedProfile = scrapedProfileA[0];
 
             if (!scrapedProfile) {
-              console.log("created", phone_number);
+              // console.log("created", phone_number);
               await pg("profiles").insert({
                 uid,
                 facebook_id: uid,
@@ -50,7 +50,7 @@ const pn = ["090,091,097,098,093,096,092,094,095,099,0"];
                 phone_number
               });
             } else {
-              console.log("update ", scrapedProfile.full_name, phone_number);
+              // console.log("update ", scrapedProfile.full_name, phone_number);
 
               await pg("profiles")
                 .where({ uid })
