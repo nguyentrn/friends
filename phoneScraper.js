@@ -22,7 +22,7 @@ const delay = time => {
           // console.log(i);
           const phone_number = `090${i}`;
           const headers = {
-            Cookie: "PHPSESSID=bbvs1dkkjcj77dtoakc1q85uv2;"
+            Cookie: "PHPSESSID=lg9db9ddt4hq0pd9sm7i0oisg1;"
           };
           const a = await axios(
             `https://quetsodienthoai.com/search-phone/?phone=${phone_number}`,
@@ -32,7 +32,7 @@ const delay = time => {
           const $ = cheerio.load(a.data);
           const res = $(".fb-icon").attr("src");
           const uid = res ? res.split("/")[3] : null;
-          // console.log(uid);
+          console.log(res);
           console.log(phone_number);
           if (uid) {
             const scrapedProfileA = await pg("profiles")
