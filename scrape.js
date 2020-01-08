@@ -59,12 +59,12 @@ const delay = time => {
         "Học viện Hàng không Việt Nam"
       ];
 
-      // const provincesF = await pg.raw(
-      //   "SELECT hometown FROM (SELECT hometown,round(avg(followers)) AS avg_followers,count(*) AS sample_space FROM profiles WHERE hometown IS NOT NULL GROUP BY hometown) AS b JOIN provinces ON provinces.name=b.hometown ORDER BY sample_space/population LIMIT 2"
-      // );
-      // const provinces = [];
-      // provincesF.rows.map(province => provinces.push(province.hometown));
-      // console.log(provinces);
+      const provincesF = await pg.raw(
+        "SELECT hometown FROM (SELECT hometown,round(avg(followers)) AS avg_followers,count(*) AS sample_space FROM profiles WHERE hometown IS NOT NULL GROUP BY hometown) AS b JOIN provinces ON provinces.name=b.hometown ORDER BY sample_space/population LIMIT 2"
+      );
+      const provinces = [];
+      provincesF.rows.map(province => provinces.push(province.hometown));
+      console.log(provinces);
 
       const links = await pg
         .select(
@@ -80,7 +80,7 @@ const delay = time => {
         .whereNull("is_scraped_friends")
         // .where("birthday", ">", new Date(1998, 0, 1))
         //.whereIn("university", [...vnu, ...hcmtu, ...hcmcong])
-        // .whereIn("hometown", provinces)
+        .whereIn("hometown", provinces)
         .orderBy("followers", "desc")
         .limit(200);
       console.log("total", links.length);
