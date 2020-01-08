@@ -15,9 +15,9 @@ const delay = time => {
 
 (async () => {
   try {
-    for (let j = 9000000; j < 9999900; j += 1000) {
+    for (let j = 9000000; j < 9999900; j += 500) {
       // console.log("---------", j);
-      for (let i = j; i < j + 1000; i++) {
+      for (let i = j; i < j + 500; i++) {
         (async () => {
           // console.log(i);
           const phone_number = `090${i}`;
