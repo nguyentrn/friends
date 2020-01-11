@@ -96,6 +96,7 @@ module.exports = [
       "Thành Phố Hồ Chí Minh",
       "Thành phố Hồ Chí Minh",
       "Ho Chi Minh City",
+      "Phú Nhuận",
       "Gò Vấp"
     ]
   },
@@ -356,7 +357,14 @@ module.exports = [
     name: "Tuyên Quang",
     raws: ["Tuyên Quang, Tuyên Quang, Vietnam", "Chiêm Hóa"]
   },
-  { name: "Cao Bằng", raws: ["Cao Bằng"] },
+  {
+    name: "Cao Bằng",
+    raws: [
+      "Trung Khanh Phu, Cao Bằng, Vietnam",
+      "Trùng Khánh, Cao Bằng",
+      "Cao Bằng"
+    ]
+  },
   { name: "Bắc Kạn", raws: ["Bac Can, Bắc Kạn, Vietnam", "Bắc Kạn"] },
 
   {
@@ -378,6 +386,7 @@ module.exports = [
       "Ba Lang, Thanh Hóa, Vietnam",
       "Futim, Thanh Hóa, Vietnam",
       "Thọ Xuân (huyện)",
+      "Nông Cống",
       "Thanh Hóa",
       "Hoằng Hóa",
       "Nga Sơn",
@@ -390,6 +399,8 @@ module.exports = [
     raws: [
       "Phu Dien Chau, Nghệ An, Vietnam",
       "Cho Do Luong, Nghệ An, Vietnam",
+      "Thanh Hoa, Nghe Tinh, Vietnam",
+      "Nghia Ã?An, Nghệ An, Vietnam",
       "Vinh Ang, Nghe Tinh, Vietnam",
       "Quynh Luu, Nghệ An, Vietnam",
       "Thái Hõa, Nghệ An, Vietnam",
@@ -637,15 +648,34 @@ module.exports = [
       "Mỹ Tho"
     ]
   },
-  { name: "Vĩnh Long", raws: ["Vĩnh Long (thành phố)", "Vũng Liêm"] },
+  { name: "Vĩnh Long", raws: ["Vĩnh Long (thành phố)", "Vũng Liêm", "Trà Ôn"] },
   {
     name: "Bến Tre",
     raws: [
       "Huong Thanh Phu, Bến Tre, Vietnam",
+      "Chợ Giồng Trôm, Bến Tre, Vietnam",
+      "Ap Giong Trom, Bến Tre, Vietnam",
+      "Ap Tan Nhuan, Bến Tre, Vietnam",
+      "Thạnh Phong, Bến Tre, Vietnam",
+      "Thanh Trieu, Bến Tre, Vietnam",
+      "Trúc Giang, Bến Tre, Vietnam",
+      "Giao Thanh, Bến Tre, Vietnam",
+      "Thanh Ngãi, Bến Tre, Vietnam",
+      "Tan Xuan, Bến Tre, Vietnam",
+      "My Thanh, Bến Tre, Vietnam",
+      "Châu Hòa, Bến Tre, Vietnam",
+      "Xóm Bến, Bến Tre, Vietnam",
+      "Phú Túc, Bến Tre, Vietnam",
+      "An Thuy, Bến Tre, Vietnam",
+      "Cai Mon, Bến Tre, Vietnam",
+      "An Hóa, Bến Tre, Vietnam",
+      "Ap Ba, Bến Tre, Vietnam",
+      "Phú, Bến Tre, Vietnam",
       "Ben, Bến Tre, Vietnam",
       "Chợ Lách",
       "Bến Tre",
-      "Ba Tri"
+      "Ba Tri",
+      "Mỏ Cày"
     ]
   },
   {
@@ -702,6 +732,7 @@ module.exports = [
   {
     name: "Sóc Trăng",
     raws: [
+      "My Xuyen, Sóc Trăng, Vietnam",
       "Sài Gòn, Sóc Trăng, Vietnam",
       "Tinh, Sóc Trăng, Vietnam",
       "Sóc Trăng (thành phố)",
@@ -766,6 +797,7 @@ module.exports = [
       "Lao Bảo (thị trấn)",
       "Quảng Trị (thị xã)",
       "Cam Lộ (huyện)",
+      "Triệu Phong",
       "Vĩnh Linh",
       "Hải Lăng",
       "Gio Linh",
@@ -776,6 +808,7 @@ module.exports = [
     name: "Thừa Thiên - Huế",
     raws: [
       "Bach Ma, Thừa Thiên-Huế, Vietnam ,Vietnam",
+      "Bach Ma, Thừa Thiên-Huế, Vietnam",
       "Huong Ã?Ien, Thừa Thiên-Huế",
       "Huế"
     ]
@@ -848,6 +881,7 @@ module.exports = [
       "Bồng Sơn, Bình Ðịnh, Vietnam",
       "Hoài Ân, Bình Ðịnh, Vietnam",
       "Phu My, Nghia Binh, Vietnam",
+      "An Lão, Bình Ðịnh, Vietnam",
       "Tuy Phước",
       "Tuy Phong",
       "Quy Nhơn",
@@ -916,9 +950,9 @@ module.exports = [
     name: "Lâm Đồng",
     raws: [
       // "Trường THPT chuyên Thăng Long - Đà Lạt",
-      "Mâ?Kar Da Te, Lâm Ðồng, Vietnam",
       // "Trường THPT Bùi Thị Xuân, Đà Lạt",
       // "Trường THPT Đức Trọng - Lâm Đồng",
+      "Mâ?Kar Da Te, Lâm Ðồng, Vietnam",
       "Phú Hội (1), Lâm Ðồng, Vietnam",
       "Ap Lac Vien, Lâm Ðồng, Vietnam",
       "Hiêp Thanh, Lâm Ðồng, Vietnam",
@@ -940,6 +974,7 @@ module.exports = [
       "Namban, Lâm Ðồng, Vietnam",
       "Kadô, Lâm Ðồng, Vietnam",
       "Lạc Dương, Lâm Đồng",
+      "Madagui, Vietnam",
       "Thành phố Đà Lạt",
       "Dalat, Sarawak",
       "Bảo Lộc",
@@ -951,6 +986,7 @@ module.exports = [
   {
     name: "Kon Tum",
     raws: [
+      "Dak Ha (1), Gia Lai-Cong Tum, Vietnam",
       "Tinh Kontum, Kon Tum, Vietnam",
       "Kon Tum, Kon Tum, Vietnam",
       "Dak Tô, Kon Tum, Vietnam",
@@ -1020,7 +1056,6 @@ module.exports = [
       // "THPT LÊ LỢI",
       "Phú Yên (1), Gia Lai-Cong Tum, Vietnam",
       "Plei Tpang, Gia Lai-Cong Tum, Vietnam",
-      "Dak Ha (1), Gia Lai-Cong Tum, Vietnam",
       "Tinh Pleiku, Gia Lai, Vietnam",
       "Phu Nhon, Gia Lai, Vietnam",
       "Plei Kly, Gia Lai, Vietnam",
