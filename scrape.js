@@ -81,7 +81,7 @@ const delay = time => {
         .whereNull("is_scraped_friends")
         // .where("birthday", ">", new Date(1998, 0, 1))
         //.whereIn("university", [...vnu, ...hcmtu, ...hcmcong])
-        .whereIn("hometown", provinces)
+        // .whereIn("hometown", provinces)
         .orderBy("followers", "desc")
         .limit(200);
       console.log("total", links.length);
@@ -138,6 +138,7 @@ const delay = time => {
                     profile_raws.other.push(e.employer.name);
                   });
 
+                // console.log(profile);
                 const scrapedProfileA = await pg("profiles")
                   .where({ uid: profile.uid })
                   .select(["uid", "is_male"]);
@@ -244,6 +245,7 @@ const delay = time => {
         }
       }
     } catch (err) {
+
       console.log("Restart", err);
 
       console.log("Restart", outside);
