@@ -81,17 +81,19 @@ const delay = time => {
         .whereNull("is_scraped_friends")
         // .where("birthday", ">", new Date(1998, 0, 1))
         //.whereIn("university", [...vnu, ...hcmtu, ...hcmcong])
-        // .whereIn("hometown", provinces)
+        .whereIn("hometown", provinces)
         .orderBy("followers", "desc")
         .limit(200);
       console.log("total", links.length);
+      console.log("total", links[0]);
+
       for (let i = 0; i < links.length; i++) {
         const token =
           "EAAAAZAw4FxQIBAPxzIkyMfgsH54ReRCXmhokvKuRfwhpbEai7gRtWd7lALZB1wmVYgiMzSxZCHfuCPEHZAIwLn9AJEBMXl9ezvc40ZBOBB8QN8HNViVW5lVSS5HjwXUKZBCsCMUggodLZBHHDjTzbPQY553wZAzsZAnHIQWT5st3WYQZDZD";
         const p = links[i];
         const uid = p.uid;
         outside = uid;
-        const url = `https://graph.facebook.com/v1.0/${uid}/friends?fields=id,subscribers,work,name,link,gender,hometown,birthday,education,location&access_token=${token}&limit=85`;
+        const url = `https://graph.facebook.com/v1.0/${uid}/friends?fields=id,subscribers,work,name,link,gender,hometown,birthday,education,location&access_token=${token}&limit=88`;
         let data = await axios.get(url);
         let oldP = 0;
         let newP = 0;
@@ -138,11 +140,11 @@ const delay = time => {
                     profile_raws.other.push(e.employer.name);
                   });
 
-                // console.log(profile);
                 const scrapedProfileA = await pg("profiles")
                   .where({ uid: profile.uid })
                   .select(["uid", "is_male"]);
                 const scrapedProfile = scrapedProfileA[0];
+                console.log("Updated ", profile.full_name);
 
                 if (!scrapedProfile) {
                   newP = newP + 1;
@@ -245,7 +247,6 @@ const delay = time => {
         }
       }
     } catch (err) {
-
       console.log("Restart", err);
 
       console.log("Restart", outside);
