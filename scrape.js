@@ -144,7 +144,7 @@ const delay = time => {
                   .where({ uid: profile.uid })
                   .select(["uid", "is_male"]);
                 const scrapedProfile = scrapedProfileA[0];
-                console.log("Updated ", profile.full_name);
+                // console.log("Updated ", profile.full_name);
 
                 if (!scrapedProfile) {
                   newP = newP + 1;
